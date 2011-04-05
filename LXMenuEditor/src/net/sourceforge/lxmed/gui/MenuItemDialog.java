@@ -26,6 +26,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.WindowConstants;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
+import net.sourceforge.lxmed.persistence.Configuration;
 
 /**
  *
@@ -281,6 +282,15 @@ public class MenuItemDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void updateGui() {
+        if (!Configuration.IS_ROOT && menuItem.isOnlyForAdmin()) {
+            txtName.setEnabled(false);
+            txtCommand.setEnabled(false);
+            txtComment.setEnabled(false);
+            txtIcon.setEnabled(false);
+            cbCategories.setEnabled(false);
+            btnOk.setEnabled(false);
+        }
+
         txtPath.setText(menuItem.getPath().getAbsolutePath());
         txtName.setText(menuItem.getName());
         txtCommand.setText(menuItem.getExec());

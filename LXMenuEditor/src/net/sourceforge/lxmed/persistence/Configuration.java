@@ -23,4 +23,20 @@ public class Configuration {
         // TODO: implement
         return null;
     }
+
+    public static String[] getAdminFolders() {
+        String[] ret = new String[]{ROOT_APPS, LOCAL_ROOT_APPS};
+        return ret;
+    }
+
+    static {
+        String strId = ProcessExecutor.execute("id -ru");
+        int id = Integer.parseInt(strId);
+
+        if (id == 0) {
+            IS_ROOT = true;
+        } else {
+            IS_ROOT = false;
+        }
+    }
 }

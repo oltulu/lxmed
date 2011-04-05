@@ -19,6 +19,7 @@ public class MenuItem {
     protected Icon icon;
     protected boolean noDisplay;
     protected Categorie categorie;
+    protected boolean onlyForAdmin = true;
 
     public MenuItem() {
     }
@@ -97,6 +98,14 @@ public class MenuItem {
 
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
+    }
+
+    public boolean isOnlyForAdmin() {
+        return onlyForAdmin;
+    }
+
+    public void setOnlyForAdmin(boolean onlyForAdmin) {
+        this.onlyForAdmin = onlyForAdmin;
     }
 
     public String getDesktopCode() {

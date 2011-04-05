@@ -1,3 +1,5 @@
 Add context icons to buttons in Main Frame.
 
 Show visible menu items in bold, others in regular font.
+
+Indicator which file can be edited and which can not (a padlock, statusbar, green/red color...)

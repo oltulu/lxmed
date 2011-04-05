@@ -75,6 +75,16 @@ public class ModelLoader {
         mi.setIconStr(values.get("Icon"));
         mi.setPath(file);
         mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
+
+        for (String string : Configuration.getAdminFolders()) {
+            if (mi.getPath().getParent().trim().equals(string.trim())) {
+                mi.setOnlyForAdmin(true);
+                break;
+            } else {
+                mi.setOnlyForAdmin(false);
+            }
+        }
+
         extractCategorie(mi, values.get("Categories"));
 
         return null;
