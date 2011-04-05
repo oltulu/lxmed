@@ -98,7 +98,7 @@ public class MenuItem {
     }
 
     public void setCategorie(Categorie categorie) {
-        //this.categorie = categorie;
+        this.categorie = categorie;
         if (!categorie.contains(this)) {
             categorie.add(this);
         }

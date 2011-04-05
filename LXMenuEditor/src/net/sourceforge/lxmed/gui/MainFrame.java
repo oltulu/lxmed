@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -36,6 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     protected DefaultListModel dlmItems = new DefaultListModel();
     protected DefaultListModel dlmCategories = new DefaultListModel();
+    protected ListCellRenderer listCellRenderer = new ListCellRenderer();
 
     /** Creates new form MainFrame */
     public MainFrame() {
@@ -173,7 +176,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(12, 12, 0, 0);
         pnlCenter.add(lblCategories, gridBagConstraints);
 
-        lstCategories.setFont(new Font("Dialog", 0, 11));
+        lstCategories.setFont(new Font("Dialog", 1, 11)); // NOI18N
         lstCategories.setModel(dlmCategories);
         lstCategories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         lstCategories.addListSelectionListener(new ListSelectionListener() {
@@ -196,9 +199,10 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(6, 12, 12, 0);
         pnlCenter.add(spCategories, gridBagConstraints);
 
-        lstItems.setFont(new Font("Dialog", 0, 11));
+        lstItems.setFont(new Font("Dialog", 0, 11)); // NOI18N
         lstItems.setModel(dlmItems);
         lstItems.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lstItems.setCellRenderer(listCellRenderer);
         lstItems.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 lstItemsMouseClicked(evt);
@@ -244,7 +248,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlControls.setLayout(new GridBagLayout());
 
-        btnNewItem.setFont(new Font("Dialog", 0, 11));
+        btnNewItem.setFont(new Font("Dialog", 0, 11)); // NOI18N
         btnNewItem.setMnemonic('n');
         btnNewItem.setText("New Item");
         btnNewItem.addActionListener(new ActionListener() {
@@ -313,7 +317,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnNewItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnNewItemActionPerformed
-        new MenuItemDialog(this, null).setVisible(true);
+        MenuItemDialog mid = new MenuItemDialog(this, null);
+        mid.setDefaultCategory((Categorie) lstCategories.getSelectedValue());
+        mid.setVisible(true);
     }//GEN-LAST:event_btnNewItemActionPerformed
 
     private void btnPropertiesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnPropertiesActionPerformed

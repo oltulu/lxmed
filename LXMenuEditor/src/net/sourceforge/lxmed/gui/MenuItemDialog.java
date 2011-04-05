@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -41,11 +43,15 @@ public class MenuItemDialog extends javax.swing.JDialog {
     protected MenuItem menuItem;
     protected ComboBoxModel cbm;
     protected boolean newItem = false;
+    protected Categorie defaultCategory;
 
     /** Creates new form MenuItemDialog */
     public MenuItemDialog(java.awt.Frame parent, MenuItem item) {
         super(parent, true);
         this.menuItem = item;
+        if (item == null) {
+            newItem = true;
+        }
         cbm = new DefaultComboBoxModel(Model.getModel().getCategories().toArray());
         initComponents();
         getRootPane().setDefaultButton(btnOk);
@@ -61,15 +67,6 @@ public class MenuItemDialog extends javax.swing.JDialog {
         InputMap map = this.getRootPane().getInputMap(
                 JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         map.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "close");
-
-        if (item != null) {
-            setTitle("Editig menu " + menuItem.getName());
-            updateGui();
-        } else {
-            newItem = true;
-            setTitle("New menu item");
-            readyForNew();
-        }
     }
 
     /** This method is called from within the constructor to
@@ -105,6 +102,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
         cbVisible = new JCheckBox();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new ComponentAdapter() {
+            public void componentShown(ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         pnlIcon.setFont(new Font("Dialog", 0, 11));
         getContentPane().add(pnlIcon, BorderLayout.WEST);
@@ -128,7 +130,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         pnlControls.add(btnCancel, gridBagConstraints);
 
-        btnOk.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnOk.setFont(new Font("Dialog", 0, 11));
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         btnOk.addActionListener(new ActionListener() {
@@ -166,7 +168,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblCategories.setLabelFor(cbCategories);
         lblCategories.setText("Category:");
 
-        cbCategories.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        cbCategories.setFont(new Font("Dialog", 0, 11));
         cbCategories.setMaximumRowCount(15);
         cbCategories.setModel(cbm);
 
@@ -175,7 +177,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblName.setLabelFor(txtName);
         lblName.setText("Name:");
 
-        txtName.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        txtName.setFont(new Font("Dialog", 0, 11));
         txtName.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 txtNameKeyTyped(evt);
@@ -230,18 +232,18 @@ public class MenuItemDialog extends javax.swing.JDialog {
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(pnlCenterLayout.createParallelGroup(Alignment.LEADING)
                     .addComponent(cbVisible)
-                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseCommand))
-                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseIcon))
-                    .addComponent(cbCategories, 0, 452, Short.MAX_VALUE)
-                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
+                    .addComponent(cbCategories, 0, 456, Short.MAX_VALUE)
+                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCenterLayout.setVerticalGroup(
@@ -301,6 +303,24 @@ public class MenuItemDialog extends javax.swing.JDialog {
             }
         });
     }//GEN-LAST:event_txtNameKeyTyped
+
+    private void formComponentShown(ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        if (!newItem) {
+            setTitle("Editig menu " + menuItem.getName());
+            updateGui();
+        } else {
+            setTitle("New menu item");
+            readyForNew();
+        }
+    }//GEN-LAST:event_formComponentShown
+
+    public Categorie getDefaultCategory() {
+        return defaultCategory;
+    }
+
+    public void setDefaultCategory(Categorie defaultCategory) {
+        this.defaultCategory = defaultCategory;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnBrowseCommand;
     private JButton btnBrowseIcon;
@@ -327,13 +347,16 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     private void updateGui() {
         if (!Configuration.IS_ROOT && menuItem.isOnlyForAdmin()) {
-            txtName.setEnabled(false);
-            txtCommand.setEnabled(false);
-            txtComment.setEnabled(false);
-            txtIcon.setEnabled(false);
+            txtName.setEditable(false);
+            txtCommand.setEditable(false);
+            txtComment.setEditable(false);
+            txtIcon.setEditable(false);
             cbCategories.setEnabled(false);
             cbVisible.setEnabled(false);
             btnOk.setEnabled(false);
+            btnCancel.setText("Close");
+            btnBrowseIcon.setEnabled(false);
+            btnBrowseCommand.setEnabled(false);
         }
 
         txtPath.setText(menuItem.getPath().getAbsolutePath());
@@ -351,7 +374,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }
 
     private void readyForNew() {
-        cbCategories.setSelectedIndex(0);
+        cbCategories.setSelectedItem(defaultCategory);
         txtPath.setText(Configuration.getAppsFolder());
     }
 

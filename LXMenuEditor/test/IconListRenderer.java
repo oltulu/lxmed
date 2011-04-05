@@ -1,5 +1,6 @@
 
 import java.awt.Component;
+import java.awt.Font;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ public class IconListRenderer
         JLabel label =
                 (JLabel) super.getListCellRendererComponent(list,
                 value, index, isSelected, cellHasFocus);
+        if(index==1)label.setFont(new Font("Times New Roman", Font.BOLD, 12));
 
         // Get icon to use for the list item value
 
