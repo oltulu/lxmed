@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ComboBoxModel;
@@ -15,6 +16,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.InputMap;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -23,7 +25,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import net.sourceforge.lxmed.model.Categorie;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 import net.sourceforge.lxmed.persistence.Configuration;
@@ -36,17 +40,16 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     protected MenuItem menuItem;
     protected ComboBoxModel cbm;
+    protected boolean newItem = false;
 
     /** Creates new form MenuItemDialog */
     public MenuItemDialog(java.awt.Frame parent, MenuItem item) {
         super(parent, true);
         this.menuItem = item;
         cbm = new DefaultComboBoxModel(Model.getModel().getCategories().toArray());
-        setTitle("Editig menu " + menuItem.getName());
         initComponents();
         getRootPane().setDefaultButton(btnOk);
         setLocationRelativeTo(null);
-        System.out.println(menuItem.getDesktopCode());
 
         // close on Esc
         this.getRootPane().getActionMap().put("close", new AbstractAction() {
@@ -59,7 +62,14 @@ public class MenuItemDialog extends javax.swing.JDialog {
                 JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         map.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "close");
 
-        updateGui();
+        if (item != null) {
+            setTitle("Editig menu " + menuItem.getName());
+            updateGui();
+        } else {
+            newItem = true;
+            setTitle("New menu item");
+            readyForNew();
+        }
     }
 
     /** This method is called from within the constructor to
@@ -92,13 +102,14 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblIcon = new JLabel();
         txtIcon = new JTextField();
         btnBrowseIcon = new JButton();
+        cbVisible = new JCheckBox();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        pnlIcon.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        pnlIcon.setFont(new Font("Dialog", 0, 11));
         getContentPane().add(pnlIcon, BorderLayout.WEST);
 
-        pnlControls.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        pnlControls.setFont(new Font("Dialog", 0, 11));
         pnlControls.setLayout(new GridBagLayout());
 
         btnCancel.setFont(new Font("Dialog", 0, 11));
@@ -117,9 +128,14 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         pnlControls.add(btnCancel, gridBagConstraints);
 
-        btnOk.setFont(new Font("Dialog", 0, 11));
+        btnOk.setFont(new Font("Dialog", 0, 11)); // NOI18N
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
+        btnOk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -135,59 +151,68 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(0, 10, 0, 10);
         pnlControls.add(sepSouth, gridBagConstraints);
 
-
         getContentPane().add(pnlControls, BorderLayout.SOUTH);
 
-        pnlCenter.setFont(new Font("Dialog", 0, 11)); // NOI18N
-        lblPath.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        pnlCenter.setFont(new Font("Dialog", 0, 11));
+
+        lblPath.setFont(new Font("Dialog", 0, 11));
         lblPath.setText("Path:");
 
         txtPath.setEditable(false);
-        txtPath.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        txtPath.setFont(new Font("Dialog", 0, 11));
 
         lblCategories.setDisplayedMnemonic('a');
-        lblCategories.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblCategories.setFont(new Font("Dialog", 0, 11));
         lblCategories.setLabelFor(cbCategories);
         lblCategories.setText("Category:");
 
         cbCategories.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        cbCategories.setMaximumRowCount(15);
         cbCategories.setModel(cbm);
 
         lblName.setDisplayedMnemonic('n');
-        lblName.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblName.setFont(new Font("Dialog", 0, 11));
         lblName.setLabelFor(txtName);
         lblName.setText("Name:");
 
         txtName.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        txtName.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                txtNameKeyTyped(evt);
+            }
+        });
 
         lblCommand.setDisplayedMnemonic('d');
-        lblCommand.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblCommand.setFont(new Font("Dialog", 0, 11));
         lblCommand.setLabelFor(txtCommand);
         lblCommand.setText("Command:");
 
+        txtCommand.setFont(new Font("Dialog", 0, 11));
 
-        txtCommand.setFont(new Font("Dialog", 0, 11)); // NOI18N
-        btnBrowseCommand.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnBrowseCommand.setFont(new Font("Dialog", 0, 11));
         btnBrowseCommand.setMnemonic('b');
         btnBrowseCommand.setText("Browse...");
 
         lblComment.setDisplayedMnemonic('m');
-        lblComment.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblComment.setFont(new Font("Dialog", 0, 11));
         lblComment.setLabelFor(txtComment);
         lblComment.setText("Comment:");
 
-        txtComment.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        txtComment.setFont(new Font("Dialog", 0, 11));
 
         lblIcon.setDisplayedMnemonic('i');
-        lblIcon.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblIcon.setFont(new Font("Dialog", 0, 11));
         lblIcon.setLabelFor(txtIcon);
         lblIcon.setText("Icon:");
 
+        txtIcon.setFont(new Font("Dialog", 0, 11));
 
-        txtIcon.setFont(new Font("Dialog", 0, 11)); // NOI18N
-        btnBrowseIcon.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnBrowseIcon.setFont(new Font("Dialog", 0, 11));
         btnBrowseIcon.setMnemonic('r');
         btnBrowseIcon.setText("Browse...");
+
+        cbVisible.setFont(new Font("Dialog", 0, 11));
+        cbVisible.setText("Visible");
 
         GroupLayout pnlCenterLayout = new GroupLayout(pnlCenter);
         pnlCenter.setLayout(pnlCenterLayout);
@@ -204,18 +229,19 @@ public class MenuItemDialog extends javax.swing.JDialog {
                     .addComponent(lblCategories))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(pnlCenterLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addComponent(cbVisible)
+                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseCommand))
-                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseIcon))
-                    .addComponent(cbCategories, 0, 553, Short.MAX_VALUE)
-                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE))
+                    .addComponent(cbCategories, 0, 452, Short.MAX_VALUE)
+                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCenterLayout.setVerticalGroup(
@@ -247,7 +273,9 @@ public class MenuItemDialog extends javax.swing.JDialog {
                     .addComponent(lblIcon)
                     .addComponent(txtIcon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBrowseIcon))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(cbVisible)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlCenter, BorderLayout.CENTER);
@@ -258,12 +286,28 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private void btnCancelActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         setVisible(false);
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        saveItem();
+    }//GEN-LAST:event_btnOkActionPerformed
+
+    private void txtNameKeyTyped(KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                if (newItem) {
+                    txtPath.setText(Configuration.getAppsFolder() + "/" + getFileName(txtName.getText().trim()));
+                }
+            }
+        });
+    }//GEN-LAST:event_txtNameKeyTyped
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnBrowseCommand;
     private JButton btnBrowseIcon;
     private JButton btnCancel;
     private JButton btnOk;
     private JComboBox cbCategories;
+    private JCheckBox cbVisible;
     private JLabel lblCategories;
     private JLabel lblCommand;
     private JLabel lblComment;
@@ -288,6 +332,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
             txtComment.setEnabled(false);
             txtIcon.setEnabled(false);
             cbCategories.setEnabled(false);
+            cbVisible.setEnabled(false);
             btnOk.setEnabled(false);
         }
 
@@ -297,5 +342,29 @@ public class MenuItemDialog extends javax.swing.JDialog {
         txtComment.setText(menuItem.getComment());
         txtIcon.setText(menuItem.getIconStr());
         cbCategories.setSelectedItem(menuItem.getCategorie());
+        cbVisible.setSelected(!menuItem.isNoDisplay());
+    }
+
+    private void saveItem() {
+        menuItem.setCategorie((Categorie) cbCategories.getSelectedItem());
+        menuItem.setName(txtName.getText().trim());
+    }
+
+    private void readyForNew() {
+        cbCategories.setSelectedIndex(0);
+        txtPath.setText(Configuration.getAppsFolder());
+    }
+
+    private String getFileName(String name) {
+        String[] forbidden = new String[]{"/", "\\", "?", "%", "*", ":", "|",
+            "\"", "<", ">", ".", ",", ";", "'", "(", ")", " "};
+
+        String ret = name;
+
+        for (String string : forbidden) {
+            ret = ret.replace(string, "_");
+        }
+
+        return ret + ".desktop";
     }
 }

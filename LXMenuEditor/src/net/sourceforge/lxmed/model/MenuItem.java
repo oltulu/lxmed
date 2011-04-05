@@ -19,6 +19,7 @@ public class MenuItem {
     protected Icon icon;
     protected boolean noDisplay;
     protected Categorie categorie;
+    protected String originalCategories;
     protected boolean onlyForAdmin = true;
 
     public MenuItem() {
@@ -97,7 +98,10 @@ public class MenuItem {
     }
 
     public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
+        //this.categorie = categorie;
+        if (!categorie.contains(this)) {
+            categorie.add(this);
+        }
     }
 
     public boolean isOnlyForAdmin() {
@@ -106,6 +110,14 @@ public class MenuItem {
 
     public void setOnlyForAdmin(boolean onlyForAdmin) {
         this.onlyForAdmin = onlyForAdmin;
+    }
+
+    public String getOriginalCategories() {
+        return originalCategories;
+    }
+
+    public void setOriginalCategories(String originalCategories) {
+        this.originalCategories = originalCategories;
     }
 
     public String getDesktopCode() {

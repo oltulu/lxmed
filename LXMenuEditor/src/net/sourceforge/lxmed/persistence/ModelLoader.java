@@ -22,7 +22,7 @@ public class ModelLoader {
 
         File[] paths = new File[]{
             new File(Configuration.ROOT_APPS),
-            new File(Configuration.LOCAL_ROOT_APPS),
+            new File(Configuration.ROOT_LOCAL_APPS),
             new File(Configuration.USER_APPS)};
 
         for (File path : paths) {
@@ -75,6 +75,7 @@ public class ModelLoader {
         mi.setIconStr(values.get("Icon"));
         mi.setPath(file);
         mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
+        mi.setOriginalCategories(values.get("Categories"));
 
         for (String string : Configuration.getAdminFolders()) {
             if (mi.getPath().getParent().trim().equals(string.trim())) {

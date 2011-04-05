@@ -313,7 +313,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnNewItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnNewItemActionPerformed
-        ni();
+        new MenuItemDialog(this, null).setVisible(true);
     }//GEN-LAST:event_btnNewItemActionPerformed
 
     private void btnPropertiesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnPropertiesActionPerformed

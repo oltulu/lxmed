@@ -134,8 +134,9 @@ public class Categorie implements List<MenuItem> {
     }
 
     public boolean add(MenuItem e) {
+        boolean ret = items.add(e);
         e.setCategorie(this);
-        return items.add(e);
+        return ret;
     }
 
     public String getCodeName() {
