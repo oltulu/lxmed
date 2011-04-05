@@ -93,6 +93,7 @@ public class ModelLoader {
 
     private static void extractCategorie(MenuItem mi, String cat) {
         if (cat == null || cat.trim().equals("")) {
+            Model.getModel().getCategoryByCode("").add(mi);
             return;
         }
 
@@ -101,7 +102,10 @@ public class ModelLoader {
         for (String string : cats) {
             if (Model.getModel().getCategoryByCode(string) != null) {
                 Model.getModel().getCategoryByCode(string).add(mi);
+                return;
             }
         }
+
+        Model.getModel().getCategoryByCode("").add(mi);
     }
 }

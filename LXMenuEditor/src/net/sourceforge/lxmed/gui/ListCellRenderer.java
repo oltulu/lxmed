@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import net.sourceforge.lxmed.model.MenuItem;
@@ -31,6 +30,8 @@ public class ListCellRenderer extends DefaultListCellRenderer {
 
         if (mi != null && rootOnly(mi)) {
             label.setForeground(new Color(170, 0, 0)); // dark red
+        } else if (mi.getExec().toLowerCase().contains("wine")) {
+            label.setForeground(new Color(170, 170, 0));
         } else {
             label.setForeground(new Color(0, 170, 0)); // dark green
         }
