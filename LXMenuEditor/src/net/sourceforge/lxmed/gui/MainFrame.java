@@ -97,7 +97,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(0, 10, 0, 10);
         pnlSouth.add(btnHelp, gridBagConstraints);
 
-        btnAbout.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnAbout.setFont(new Font("Dialog", 0, 11));
         btnAbout.setMnemonic('b');
         btnAbout.setText("About");
         btnAbout.addActionListener(new ActionListener() {
@@ -260,8 +260,8 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(31, 10, 5, 10);
         pnlControls.add(btnNewItem, gridBagConstraints);
 
-        btnProperties.setFont(new Font("Dialog", 0, 11)); // NOI18N
-        btnProperties.setMnemonic('e');
+        btnProperties.setFont(new Font("Dialog", 0, 11));
+        btnProperties.setMnemonic('r');
         btnProperties.setText("Properties");
         btnProperties.setEnabled(false);
         btnProperties.addActionListener(new ActionListener() {
@@ -331,7 +331,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         dlmItems.clear();
         Categorie c = (Categorie) lstCategories.getSelectedValue();
-        for (MenuItem menuItem : c.getItems()) {
+        for (MenuItem menuItem : c) {
             dlmItems.addElement(menuItem);
         }
     }//GEN-LAST:event_lstCategoriesValueChanged

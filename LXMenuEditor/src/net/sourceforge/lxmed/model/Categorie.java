@@ -81,6 +81,7 @@ public class Categorie implements List<MenuItem> {
         return items.indexOf(o);
     }
 
+    @Override
     public int hashCode() {
         return items.hashCode();
     }
@@ -89,8 +90,22 @@ public class Categorie implements List<MenuItem> {
         return items.get(index);
     }
 
-    public boolean equals(Object o) {
-        return items.equals(o);
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Categorie other = (Categorie) obj;
+        if ((this.codeName == null) ? (other.codeName != null) : !this.codeName.equals(other.codeName)) {
+            return false;
+        }
+        if (this.items != other.items && (this.items == null || !this.items.equals(other.items))) {
+            return false;
+        }
+        return true;
     }
 
     public boolean containsAll(Collection<?> c) {
@@ -115,9 +130,11 @@ public class Categorie implements List<MenuItem> {
 
     public void add(int index, MenuItem element) {
         items.add(index, element);
+        element.setCategorie(this);
     }
 
     public boolean add(MenuItem e) {
+        e.setCategorie(this);
         return items.add(e);
     }
 
@@ -135,10 +152,6 @@ public class Categorie implements List<MenuItem> {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
-    }
-
-    public List<MenuItem> getItems() {
-        return items;
     }
 
     public void setItems(List<MenuItem> items) {
@@ -159,14 +172,6 @@ public class Categorie implements List<MenuItem> {
         ret.add(new Categorie("Sound & Video", "AudioVideo"));
         ret.add(new Categorie("System Tools", "System"));
         ret.add(new Categorie("Preferences", "Settings"));
-
-        ret.get(0).getItems().add(new MenuItem("Stavka1"));
-        ret.get(0).getItems().add(new MenuItem("Stavka2"));
-        ret.get(0).getItems().add(new MenuItem("Stavka3"));
-
-        ret.get(1).getItems().add(new MenuItem("BStavka1"));
-        ret.get(1).getItems().add(new MenuItem("BStavka2"));
-        ret.get(1).getItems().add(new MenuItem("BStavka3"));
 
         return ret;
     }

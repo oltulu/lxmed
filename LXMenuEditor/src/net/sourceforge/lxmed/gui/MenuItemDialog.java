@@ -45,6 +45,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         initComponents();
         getRootPane().setDefaultButton(btnOk);
         setLocationRelativeTo(null);
+        System.out.println(menuItem.getDesktopCode());
 
         // close on Esc
         this.getRootPane().getActionMap().put("close", new AbstractAction() {
@@ -56,6 +57,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
         InputMap map = this.getRootPane().getInputMap(
                 JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         map.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "close");
+
+        updateGui();
     }
 
     /** This method is called from within the constructor to
@@ -74,18 +77,20 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnOk = new JButton();
         sepSouth = new JSeparator();
         pnlCenter = new JPanel();
+        lblPath = new JLabel();
+        txtPath = new JTextField();
         lblCategories = new JLabel();
+        cbCategories = new JComboBox();
         lblName = new JLabel();
-        lblCommand = new JLabel();
-        lblComment = new JLabel();
         txtName = new JTextField();
+        lblCommand = new JLabel();
         txtCommand = new JTextField();
         btnBrowseCommand = new JButton();
+        lblComment = new JLabel();
         txtComment = new JTextField();
         lblIcon = new JLabel();
         txtIcon = new JTextField();
         btnBrowseIcon = new JButton();
-        cbCategories = new JComboBox();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,7 +100,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlControls.setFont(new Font("Dialog", 0, 11)); // NOI18N
         pnlControls.setLayout(new GridBagLayout());
 
-        btnCancel.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnCancel.setFont(new Font("Dialog", 0, 11));
         btnCancel.setMnemonic('c');
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new ActionListener() {
@@ -111,7 +116,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         pnlControls.add(btnCancel, gridBagConstraints);
 
-        btnOk.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnOk.setFont(new Font("Dialog", 0, 11));
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         gridBagConstraints = new GridBagConstraints();
@@ -129,37 +134,46 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(0, 10, 0, 10);
         pnlControls.add(sepSouth, gridBagConstraints);
 
+
         getContentPane().add(pnlControls, BorderLayout.SOUTH);
 
         pnlCenter.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblPath.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblPath.setText("Path:");
+
+        txtPath.setEditable(false);
+        txtPath.setFont(new Font("Dialog", 0, 11)); // NOI18N
 
         lblCategories.setDisplayedMnemonic('a');
         lblCategories.setFont(new Font("Dialog", 0, 11)); // NOI18N
         lblCategories.setLabelFor(cbCategories);
         lblCategories.setText("Category:");
 
+        cbCategories.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        cbCategories.setModel(cbm);
+
         lblName.setDisplayedMnemonic('n');
         lblName.setFont(new Font("Dialog", 0, 11)); // NOI18N
         lblName.setLabelFor(txtName);
         lblName.setText("Name:");
+
+        txtName.setFont(new Font("Dialog", 0, 11)); // NOI18N
 
         lblCommand.setDisplayedMnemonic('d');
         lblCommand.setFont(new Font("Dialog", 0, 11)); // NOI18N
         lblCommand.setLabelFor(txtCommand);
         lblCommand.setText("Command:");
 
-        lblComment.setDisplayedMnemonic('m');
-        lblComment.setFont(new Font("Dialog", 0, 11)); // NOI18N
-        lblComment.setLabelFor(txtComment);
-        lblComment.setText("Comment:");
 
-
-
-        txtName.setFont(new Font("Dialog", 0, 11)); // NOI18N
         txtCommand.setFont(new Font("Dialog", 0, 11)); // NOI18N
         btnBrowseCommand.setFont(new Font("Dialog", 0, 11)); // NOI18N
         btnBrowseCommand.setMnemonic('b');
         btnBrowseCommand.setText("Browse...");
+
+        lblComment.setDisplayedMnemonic('m');
+        lblComment.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lblComment.setLabelFor(txtComment);
+        lblComment.setText("Comment:");
 
         txtComment.setFont(new Font("Dialog", 0, 11)); // NOI18N
 
@@ -174,9 +188,6 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnBrowseIcon.setMnemonic('r');
         btnBrowseIcon.setText("Browse...");
 
-        cbCategories.setFont(new Font("Dialog", 0, 11)); // NOI18N
-        cbCategories.setModel(cbm);
-
         GroupLayout pnlCenterLayout = new GroupLayout(pnlCenter);
         pnlCenter.setLayout(pnlCenterLayout);
         pnlCenterLayout.setHorizontalGroup(
@@ -184,6 +195,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
             .addGroup(pnlCenterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCenterLayout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(lblPath)
                     .addComponent(lblIcon)
                     .addComponent(lblComment)
                     .addComponent(lblCommand)
@@ -191,23 +203,28 @@ public class MenuItemDialog extends javax.swing.JDialog {
                     .addComponent(lblCategories))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(pnlCenterLayout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseCommand))
-                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseIcon))
-                    .addComponent(cbCategories, 0, 342, Short.MAX_VALUE))
+                    .addComponent(cbCategories, 0, 553, Short.MAX_VALUE)
+                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCenterLayout.setVerticalGroup(
             pnlCenterLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(pnlCenterLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(pnlCenterLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(lblPath)
+                    .addComponent(txtPath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(pnlCenterLayout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(lblCategories)
                     .addComponent(cbCategories, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -251,6 +268,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private JLabel lblComment;
     private JLabel lblIcon;
     private JLabel lblName;
+    private JLabel lblPath;
     private JPanel pnlCenter;
     private JPanel pnlControls;
     private JPanel pnlIcon;
@@ -259,5 +277,15 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private JTextField txtComment;
     private JTextField txtIcon;
     private JTextField txtName;
+    private JTextField txtPath;
     // End of variables declaration//GEN-END:variables
+
+    private void updateGui() {
+        txtPath.setText(menuItem.getPath().getAbsolutePath());
+        txtName.setText(menuItem.getName());
+        txtCommand.setText(menuItem.getExec());
+        txtComment.setText(menuItem.getComment());
+        txtIcon.setText(menuItem.getIconStr());
+        cbCategories.setSelectedItem(menuItem.getCategorie());
+    }
 }

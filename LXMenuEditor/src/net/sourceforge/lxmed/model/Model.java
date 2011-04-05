@@ -29,4 +29,24 @@ public class Model {
     public void setCategories(List<Categorie> categories) {
         this.categories = categories;
     }
+
+    public boolean containsCategory(String categoryCode) {
+        for (Categorie categorie : categories) {
+            if (categorie.getCodeName().trim().equals(categoryCode.trim())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Categorie getCategoryByCode(String categoryCode) {
+        for (Categorie categorie : categories) {
+            if (categorie.getCodeName().trim().equals(categoryCode.trim())) {
+                return categorie;
+            }
+        }
+
+        return null;
+    }
 }
