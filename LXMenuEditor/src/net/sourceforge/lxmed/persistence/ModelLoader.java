@@ -6,8 +6,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import net.sourceforge.lxmed.model.Categorie;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 
@@ -33,6 +37,11 @@ public class ModelLoader {
                     }
                 }
             }
+        }
+
+        // sort all items by name
+        for (Categorie categorie : Model.getModel().getCategories()) {
+            sortItemsByName(categorie);
         }
 
         return model;
@@ -107,5 +116,9 @@ public class ModelLoader {
         }
 
         Model.getModel().getCategoryByCode("").add(mi);
+    }
+
+    private static void sortItemsByName(Categorie c) {
+        Collections.sort(c, new ItemNameComparator());
     }
 }
