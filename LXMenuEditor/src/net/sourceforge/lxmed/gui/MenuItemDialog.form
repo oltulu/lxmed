@@ -124,20 +124,20 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cbVisible" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtName" pref="456" max="32767" attributes="0"/>
+                      <Component id="txtName" pref="452" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtCommand" pref="369" max="32767" attributes="0"/>
+                          <Component id="txtCommand" pref="357" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBrowseCommand" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtComment" alignment="0" pref="456" max="32767" attributes="0"/>
+                      <Component id="txtComment" alignment="0" pref="452" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtIcon" pref="369" max="32767" attributes="0"/>
+                          <Component id="txtIcon" pref="357" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBrowseIcon" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="cbCategories" alignment="0" pref="456" max="32767" attributes="0"/>
-                      <Component id="txtPath" alignment="0" pref="456" max="32767" attributes="0"/>
+                      <Component id="cbCategories" alignment="0" pref="452" max="32767" attributes="0"/>
+                      <Component id="txtPath" alignment="0" pref="452" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -274,6 +274,9 @@
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrowseCommandActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblComment">
           <Properties>
@@ -321,6 +324,9 @@
             <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrowseIconActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cbVisible">
           <Properties>

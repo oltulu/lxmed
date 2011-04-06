@@ -3,3 +3,5 @@ Add context icons to buttons in Main Frame.
 Add icons in JLists and Item Properties Dialog.
 
 Icon for application.
+
+See how exactly does LXDE determine which Category is item in, since it has more Categories defined.

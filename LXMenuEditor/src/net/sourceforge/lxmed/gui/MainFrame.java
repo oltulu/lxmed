@@ -2,6 +2,7 @@ package net.sourceforge.lxmed.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -40,12 +41,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     /** Creates new form MainFrame */
     public MainFrame() {
+        setPreferredSize(new Dimension(600, 400));
         for (Categorie categorie : Model.getModel().getCategories()) {
             dlmCategories.addElement(categorie);
         }
         initComponents();
         lstCategories.setSelectedIndex(0);
         setLocationRelativeTo(null);
+        //setSize(600, 400);
     }
 
     /** This method is called from within the constructor to
@@ -174,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(12, 12, 0, 0);
         pnlCenter.add(lblCategories, gridBagConstraints);
 
-        lstCategories.setFont(new Font("Dialog", 1, 11)); // NOI18N
+        lstCategories.setFont(new Font("Dialog", 1, 11));
         lstCategories.setModel(dlmCategories);
         lstCategories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         lstCategories.addListSelectionListener(new ListSelectionListener() {
@@ -212,8 +215,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         lstItems.addKeyListener(new KeyAdapter() {
-            public void keyReleased(KeyEvent evt) {
-                lstItemsKeyReleased(evt);
+            public void keyPressed(KeyEvent evt) {
+                lstItemsKeyPressed(evt);
             }
         });
         spItems.setViewportView(lstItems);
@@ -246,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlControls.setLayout(new GridBagLayout());
 
-        btnNewItem.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnNewItem.setFont(new Font("Dialog", 0, 11));
         btnNewItem.setMnemonic('n');
         btnNewItem.setText("New Item");
         btnNewItem.addActionListener(new ActionListener() {
@@ -311,7 +314,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-        ni();
+        String msg = "LXDE Main Menu Editor 20110405-beta\n\n";
+        msg += "Copyleft(\u2184) 2011. HEEM-BA-SHOU\n";
+        JOptionPane.showMessageDialog(this, msg, "About", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnNewItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnNewItemActionPerformed
@@ -360,11 +365,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lstItemsMouseClicked
 
-    private void lstItemsKeyReleased(KeyEvent evt) {//GEN-FIRST:event_lstItemsKeyReleased
+    private void lstItemsKeyPressed(KeyEvent evt) {//GEN-FIRST:event_lstItemsKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             editItem();
         }
-    }//GEN-LAST:event_lstItemsKeyReleased
+    }//GEN-LAST:event_lstItemsKeyPressed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnAbout;
     private JButton btnClose;

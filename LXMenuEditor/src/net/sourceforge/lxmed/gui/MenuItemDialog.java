@@ -1,6 +1,8 @@
 package net.sourceforge.lxmed.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +13,8 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import javax.swing.AbstractAction;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -21,7 +25,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -29,10 +35,13 @@ import javax.swing.KeyStroke;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import net.sourceforge.lxmed.model.Categorie;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 import net.sourceforge.lxmed.persistence.Configuration;
+import net.sourceforge.lxmed.persistence.DesktopFileSaver;
 
 /**
  *
@@ -194,6 +203,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnBrowseCommand.setFont(new Font("Dialog", 0, 11));
         btnBrowseCommand.setMnemonic('b');
         btnBrowseCommand.setText("Browse...");
+        btnBrowseCommand.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnBrowseCommandActionPerformed(evt);
+            }
+        });
 
         lblComment.setDisplayedMnemonic('m');
         lblComment.setFont(new Font("Dialog", 0, 11));
@@ -212,6 +226,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnBrowseIcon.setFont(new Font("Dialog", 0, 11));
         btnBrowseIcon.setMnemonic('r');
         btnBrowseIcon.setText("Browse...");
+        btnBrowseIcon.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnBrowseIconActionPerformed(evt);
+            }
+        });
 
         cbVisible.setFont(new Font("Dialog", 0, 11));
         cbVisible.setText("Visible");
@@ -232,18 +251,18 @@ public class MenuItemDialog extends javax.swing.JDialog {
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(pnlCenterLayout.createParallelGroup(Alignment.LEADING)
                     .addComponent(cbVisible)
-                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseCommand))
-                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseIcon))
-                    .addComponent(cbCategories, 0, 456, Short.MAX_VALUE)
-                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))
+                    .addComponent(cbCategories, 0, 452, Short.MAX_VALUE)
+                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCenterLayout.setVerticalGroup(
@@ -291,6 +310,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         saveItem();
+        setVisible(false);
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void txtNameKeyTyped(KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
@@ -313,6 +333,76 @@ public class MenuItemDialog extends javax.swing.JDialog {
             readyForNew();
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void btnBrowseCommandActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBrowseCommandActionPerformed
+        JFileChooser fc = new JFileChooser("/usr/local/bin");
+
+        setFileChooserFont(fc.getComponents());
+        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        fc.setFileFilter(new FileFilter() {
+
+            @Override
+            public boolean accept(File f) {
+                return true;
+            }
+
+            @Override
+            public String getDescription() {
+                return "All files [*.*]";
+            }
+        });
+
+        fc.setAcceptAllFileFilterUsed(false);
+        fc.setDialogTitle("Choose executive file for this item");
+
+        int returnVal = fc.showDialog(this, "Ok");
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            txtCommand.setText(fc.getSelectedFile().getAbsolutePath());
+            checkBtnOk();
+        }
+
+        fc.setSelectedFile(null);
+    }//GEN-LAST:event_btnBrowseCommandActionPerformed
+
+    private void btnBrowseIconActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBrowseIconActionPerformed
+        File f = new File("/usr/local/share/icons");
+        if (!f.isDirectory()) {
+            f = new File("/usr/share/icons");
+        }
+        JFileChooser fc = new JFileChooser(f);
+
+        setFileChooserFont(fc.getComponents());
+        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        fc.setFileFilter(new FileNameExtensionFilter("Image files [*.png, *.xpm]", "png", "xpm"));
+        fc.setAccessory(new ImagePreview(fc));
+
+        fc.setAcceptAllFileFilterUsed(false);
+        fc.setDialogTitle("Choose executive file for this item");
+
+        int returnVal = fc.showDialog(this, "Ok");
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            txtCommand.setText(fc.getSelectedFile().getAbsolutePath());
+            checkBtnOk();
+        }
+
+        fc.setSelectedFile(null);
+    }//GEN-LAST:event_btnBrowseIconActionPerformed
+
+    private void setFileChooserFont(Component[] comp) {
+        for (int x = 0; x
+                < comp.length; x++) {
+            if (comp[x] instanceof Container) {
+                setFileChooserFont(((Container) comp[x]).getComponents());
+            }
+
+            try {
+                comp[x].setFont(txtName.getFont());
+            } catch (Exception e) {
+            }//do nothing
+        }
+    }
 
     public Categorie getDefaultCategory() {
         return defaultCategory;
@@ -369,13 +459,24 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }
 
     private void saveItem() {
+        // TODO: saveItem
         menuItem.setCategorie((Categorie) cbCategories.getSelectedItem());
         menuItem.setName(txtName.getText().trim());
+        menuItem.setExec(txtCommand.getText().trim());
+        menuItem.setComment(txtComment.getText().trim());
+        menuItem.setIconStr(txtIcon.getText().trim());
+        menuItem.setNoDisplay(!cbVisible.isSelected());
+        try {
+            DesktopFileSaver.save(menuItem);
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error while saving item", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void readyForNew() {
         cbCategories.setSelectedItem(defaultCategory);
         txtPath.setText(Configuration.getAppsFolder());
+        txtName.requestFocus();
     }
 
     private String getFileName(String name) {
@@ -389,5 +490,9 @@ public class MenuItemDialog extends javax.swing.JDialog {
         }
 
         return ret + ".desktop";
+    }
+
+    private void checkBtnOk() {
+        // TODO: checkBtnOk
     }
 }
