@@ -414,5 +414,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         new MenuItemDialog(this, mi).setVisible(true);
+        lstItems.requestFocus();
     }
 }

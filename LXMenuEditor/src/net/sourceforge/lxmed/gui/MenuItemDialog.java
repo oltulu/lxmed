@@ -199,6 +199,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblCommand.setText("Command:");
 
         txtCommand.setFont(new Font("Dialog", 0, 11));
+        txtCommand.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                txtCommandKeyTyped(evt);
+            }
+        });
 
         btnBrowseCommand.setFont(new Font("Dialog", 0, 11));
         btnBrowseCommand.setMnemonic('b');
@@ -320,6 +325,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
                 if (newItem) {
                     txtPath.setText(Configuration.getAppsFolder() + "/" + getFileName(txtName.getText().trim()));
                 }
+                checkBtnOk();
             }
         });
     }//GEN-LAST:event_txtNameKeyTyped
@@ -332,6 +338,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
             setTitle("New menu item");
             readyForNew();
         }
+        checkBtnOk();
     }//GEN-LAST:event_formComponentShown
 
     private void btnBrowseCommandActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBrowseCommandActionPerformed
@@ -363,6 +370,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         }
 
         fc.setSelectedFile(null);
+        checkBtnOk();
     }//GEN-LAST:event_btnBrowseCommandActionPerformed
 
     private void btnBrowseIconActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBrowseIconActionPerformed
@@ -378,17 +386,26 @@ public class MenuItemDialog extends javax.swing.JDialog {
         fc.setAccessory(new ImagePreview(fc));
 
         fc.setAcceptAllFileFilterUsed(false);
-        fc.setDialogTitle("Choose executive file for this item");
+        fc.setDialogTitle("Choose icon file for this item");
 
         int returnVal = fc.showDialog(this, "Ok");
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            txtCommand.setText(fc.getSelectedFile().getAbsolutePath());
+            txtIcon.setText(fc.getSelectedFile().getAbsolutePath());
             checkBtnOk();
         }
 
         fc.setSelectedFile(null);
     }//GEN-LAST:event_btnBrowseIconActionPerformed
+
+    private void txtCommandKeyTyped(KeyEvent evt) {//GEN-FIRST:event_txtCommandKeyTyped
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                checkBtnOk();
+            }
+        });
+    }//GEN-LAST:event_txtCommandKeyTyped
 
     private void setFileChooserFont(Component[] comp) {
         for (int x = 0; x
@@ -493,6 +510,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }
 
     private void checkBtnOk() {
-        // TODO: checkBtnOk
+        if (txtName.getText().trim().equals("")
+                || txtCommand.getText().trim().equals("")) {
+            btnOk.setEnabled(false);
+        } else {
+            btnOk.setEnabled(true);
+        }
     }
 }
