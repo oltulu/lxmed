@@ -20,6 +20,7 @@ public class MenuItem {
     protected boolean noDisplay;
     protected Categorie categorie;
     protected String originalCategories;
+    protected String originalCode;
     protected boolean onlyForAdmin = true;
 
     public MenuItem() {
@@ -120,6 +121,14 @@ public class MenuItem {
         this.originalCategories = originalCategories;
     }
 
+    public String getOriginalCode() {
+        return originalCode;
+    }
+
+    public void setOriginalCode(String originalCode) {
+        this.originalCode = originalCode;
+    }
+
     public String getDesktopCode() {
         checkItem();
 
@@ -169,9 +178,9 @@ public class MenuItem {
                     throw new LxmedException("Empty string.");
                 }
             } else if (object instanceof Categorie) {
-                if (((Categorie) object).getCodeName().trim().equals("")) {
-                    throw new LxmedException("Empty string in categorie.");
-                }
+//                if (((Categorie) object).getCodeName().trim().equals("")) {
+//                    throw new LxmedException("Empty string in categorie.");
+//                }
             }
         }
     }

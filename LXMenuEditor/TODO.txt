@@ -7,3 +7,7 @@ Icon for application.
 See how exactly does LXDE determine which Category is item in, since it has more Categories defined.
 
 Make .deb installation package
+
+Kad joj se promeni kategorija, ostane u istoj listi i bude u novoj? reload modela?
+
+Ne vidi se dobro font za copyleft, promeniti u copyright

@@ -28,18 +28,23 @@ public class ListCellRenderer extends DefaultListCellRenderer {
 
         MenuItem mi = (MenuItem) list.getModel().getElementAt(index);
 
-        if (mi != null && rootOnly(mi)) {
-            label.setForeground(new Color(170, 0, 0)); // red
-        } else if (mi.getExec().toLowerCase().contains("wine")) {
-            label.setForeground(new Color(170, 170, 0)); // yellow
-        } else {
-            label.setForeground(new Color(0, 170, 0)); // green
-        }
+        try {
 
-        if (mi != null && !mi.isNoDisplay()) {
-            label.setFont(label.getFont().deriveFont(Font.BOLD));
-        }
+            if (mi != null && rootOnly(mi)) {
+                label.setForeground(new Color(170, 0, 0)); // red
+            } else if (mi.getExec().toLowerCase().contains("wine")) {
+                label.setForeground(new Color(170, 170, 0)); // yellow
+            } else {
+                label.setForeground(new Color(0, 170, 0)); // green
+            }
 
+            if (mi != null && !mi.isNoDisplay()) {
+                label.setFont(label.getFont().deriveFont(Font.BOLD));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // Get icon to use for the list item value
 
         //Icon icon = icons.get(value);

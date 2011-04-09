@@ -10,6 +10,15 @@ import net.sourceforge.lxmed.model.MenuItem;
 public class ItemNameComparator implements Comparator<MenuItem> {
 
     public int compare(MenuItem o1, MenuItem o2) {
+        if (o1.getName() == null && o2.getName() == null) {
+            return 0;
+        }
+        if (o1.getName() == null) {
+            return 1;
+        }
+        if (o2.getName() == null) {
+            return -1;
+        }
         return o1.getName().compareToIgnoreCase(o2.getName());
     }
 }

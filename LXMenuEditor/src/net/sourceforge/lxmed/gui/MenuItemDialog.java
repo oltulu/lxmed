@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -93,6 +94,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnCancel = new JButton();
         btnOk = new JButton();
         sepSouth = new JSeparator();
+        btnViewCode = new JButton();
         pnlCenter = new JPanel();
         lblPath = new JLabel();
         txtPath = new JTextField();
@@ -161,6 +163,21 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(0, 10, 0, 10);
         pnlControls.add(sepSouth, gridBagConstraints);
+
+        btnViewCode.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnViewCode.setMnemonic('e');
+        btnViewCode.setText("Edit code manually");
+        btnViewCode.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnViewCodeActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
+        gridBagConstraints.insets = new Insets(0, 10, 0, 0);
+        pnlControls.add(btnViewCode, gridBagConstraints);
 
         getContentPane().add(pnlControls, BorderLayout.SOUTH);
 
@@ -238,6 +255,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         });
 
         cbVisible.setFont(new Font("Dialog", 0, 11));
+        cbVisible.setMnemonic('v');
         cbVisible.setText("Visible");
 
         GroupLayout pnlCenterLayout = new GroupLayout(pnlCenter);
@@ -299,9 +317,9 @@ public class MenuItemDialog extends javax.swing.JDialog {
                     .addComponent(lblIcon)
                     .addComponent(txtIcon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBrowseIcon))
-                .addGap(18, 18, 18)
+                .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addComponent(cbVisible)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlCenter, BorderLayout.CENTER);
@@ -314,7 +332,9 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        saveItem();
+        if (!menuItem.isOnlyForAdmin()) {
+            saveItem();
+        }
         setVisible(false);
     }//GEN-LAST:event_btnOkActionPerformed
 
@@ -333,6 +353,9 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private void formComponentShown(ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         if (!newItem) {
             setTitle("Editig menu " + menuItem.getName());
+            if (menuItem.isOnlyForAdmin()) {
+                btnViewCode.setText("View original code");
+            }
             updateGui();
         } else {
             setTitle("New menu item");
@@ -407,6 +430,10 @@ public class MenuItemDialog extends javax.swing.JDialog {
         });
     }//GEN-LAST:event_txtCommandKeyTyped
 
+    private void btnViewCodeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnViewCodeActionPerformed
+        new CodeEditDialog((Frame) getParent(), menuItem, !menuItem.isOnlyForAdmin()).setVisible(true);
+    }//GEN-LAST:event_btnViewCodeActionPerformed
+
     private void setFileChooserFont(Component[] comp) {
         for (int x = 0; x
                 < comp.length; x++) {
@@ -433,6 +460,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private JButton btnBrowseIcon;
     private JButton btnCancel;
     private JButton btnOk;
+    private JButton btnViewCode;
     private JComboBox cbCategories;
     private JCheckBox cbVisible;
     private JLabel lblCategories;
@@ -461,7 +489,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
             cbCategories.setEnabled(false);
             cbVisible.setEnabled(false);
             btnOk.setEnabled(false);
-            btnCancel.setText("Close");
+            btnOk.setText("Close");
+            btnCancel.setEnabled(false);
             btnBrowseIcon.setEnabled(false);
             btnBrowseCommand.setEnabled(false);
         }

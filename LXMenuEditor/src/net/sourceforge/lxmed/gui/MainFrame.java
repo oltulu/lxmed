@@ -48,7 +48,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         lstCategories.setSelectedIndex(0);
         setLocationRelativeTo(null);
-        //setSize(600, 400);
+        btnHelp.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -315,7 +315,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         String msg = "LXDE Main Menu Editor 20110405-beta\n\n";
-        msg += "Copyleft(\u2184) 2011. HEEM-BA-SHOU\n";
+        msg += "Copyleft \u2184\u20DD 2011. HEEM-BA-SHOU\n";
         JOptionPane.showMessageDialog(this, msg, "About", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAboutActionPerformed
 
@@ -330,7 +330,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPropertiesActionPerformed
 
     private void btnDeleteActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        ni();
+        deleteItem();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void lstCategoriesValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_lstCategoriesValueChanged
@@ -343,6 +343,7 @@ public class MainFrame extends javax.swing.JFrame {
         for (MenuItem menuItem : c) {
             dlmItems.addElement(menuItem);
         }
+        disableControls();
     }//GEN-LAST:event_lstCategoriesValueChanged
 
     private void lstItemsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_lstItemsValueChanged
@@ -356,6 +357,12 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
 
+        if (mi.isOnlyForAdmin()) {
+            btnProperties.setEnabled(true);
+            btnDelete.setEnabled(false);
+            return;
+        }
+
         enableControls();
     }//GEN-LAST:event_lstItemsValueChanged
 
@@ -366,8 +373,13 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lstItemsMouseClicked
 
     private void lstItemsKeyPressed(KeyEvent evt) {//GEN-FIRST:event_lstItemsKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            editItem();
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_ENTER:
+                editItem();
+                break;
+            case KeyEvent.VK_DELETE:
+                deleteItem();
+                break;
         }
     }//GEN-LAST:event_lstItemsKeyPressed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -398,13 +410,13 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void enableControls() {
-        btnProperties.setEnabled(true);
         btnDelete.setEnabled(true);
+        btnProperties.setEnabled(true);
     }
 
     private void disableControls() {
-        btnProperties.setEnabled(false);
         btnDelete.setEnabled(false);
+        btnProperties.setEnabled(false);
     }
 
     private void editItem() {
@@ -415,5 +427,19 @@ public class MainFrame extends javax.swing.JFrame {
 
         new MenuItemDialog(this, mi).setVisible(true);
         lstItems.requestFocus();
+    }
+
+    private void deleteItem() {
+        if (lstItems.getSelectedValue() == null) {
+            return;
+        }
+
+        if (!((MenuItem) lstItems.getSelectedValue()).isOnlyForAdmin()) {
+            int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                // TODO: delete file code or method call, if successfull deletion, removing file from JList
+                ni();
+            }
+        }
     }
 }

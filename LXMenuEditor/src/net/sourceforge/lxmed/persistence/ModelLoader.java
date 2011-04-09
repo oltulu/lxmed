@@ -12,6 +12,7 @@ import java.util.Map;
 import net.sourceforge.lxmed.model.Categorie;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
+import org.omg.CORBA.CODESET_INCOMPATIBLE;
 
 /**
  *
@@ -47,6 +48,7 @@ public class ModelLoader {
 
     public static MenuItem loadDesktopFile(File file) {
         Map<String, String> values = new HashMap<String, String>();
+        String code = "";
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
@@ -54,6 +56,7 @@ public class ModelLoader {
 
             while ((line = br.readLine()) != null) {
                 if (line.contains("=")) {
+                    code = code.concat(line).concat("\n");
                     String[] strs = line.split("=");
                     String rest = "";
                     for (int i = 1; i < strs.length; i++) { // building value
@@ -83,6 +86,7 @@ public class ModelLoader {
         mi.setPath(file);
         mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
         mi.setOriginalCategories(values.get("Categories"));
+        mi.setOriginalCode(code);
 
         for (String string : Configuration.getAdminFolders()) {
             if (mi.getPath().getParent().trim().equals(string.trim())) {
@@ -117,6 +121,14 @@ public class ModelLoader {
     }
 
     private static void sortItemsByName(Categorie c) {
+        // TODO: del
+//        if (c.getCodeName().equals("")) {
+//            int i = 0;
+//            for (MenuItem mi : c) {
+//                System.out.println(++i + "," + mi.getName() + ", " + mi.getPath().getAbsolutePath());
+//            }
+//            System.out.println("stop");
+//        }
         Collections.sort(c, new ItemNameComparator());
     }
 }
