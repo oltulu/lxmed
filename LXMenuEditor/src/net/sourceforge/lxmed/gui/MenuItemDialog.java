@@ -495,7 +495,6 @@ public class MenuItemDialog extends javax.swing.JDialog {
             btnBrowseCommand.setEnabled(false);
         }
 
-        System.out.println("NAME: " + menuItem.getName());
         txtPath.setText(menuItem.getPath().getAbsolutePath());
         txtName.setText(menuItem.getName());
         txtCommand.setText(menuItem.getExec());
