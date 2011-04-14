@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -85,6 +86,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         lblTitle.setText("lblTitle");
 
         btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
+        btnOk.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/ok.png"))); // NOI18N
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         btnOk.addActionListener(new ActionListener() {
@@ -94,6 +96,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         });
 
         btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/cancel.png"))); // NOI18N
         btnCancel.setMnemonic('c');
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new ActionListener() {
@@ -118,7 +121,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
                     .addComponent(lblTitle)
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCancel)
-                        .addPreferredGap(ComponentPlacement.RELATED, 432, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED, 392, Short.MAX_VALUE)
                         .addComponent(btnOk)))
                 .addContainerGap())
         );
@@ -131,7 +134,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
-                .addComponent(spCode, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addComponent(spCode, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(btnOk)
@@ -147,7 +150,6 @@ public class CodeEditDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO: parse
         if (!editable) {
             setVisible(false);
             return;

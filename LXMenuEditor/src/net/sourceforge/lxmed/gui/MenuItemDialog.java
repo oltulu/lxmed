@@ -21,6 +21,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -126,6 +127,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlControls.setLayout(new GridBagLayout());
 
         btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/cancel.png"))); // NOI18N
         btnCancel.setMnemonic('c');
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new ActionListener() {
@@ -142,6 +144,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlControls.add(btnCancel, gridBagConstraints);
 
         btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
+        btnOk.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/ok.png"))); // NOI18N
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         btnOk.addActionListener(new ActionListener() {
@@ -165,6 +168,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlControls.add(sepSouth, gridBagConstraints);
 
         btnViewCode.setFont(btnViewCode.getFont().deriveFont(btnViewCode.getFont().getStyle() & ~Font.BOLD, btnViewCode.getFont().getSize()-1));
+        btnViewCode.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/properties.png"))); // NOI18N
         btnViewCode.setMnemonic('e');
         btnViewCode.setText("Edit code manually");
         btnViewCode.addActionListener(new ActionListener() {
@@ -223,6 +227,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         });
 
         btnBrowseCommand.setFont(btnBrowseCommand.getFont().deriveFont(btnBrowseCommand.getFont().getStyle() & ~Font.BOLD, btnBrowseCommand.getFont().getSize()-1));
+        btnBrowseCommand.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/browse.png"))); // NOI18N
         btnBrowseCommand.setMnemonic('b');
         btnBrowseCommand.setText("Browse...");
         btnBrowseCommand.addActionListener(new ActionListener() {
@@ -246,6 +251,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         txtIcon.setFont(txtIcon.getFont().deriveFont(txtIcon.getFont().getStyle() & ~Font.BOLD, txtIcon.getFont().getSize()-1));
 
         btnBrowseIcon.setFont(btnBrowseIcon.getFont().deriveFont(btnBrowseIcon.getFont().getStyle() & ~Font.BOLD, btnBrowseIcon.getFont().getSize()-1));
+        btnBrowseIcon.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/browse.png"))); // NOI18N
         btnBrowseIcon.setMnemonic('r');
         btnBrowseIcon.setText("Browse...");
         btnBrowseIcon.addActionListener(new ActionListener() {
@@ -276,12 +282,12 @@ public class MenuItemDialog extends javax.swing.JDialog {
                     .addComponent(cbVisible)
                     .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseCommand))
                     .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseIcon))
                     .addComponent(cbCategories, 0, 452, Short.MAX_VALUE)
@@ -319,7 +325,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
                     .addComponent(btnBrowseIcon))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addComponent(cbVisible)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlCenter, BorderLayout.CENTER);
@@ -506,7 +512,6 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }
 
     private void saveItem() {
-        // TODO: saveItem
         menuItem.setCategorie((Categorie) cbCategories.getSelectedItem());
         menuItem.setName(txtName.getText().trim());
         menuItem.setExec(txtCommand.getText().trim());

@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -37,7 +38,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     protected DefaultListModel dlmItems = new DefaultListModel();
     protected DefaultListModel dlmCategories = new DefaultListModel();
-    protected ListCellRenderer listCellRenderer = new ListCellRenderer();
+    protected MenuItemsListCellRenderer menuItemsListCellRenderer = new MenuItemsListCellRenderer();
+    protected CategoriesListCellRenderer categoriesListCellRenderer = new CategoriesListCellRenderer(Model.getModel().getCategories());
 
     /** Creates new form MainFrame */
     public MainFrame() {
@@ -87,6 +89,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlSouth.setLayout(new GridBagLayout());
 
         btnHelp.setFont(btnHelp.getFont().deriveFont(btnHelp.getFont().getStyle() & ~Font.BOLD, btnHelp.getFont().getSize()-1));
+        btnHelp.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/help.png"))); // NOI18N
         btnHelp.setMnemonic('h');
         btnHelp.setText("Help");
         btnHelp.addActionListener(new ActionListener() {
@@ -102,6 +105,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlSouth.add(btnHelp, gridBagConstraints);
 
         btnAbout.setFont(btnAbout.getFont().deriveFont(btnAbout.getFont().getStyle() & ~Font.BOLD, btnAbout.getFont().getSize()-1));
+        btnAbout.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/about.png"))); // NOI18N
         btnAbout.setMnemonic('b');
         btnAbout.setText("About");
         btnAbout.addActionListener(new ActionListener() {
@@ -117,6 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlSouth.add(btnAbout, gridBagConstraints);
 
         btnClose.setFont(btnClose.getFont().deriveFont(btnClose.getFont().getStyle() & ~Font.BOLD, btnClose.getFont().getSize()-1));
+        btnClose.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/exit.png"))); // NOI18N
         btnClose.setMnemonic('c');
         btnClose.setText("Close");
         btnClose.addActionListener(new ActionListener() {
@@ -180,6 +185,7 @@ public class MainFrame extends javax.swing.JFrame {
         lstCategories.setFont(lstCategories.getFont().deriveFont(lstCategories.getFont().getStyle() & ~Font.BOLD, lstCategories.getFont().getSize()-1));
         lstCategories.setModel(dlmCategories);
         lstCategories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lstCategories.setCellRenderer(categoriesListCellRenderer);
         lstCategories.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent evt) {
                 lstCategoriesValueChanged(evt);
@@ -203,7 +209,7 @@ public class MainFrame extends javax.swing.JFrame {
         lstItems.setFont(lstItems.getFont().deriveFont(lstItems.getFont().getStyle() & ~Font.BOLD, lstItems.getFont().getSize()-1));
         lstItems.setModel(dlmItems);
         lstItems.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        lstItems.setCellRenderer(listCellRenderer);
+        lstItems.setCellRenderer(menuItemsListCellRenderer);
         lstItems.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 lstItemsMouseClicked(evt);
@@ -250,6 +256,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlControls.setLayout(new GridBagLayout());
 
         btnNewItem.setFont(btnNewItem.getFont().deriveFont(btnNewItem.getFont().getStyle() & ~Font.BOLD, btnNewItem.getFont().getSize()-1));
+        btnNewItem.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/new.png"))); // NOI18N
         btnNewItem.setMnemonic('n');
         btnNewItem.setText("New Item");
         btnNewItem.addActionListener(new ActionListener() {
@@ -266,6 +273,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlControls.add(btnNewItem, gridBagConstraints);
 
         btnProperties.setFont(btnProperties.getFont().deriveFont(btnProperties.getFont().getStyle() & ~Font.BOLD, btnProperties.getFont().getSize()-1));
+        btnProperties.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/properties.png"))); // NOI18N
         btnProperties.setMnemonic('r');
         btnProperties.setText("Properties");
         btnProperties.setEnabled(false);
@@ -283,6 +291,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlControls.add(btnProperties, gridBagConstraints);
 
         btnDelete.setFont(btnDelete.getFont().deriveFont(btnDelete.getFont().getStyle() & ~Font.BOLD, btnDelete.getFont().getSize()-1));
+        btnDelete.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/delete.png"))); // NOI18N
         btnDelete.setMnemonic('d');
         btnDelete.setText("Delete");
         btnDelete.setEnabled(false);
@@ -435,7 +444,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         if (!((MenuItem) lstItems.getSelectedValue()).isOnlyForAdmin()) {
-            int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can just make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 // TODO: delete file code or method call, if successfull deletion, removing file from JList
                 ni();

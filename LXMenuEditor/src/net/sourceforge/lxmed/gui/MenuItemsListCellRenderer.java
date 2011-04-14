@@ -13,7 +13,7 @@ import net.sourceforge.lxmed.persistence.Configuration;
  *
  * @author Marko Čičak <cicakmarko@yahoo.com>
  */
-public class ListCellRenderer extends DefaultListCellRenderer {
+public class MenuItemsListCellRenderer extends DefaultListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(

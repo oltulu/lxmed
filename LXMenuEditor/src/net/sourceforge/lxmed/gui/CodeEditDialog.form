@@ -29,7 +29,7 @@
                   <Component id="lblTitle" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnCancel" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="432" max="32767" attributes="0"/>
+                      <EmptySpace pref="392" max="32767" attributes="0"/>
                       <Component id="btnOk" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -43,7 +43,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="spCode" pref="270" max="32767" attributes="0"/>
+              <Component id="spCode" pref="268" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnOk" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -73,6 +73,9 @@
             <Font bold="false" component="btnOk" property="font" relativeSize="true" size="-1"/>
           </FontInfo>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/dialogs/ok.png"/>
+        </Property>
         <Property name="mnemonic" type="int" value="111"/>
         <Property name="text" type="java.lang.String" value="Ok"/>
       </Properties>
@@ -86,6 +89,9 @@
           <FontInfo relative="true">
             <Font bold="false" component="btnCancel" property="font" relativeSize="true" size="-1"/>
           </FontInfo>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/dialogs/cancel.png"/>
         </Property>
         <Property name="mnemonic" type="int" value="99"/>
         <Property name="text" type="java.lang.String" value="Cancel"/>

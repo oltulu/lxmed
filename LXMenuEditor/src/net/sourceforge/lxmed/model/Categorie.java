@@ -14,11 +14,13 @@ public class Categorie implements List<MenuItem> {
 
     protected String displayName;
     protected String codeName;
+    protected String icon;
     protected List<MenuItem> items = new ArrayList<MenuItem>();
 
-    public Categorie(String displayName, String codeName) {
+    public Categorie(String displayName, String codeName, String icon) {
         this.displayName = displayName;
         this.codeName = codeName;
+        this.icon = icon;
     }
 
     public <T> T[] toArray(T[] a) {
@@ -159,20 +161,28 @@ public class Categorie implements List<MenuItem> {
         this.items = items;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public static List<Categorie> init() {
         List<Categorie> ret = new ArrayList<Categorie>();
 
-        ret.add(new Categorie("Accessories", "Utility"));
-        ret.add(new Categorie("Education", "Education"));
-        ret.add(new Categorie("Games", "Game"));
-        ret.add(new Categorie("Graphics", "Graphics"));
-        ret.add(new Categorie("Internet", "Network"));
-        ret.add(new Categorie("Office", "Office"));
-        ret.add(new Categorie("Other", ""));
-        ret.add(new Categorie("Programming", "Development"));
-        ret.add(new Categorie("Sound & Video", "AudioVideo"));
-        ret.add(new Categorie("System Tools", "System"));
-        ret.add(new Categorie("Preferences", "Settings"));
+        ret.add(new Categorie("Accessories", "Utility", "accessories.png"));
+        ret.add(new Categorie("Education", "Education", "science.png"));
+        ret.add(new Categorie("Games", "Game", "games.png"));
+        ret.add(new Categorie("Graphics", "Graphics", "graphics.png"));
+        ret.add(new Categorie("Internet", "Network", "internet.png"));
+        ret.add(new Categorie("Office", "Office", "office.png"));
+        ret.add(new Categorie("Other", "", "other.png"));
+        ret.add(new Categorie("Programming", "Development", "development.png"));
+        ret.add(new Categorie("Sound & Video", "AudioVideo", "multimedia.png"));
+        ret.add(new Categorie("System Tools", "System", "system.png"));
+        ret.add(new Categorie("Preferences", "Settings", "utilities.png"));
 
         return ret;
     }

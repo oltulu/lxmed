@@ -60,6 +60,9 @@
                 <Font bold="false" component="btnCancel" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/cancel.png"/>
+            </Property>
             <Property name="mnemonic" type="int" value="99"/>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
@@ -78,6 +81,9 @@
               <FontInfo relative="true">
                 <Font bold="false" component="btnOk" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/ok.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="111"/>
             <Property name="text" type="java.lang.String" value="Ok"/>
@@ -104,6 +110,9 @@
               <FontInfo relative="true">
                 <Font bold="false" component="btnViewCode" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/properties.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="101"/>
             <Property name="text" type="java.lang.String" value="Edit code manually"/>
@@ -149,13 +158,13 @@
                       <Component id="cbVisible" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtName" pref="452" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtCommand" pref="357" max="32767" attributes="0"/>
+                          <Component id="txtCommand" pref="337" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBrowseCommand" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtComment" alignment="0" pref="452" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtIcon" pref="357" max="32767" attributes="0"/>
+                          <Component id="txtIcon" pref="337" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBrowseIcon" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -203,7 +212,7 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="cbVisible" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -315,6 +324,9 @@
                 <Font bold="false" component="btnBrowseCommand" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/browse.png"/>
+            </Property>
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>
           </Properties>
@@ -374,6 +386,9 @@
               <FontInfo relative="true">
                 <Font bold="false" component="btnBrowseIcon" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/browse.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>

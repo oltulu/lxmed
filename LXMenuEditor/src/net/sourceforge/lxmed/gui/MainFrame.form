@@ -39,6 +39,9 @@
                 <Font bold="false" component="btnHelp" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/help.png"/>
+            </Property>
             <Property name="mnemonic" type="int" value="104"/>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
@@ -58,6 +61,9 @@
                 <Font bold="false" component="btnAbout" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/about.png"/>
+            </Property>
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="About"/>
           </Properties>
@@ -76,6 +82,9 @@
               <FontInfo relative="true">
                 <Font bold="false" component="btnClose" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/exit.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="99"/>
             <Property name="text" type="java.lang.String" value="Close"/>
@@ -192,6 +201,9 @@
                   <Connection code="dlmCategories" type="code"/>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
+                <Property name="cellRenderer" type="javax.swing.ListCellRenderer" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="categoriesListCellRenderer" type="code"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="lstCategoriesValueChanged"/>
@@ -223,7 +235,7 @@
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
                 <Property name="cellRenderer" type="javax.swing.ListCellRenderer" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="listCellRenderer" type="code"/>
+                  <Connection code="menuItemsListCellRenderer" type="code"/>
                 </Property>
               </Properties>
               <Events>
@@ -271,6 +283,9 @@
                 <Font bold="false" component="btnNewItem" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/new.png"/>
+            </Property>
             <Property name="mnemonic" type="int" value="110"/>
             <Property name="text" type="java.lang.String" value="New Item"/>
           </Properties>
@@ -289,6 +304,9 @@
               <FontInfo relative="true">
                 <Font bold="false" component="btnProperties" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/properties.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Properties"/>
@@ -309,6 +327,9 @@
               <FontInfo relative="true">
                 <Font bold="false" component="btnDelete" property="font" relativeSize="true" size="-1"/>
               </FontInfo>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/dialogs/delete.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="100"/>
             <Property name="text" type="java.lang.String" value="Delete"/>
