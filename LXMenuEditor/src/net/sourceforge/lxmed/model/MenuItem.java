@@ -99,10 +99,13 @@ public class MenuItem {
     }
 
     public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
         if (!categorie.contains(this)) {
+            if (this.categorie != null) {
+                this.categorie.remove(this);
+            }
             categorie.add(this);
         }
+        this.categorie = categorie;
     }
 
     public boolean isOnlyForAdmin() {
@@ -183,5 +186,23 @@ public class MenuItem {
 //                }
             }
         }
+    }
+
+    public void cloneData(MenuItem newMenuItem) {
+        if (newMenuItem.getCategorie() != null) {
+            setCategorie(newMenuItem.getCategorie());
+        }
+        setComment(newMenuItem.getComment());
+        setExec(newMenuItem.getExec());
+        setGenericName(newMenuItem.getGenericName());
+        setIcon(newMenuItem.getIcon());
+        setIconStr(newMenuItem.getIconStr());
+        setName(newMenuItem.getName());
+        setNoDisplay(newMenuItem.isNoDisplay());
+        setOriginalCategories(newMenuItem.getOriginalCategories());
+        if (newMenuItem.getPath() != null) {
+            setPath(newMenuItem.getPath());
+        }
+        setOriginalCode(newMenuItem.getOriginalCode());
     }
 }

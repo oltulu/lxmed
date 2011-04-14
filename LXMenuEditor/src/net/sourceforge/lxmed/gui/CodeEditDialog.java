@@ -19,6 +19,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import net.sourceforge.lxmed.model.MenuItem;
+import net.sourceforge.lxmed.persistence.ModelLoader;
 
 /**
  *
@@ -27,13 +28,15 @@ import net.sourceforge.lxmed.model.MenuItem;
 public class CodeEditDialog extends javax.swing.JDialog {
 
     private MenuItem mi;
+    private MenuItemDialog mid;
     boolean editable = true;
 
     /** Creates new form CodeEditDialog */
-    public CodeEditDialog(java.awt.Frame parent, MenuItem mi, boolean editable) {
+    public CodeEditDialog(java.awt.Frame parent, MenuItem mi, boolean editable, MenuItemDialog mid) {
         super(parent, true);
         this.mi = mi;
         this.editable = editable;
+        this.mid = mid;
 
         setTitle("Original desktop code");
 
@@ -143,6 +146,10 @@ public class CodeEditDialog extends javax.swing.JDialog {
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // TODO: parse
+        MenuItem newMenuItem = ModelLoader.loadData(txtCode.getText());
+        mid.getMenuItem().cloneData(newMenuItem);
+        mid.updateGui();
+
         setVisible(false);
     }//GEN-LAST:event_btnOkActionPerformed
 
@@ -160,7 +167,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                CodeEditDialog dialog = new CodeEditDialog(new javax.swing.JFrame(), lmi, false);
+                CodeEditDialog dialog = new CodeEditDialog(new javax.swing.JFrame(), lmi, false,null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     public void windowClosing(java.awt.event.WindowEvent e) {

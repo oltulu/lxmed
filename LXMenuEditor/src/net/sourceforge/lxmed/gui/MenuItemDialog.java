@@ -431,7 +431,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCommandKeyTyped
 
     private void btnViewCodeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnViewCodeActionPerformed
-        new CodeEditDialog((Frame) getParent(), menuItem, !menuItem.isOnlyForAdmin()).setVisible(true);
+        new CodeEditDialog((Frame) getParent(), menuItem, !menuItem.isOnlyForAdmin(), this).setVisible(true);
     }//GEN-LAST:event_btnViewCodeActionPerformed
 
     private void setFileChooserFont(Component[] comp) {
@@ -480,7 +480,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private JTextField txtPath;
     // End of variables declaration//GEN-END:variables
 
-    private void updateGui() {
+    void updateGui() {
         if (!Configuration.IS_ROOT && menuItem.isOnlyForAdmin()) {
             txtName.setEditable(false);
             txtCommand.setEditable(false);
@@ -495,6 +495,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
             btnBrowseCommand.setEnabled(false);
         }
 
+        System.out.println("NAME: " + menuItem.getName());
         txtPath.setText(menuItem.getPath().getAbsolutePath());
         txtName.setText(menuItem.getName());
         txtCommand.setText(menuItem.getExec());
@@ -545,5 +546,13 @@ public class MenuItemDialog extends javax.swing.JDialog {
         } else {
             btnOk.setEnabled(true);
         }
+    }
+
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
     }
 }

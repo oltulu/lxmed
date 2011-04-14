@@ -12,7 +12,6 @@ import java.util.Map;
 import net.sourceforge.lxmed.model.Categorie;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
-import org.omg.CORBA.CODESET_INCOMPATIBLE;
 
 /**
  *
@@ -47,7 +46,6 @@ public class ModelLoader {
     }
 
     public static MenuItem loadDesktopFile(File file) {
-        Map<String, String> values = new HashMap<String, String>();
         String code = "";
 
         try {
@@ -57,16 +55,6 @@ public class ModelLoader {
             while ((line = br.readLine()) != null) {
                 if (line.contains("=")) {
                     code = code.concat(line).concat("\n");
-                    String[] strs = line.split("=");
-                    String rest = "";
-                    for (int i = 1; i < strs.length; i++) { // building value
-                        rest += "=" + strs[i];
-                    }
-                    if (rest.length() > 0) {
-                        rest = rest.substring(1);
-                    }
-
-                    values.put(strs[0], rest);
                 }
             }
             br.close();
@@ -76,17 +64,8 @@ public class ModelLoader {
             ioe.printStackTrace();
         }
 
-        // MenuItem creation based on extracted values
-        MenuItem mi = new MenuItem();
-        mi.setName(values.get("Name"));
-        mi.setExec(values.get("Exec"));
-        mi.setComment(values.get("Comment"));
-        mi.setGenericName(values.get("GenericName"));
-        mi.setIconStr(values.get("Icon"));
+        MenuItem mi = loadData(code);
         mi.setPath(file);
-        mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
-        mi.setOriginalCategories(values.get("Categories"));
-        mi.setOriginalCode(code);
 
         for (String string : Configuration.getAdminFolders()) {
             if (mi.getPath().getParent().trim().equals(string.trim())) {
@@ -97,9 +76,43 @@ public class ModelLoader {
             }
         }
 
-        extractCategorie(mi, values.get("Categories"));
+        extractCategorie(mi, mi.getOriginalCategories());
 
         return null;
+    }
+
+    public static MenuItem loadData(String fileContent) {
+        Map<String, String> values = new HashMap<String, String>();
+
+        String[] lines = fileContent.split("\n");
+
+        for (String line : lines) {
+            if (line.contains("=")) {
+                String[] strs = line.split("=");
+                String rest = "";
+                for (int i = 1; i < strs.length; i++) { // building value
+                    rest += "=" + strs[i];
+                }
+                if (rest.length() > 0) {
+                    rest = rest.substring(1);
+                }
+
+                values.put(strs[0], rest);
+            }
+        }
+
+        // MenuItem creation based on extracted values
+        MenuItem mi = new MenuItem();
+        mi.setName(values.get("Name"));
+        mi.setExec(values.get("Exec"));
+        mi.setComment(values.get("Comment"));
+        mi.setGenericName(values.get("GenericName"));
+        mi.setIconStr(values.get("Icon"));
+        mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
+        mi.setOriginalCategories(values.get("Categories"));
+        mi.setOriginalCode(fileContent);
+
+        return mi;
     }
 
     private static void extractCategorie(MenuItem mi, String cat) {
@@ -121,14 +134,6 @@ public class ModelLoader {
     }
 
     private static void sortItemsByName(Categorie c) {
-        // TODO: del
-//        if (c.getCodeName().equals("")) {
-//            int i = 0;
-//            for (MenuItem mi : c) {
-//                System.out.println(++i + "," + mi.getName() + ", " + mi.getPath().getAbsolutePath());
-//            }
-//            System.out.println("stop");
-//        }
         Collections.sort(c, new ItemNameComparator());
     }
 }
