@@ -125,7 +125,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlControls.setFont(new Font("Dialog", 0, 11));
         pnlControls.setLayout(new GridBagLayout());
 
-        btnCancel.setFont(new Font("Dialog", 0, 11));
+        btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
         btnCancel.setMnemonic('c');
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new ActionListener() {
@@ -141,7 +141,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(10, 0, 10, 0);
         pnlControls.add(btnCancel, gridBagConstraints);
 
-        btnOk.setFont(new Font("Dialog", 0, 11));
+        btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         btnOk.addActionListener(new ActionListener() {
@@ -164,7 +164,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         gridBagConstraints.insets = new Insets(0, 10, 0, 10);
         pnlControls.add(sepSouth, gridBagConstraints);
 
-        btnViewCode.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnViewCode.setFont(btnViewCode.getFont().deriveFont(btnViewCode.getFont().getStyle() & ~Font.BOLD, btnViewCode.getFont().getSize()-1));
         btnViewCode.setMnemonic('e');
         btnViewCode.setText("Edit code manually");
         btnViewCode.addActionListener(new ActionListener() {
@@ -183,27 +183,27 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
         pnlCenter.setFont(new Font("Dialog", 0, 11));
 
-        lblPath.setFont(new Font("Dialog", 0, 11));
+        lblPath.setFont(lblPath.getFont().deriveFont(lblPath.getFont().getStyle() & ~Font.BOLD, lblPath.getFont().getSize()-1));
         lblPath.setText("Path:");
 
         txtPath.setEditable(false);
-        txtPath.setFont(new Font("Dialog", 0, 11));
+        txtPath.setFont(txtPath.getFont().deriveFont(txtPath.getFont().getStyle() & ~Font.BOLD, txtPath.getFont().getSize()-1));
 
         lblCategories.setDisplayedMnemonic('a');
-        lblCategories.setFont(new Font("Dialog", 0, 11));
+        lblCategories.setFont(lblCategories.getFont().deriveFont(lblCategories.getFont().getStyle() & ~Font.BOLD, lblCategories.getFont().getSize()-1));
         lblCategories.setLabelFor(cbCategories);
         lblCategories.setText("Category:");
 
-        cbCategories.setFont(new Font("Dialog", 0, 11));
+        cbCategories.setFont(cbCategories.getFont().deriveFont(cbCategories.getFont().getStyle() & ~Font.BOLD, cbCategories.getFont().getSize()-1));
         cbCategories.setMaximumRowCount(15);
         cbCategories.setModel(cbm);
 
         lblName.setDisplayedMnemonic('n');
-        lblName.setFont(new Font("Dialog", 0, 11));
+        lblName.setFont(lblName.getFont().deriveFont(lblName.getFont().getStyle() & ~Font.BOLD, lblName.getFont().getSize()-1));
         lblName.setLabelFor(txtName);
         lblName.setText("Name:");
 
-        txtName.setFont(new Font("Dialog", 0, 11));
+        txtName.setFont(txtName.getFont().deriveFont(txtName.getFont().getStyle() & ~Font.BOLD, txtName.getFont().getSize()-1));
         txtName.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 txtNameKeyTyped(evt);
@@ -211,18 +211,18 @@ public class MenuItemDialog extends javax.swing.JDialog {
         });
 
         lblCommand.setDisplayedMnemonic('d');
-        lblCommand.setFont(new Font("Dialog", 0, 11));
+        lblCommand.setFont(lblCommand.getFont().deriveFont(lblCommand.getFont().getStyle() & ~Font.BOLD, lblCommand.getFont().getSize()-1));
         lblCommand.setLabelFor(txtCommand);
         lblCommand.setText("Command:");
 
-        txtCommand.setFont(new Font("Dialog", 0, 11));
+        txtCommand.setFont(txtCommand.getFont().deriveFont(txtCommand.getFont().getStyle() & ~Font.BOLD, txtCommand.getFont().getSize()-1));
         txtCommand.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent evt) {
                 txtCommandKeyTyped(evt);
             }
         });
 
-        btnBrowseCommand.setFont(new Font("Dialog", 0, 11));
+        btnBrowseCommand.setFont(btnBrowseCommand.getFont().deriveFont(btnBrowseCommand.getFont().getStyle() & ~Font.BOLD, btnBrowseCommand.getFont().getSize()-1));
         btnBrowseCommand.setMnemonic('b');
         btnBrowseCommand.setText("Browse...");
         btnBrowseCommand.addActionListener(new ActionListener() {
@@ -232,20 +232,20 @@ public class MenuItemDialog extends javax.swing.JDialog {
         });
 
         lblComment.setDisplayedMnemonic('m');
-        lblComment.setFont(new Font("Dialog", 0, 11));
+        lblComment.setFont(lblComment.getFont().deriveFont(lblComment.getFont().getStyle() & ~Font.BOLD, lblComment.getFont().getSize()-1));
         lblComment.setLabelFor(txtComment);
         lblComment.setText("Comment:");
 
-        txtComment.setFont(new Font("Dialog", 0, 11));
+        txtComment.setFont(txtComment.getFont().deriveFont(txtComment.getFont().getStyle() & ~Font.BOLD, txtComment.getFont().getSize()-1));
 
         lblIcon.setDisplayedMnemonic('i');
-        lblIcon.setFont(new Font("Dialog", 0, 11));
+        lblIcon.setFont(lblIcon.getFont().deriveFont(lblIcon.getFont().getStyle() & ~Font.BOLD, lblIcon.getFont().getSize()-1));
         lblIcon.setLabelFor(txtIcon);
         lblIcon.setText("Icon:");
 
-        txtIcon.setFont(new Font("Dialog", 0, 11));
+        txtIcon.setFont(txtIcon.getFont().deriveFont(txtIcon.getFont().getStyle() & ~Font.BOLD, txtIcon.getFont().getSize()-1));
 
-        btnBrowseIcon.setFont(new Font("Dialog", 0, 11));
+        btnBrowseIcon.setFont(btnBrowseIcon.getFont().deriveFont(btnBrowseIcon.getFont().getStyle() & ~Font.BOLD, btnBrowseIcon.getFont().getSize()-1));
         btnBrowseIcon.setMnemonic('r');
         btnBrowseIcon.setText("Browse...");
         btnBrowseIcon.addActionListener(new ActionListener() {
@@ -254,7 +254,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
             }
         });
 
-        cbVisible.setFont(new Font("Dialog", 0, 11));
+        cbVisible.setFont(cbVisible.getFont().deriveFont(cbVisible.getFont().getStyle() & ~Font.BOLD, cbVisible.getFont().getSize()-1));
         cbVisible.setMnemonic('v');
         cbVisible.setText("Visible");
 

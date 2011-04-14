@@ -86,7 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlSouth.setLayout(new GridBagLayout());
 
-        btnHelp.setFont(new Font("Dialog", 0, 11));
+        btnHelp.setFont(btnHelp.getFont().deriveFont(btnHelp.getFont().getStyle() & ~Font.BOLD, btnHelp.getFont().getSize()-1));
         btnHelp.setMnemonic('h');
         btnHelp.setText("Help");
         btnHelp.addActionListener(new ActionListener() {
@@ -101,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(0, 10, 0, 10);
         pnlSouth.add(btnHelp, gridBagConstraints);
 
-        btnAbout.setFont(new Font("Dialog", 0, 11));
+        btnAbout.setFont(btnAbout.getFont().deriveFont(btnAbout.getFont().getStyle() & ~Font.BOLD, btnAbout.getFont().getSize()-1));
         btnAbout.setMnemonic('b');
         btnAbout.setText("About");
         btnAbout.addActionListener(new ActionListener() {
@@ -116,7 +116,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
         pnlSouth.add(btnAbout, gridBagConstraints);
 
-        btnClose.setFont(new Font("Dialog", 0, 11));
+        btnClose.setFont(btnClose.getFont().deriveFont(btnClose.getFont().getStyle() & ~Font.BOLD, btnClose.getFont().getSize()-1));
         btnClose.setMnemonic('c');
         btnClose.setText("Close");
         btnClose.addActionListener(new ActionListener() {
@@ -144,7 +144,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlNorth.setLayout(new GridBagLayout());
 
-        lblTitle.setFont(new Font("Dialog", 1, 11));
+        lblTitle.setFont(lblTitle.getFont().deriveFont(lblTitle.getFont().getStyle() | Font.BOLD, lblTitle.getFont().getSize()-1));
         lblTitle.setText("Configure main menu:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -167,7 +167,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlCenter.setLayout(new GridBagLayout());
 
         lblCategories.setDisplayedMnemonic('a');
-        lblCategories.setFont(new Font("Dialog", 0, 11));
+        lblCategories.setFont(lblCategories.getFont().deriveFont(lblCategories.getFont().getStyle() & ~Font.BOLD, lblCategories.getFont().getSize()-1));
         lblCategories.setLabelFor(lstCategories);
         lblCategories.setText("Categories:");
         gridBagConstraints = new GridBagConstraints();
@@ -177,7 +177,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(12, 12, 0, 0);
         pnlCenter.add(lblCategories, gridBagConstraints);
 
-        lstCategories.setFont(new Font("Dialog", 1, 11));
+        lstCategories.setFont(lstCategories.getFont().deriveFont(lstCategories.getFont().getStyle() & ~Font.BOLD, lstCategories.getFont().getSize()-1));
         lstCategories.setModel(dlmCategories);
         lstCategories.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         lstCategories.addListSelectionListener(new ListSelectionListener() {
@@ -200,7 +200,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(6, 12, 12, 0);
         pnlCenter.add(spCategories, gridBagConstraints);
 
-        lstItems.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        lstItems.setFont(lstItems.getFont().deriveFont(lstItems.getFont().getStyle() & ~Font.BOLD, lstItems.getFont().getSize()-1));
         lstItems.setModel(dlmItems);
         lstItems.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         lstItems.setCellRenderer(listCellRenderer);
@@ -231,11 +231,11 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new Insets(6, 10, 12, 0);
+        gridBagConstraints.insets = new Insets(6, 10, 12, 1);
         pnlCenter.add(spItems, gridBagConstraints);
 
         lblItems.setDisplayedMnemonic('t');
-        lblItems.setFont(new Font("Dialog", 0, 11));
+        lblItems.setFont(lblItems.getFont().deriveFont(lblItems.getFont().getStyle() & ~Font.BOLD, lblItems.getFont().getSize()-1));
         lblItems.setLabelFor(lstItems);
         lblItems.setText("Menu Items:");
         gridBagConstraints = new GridBagConstraints();
@@ -249,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         pnlControls.setLayout(new GridBagLayout());
 
-        btnNewItem.setFont(new Font("Dialog", 0, 11));
+        btnNewItem.setFont(btnNewItem.getFont().deriveFont(btnNewItem.getFont().getStyle() & ~Font.BOLD, btnNewItem.getFont().getSize()-1));
         btnNewItem.setMnemonic('n');
         btnNewItem.setText("New Item");
         btnNewItem.addActionListener(new ActionListener() {
@@ -265,7 +265,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(31, 10, 5, 10);
         pnlControls.add(btnNewItem, gridBagConstraints);
 
-        btnProperties.setFont(new Font("Dialog", 0, 11));
+        btnProperties.setFont(btnProperties.getFont().deriveFont(btnProperties.getFont().getStyle() & ~Font.BOLD, btnProperties.getFont().getSize()-1));
         btnProperties.setMnemonic('r');
         btnProperties.setText("Properties");
         btnProperties.setEnabled(false);
@@ -282,7 +282,7 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.insets = new Insets(5, 10, 5, 10);
         pnlControls.add(btnProperties, gridBagConstraints);
 
-        btnDelete.setFont(new Font("Dialog", 0, 11));
+        btnDelete.setFont(btnDelete.getFont().deriveFont(btnDelete.getFont().getStyle() & ~Font.BOLD, btnDelete.getFont().getSize()-1));
         btnDelete.setMnemonic('d');
         btnDelete.setText("Delete");
         btnDelete.setEnabled(false);

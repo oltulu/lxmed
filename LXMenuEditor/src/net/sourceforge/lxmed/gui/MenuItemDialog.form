@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
@@ -55,8 +55,10 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnCancel">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="btnCancel" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="mnemonic" type="int" value="99"/>
             <Property name="text" type="java.lang.String" value="Cancel"/>
@@ -72,8 +74,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnOk">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="btnOk" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="mnemonic" type="int" value="111"/>
             <Property name="text" type="java.lang.String" value="Ok"/>
@@ -96,8 +100,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnViewCode">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="btnViewCode" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="mnemonic" type="int" value="101"/>
             <Property name="text" type="java.lang.String" value="Edit code manually"/>
@@ -205,8 +211,10 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblPath">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="lblPath" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="text" type="java.lang.String" value="Path:"/>
           </Properties>
@@ -214,16 +222,20 @@
         <Component class="javax.swing.JTextField" name="txtPath">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="txtPath" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCategories">
           <Properties>
             <Property name="displayedMnemonic" type="int" value="97"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="lblCategories" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="cbCategories"/>
@@ -233,8 +245,10 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="cbCategories">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="cbCategories" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="maximumRowCount" type="int" value="15"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -245,8 +259,10 @@
         <Component class="javax.swing.JLabel" name="lblName">
           <Properties>
             <Property name="displayedMnemonic" type="int" value="110"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="lblName" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="txtName"/>
@@ -256,8 +272,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtName">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="txtName" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
           </Properties>
           <Events>
@@ -267,8 +285,10 @@
         <Component class="javax.swing.JLabel" name="lblCommand">
           <Properties>
             <Property name="displayedMnemonic" type="int" value="100"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="lblCommand" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="txtCommand"/>
@@ -278,8 +298,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtCommand">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="txtCommand" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
           </Properties>
           <Events>
@@ -288,8 +310,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBrowseCommand">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="btnBrowseCommand" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>
@@ -301,8 +325,10 @@
         <Component class="javax.swing.JLabel" name="lblComment">
           <Properties>
             <Property name="displayedMnemonic" type="int" value="109"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="lblComment" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="txtComment"/>
@@ -312,16 +338,20 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtComment">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="txtComment" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblIcon">
           <Properties>
             <Property name="displayedMnemonic" type="int" value="105"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="lblIcon" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="txtIcon"/>
@@ -331,15 +361,19 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtIcon">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="txtIcon" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnBrowseIcon">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="btnBrowseIcon" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>
@@ -350,8 +384,10 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="cbVisible">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="11" style="0"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.editors2.FontEditor">
+              <FontInfo relative="true">
+                <Font bold="false" component="cbVisible" property="font" relativeSize="true" size="-1"/>
+              </FontInfo>
             </Property>
             <Property name="mnemonic" type="int" value="118"/>
             <Property name="text" type="java.lang.String" value="Visible"/>

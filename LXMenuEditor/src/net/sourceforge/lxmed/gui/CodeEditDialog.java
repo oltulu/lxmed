@@ -81,10 +81,10 @@ public class CodeEditDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitle.setDisplayedMnemonic('r');
-        lblTitle.setFont(new Font("Dialog", 1, 11));
+        lblTitle.setFont(lblTitle.getFont().deriveFont(lblTitle.getFont().getStyle() | Font.BOLD, lblTitle.getFont().getSize()-1));
         lblTitle.setText("lblTitle");
 
-        btnOk.setFont(new Font("Dialog", 0, 11)); // NOI18N
+        btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         btnOk.addActionListener(new ActionListener() {
@@ -93,7 +93,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
             }
         });
 
-        btnCancel.setFont(new Font("Dialog", 0, 11));
+        btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
         btnCancel.setMnemonic('c');
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new ActionListener() {
@@ -103,7 +103,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         });
 
         txtCode.setColumns(20);
-        txtCode.setFont(new Font("Monospaced", 0, 11));
+        txtCode.setFont(new Font("Monospaced", 0, 13)); // NOI18N
         txtCode.setRows(5);
         spCode.setViewportView(txtCode);
 
