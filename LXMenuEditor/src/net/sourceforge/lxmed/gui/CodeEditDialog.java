@@ -45,8 +45,10 @@ public class CodeEditDialog extends javax.swing.JDialog {
 
         lblTitle.setText("Original code for " + mi.getName());
         txtCode.setText(mi.getOriginalCode());
+
+
         if (!editable) {
-            txtCode.setEditable(false);
+            setReadOnly();
         }
 
         // close on Esc
@@ -146,6 +148,10 @@ public class CodeEditDialog extends javax.swing.JDialog {
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // TODO: parse
+        if (!editable) {
+            setVisible(false);
+            return;
+        }
         MenuItem newMenuItem = ModelLoader.loadData(txtCode.getText());
         mid.getMenuItem().cloneData(newMenuItem);
         mid.updateGui();
@@ -156,7 +162,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    private static void main(String args[]) {
         final MenuItem lmi = new MenuItem("Test Item");
         lmi.setOriginalCode("#!/usr/bin/env xdg-open\n[Desktop Entry]\n"
                 + "Encoding=UTF-8\nType=Application\nExec=/home/cicakmarko/FTN/fax/se"
@@ -167,7 +173,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                CodeEditDialog dialog = new CodeEditDialog(new javax.swing.JFrame(), lmi, false,null);
+                CodeEditDialog dialog = new CodeEditDialog(new javax.swing.JFrame(), lmi, false, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -185,4 +191,11 @@ public class CodeEditDialog extends javax.swing.JDialog {
     private JScrollPane spCode;
     private JTextArea txtCode;
     // End of variables declaration//GEN-END:variables
+
+    void setReadOnly() {
+        txtCode.setEditable(false);
+        btnCancel.setVisible(false);
+        btnOk.setText("Close");
+        btnOk.setMnemonic('c');
+    }
 }

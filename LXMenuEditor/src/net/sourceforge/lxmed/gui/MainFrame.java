@@ -314,7 +314,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-        String msg = "LXDE Main Menu Editor 20110405-beta\n\n";
+        String msg = "LXDE Main Menu Editor 20110414-beta\n\n";
         msg += "Copyleft \u2184\u20DD 2011. HEEM-BA-SHOU\n";
         JOptionPane.showMessageDialog(this, msg, "About", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAboutActionPerformed

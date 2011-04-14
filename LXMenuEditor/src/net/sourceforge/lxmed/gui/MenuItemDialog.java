@@ -490,6 +490,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
             cbVisible.setEnabled(false);
             btnOk.setEnabled(false);
             btnOk.setText("Close");
+            btnOk.setMnemonic('c');
             btnCancel.setEnabled(false);
             btnBrowseIcon.setEnabled(false);
             btnBrowseCommand.setEnabled(false);
