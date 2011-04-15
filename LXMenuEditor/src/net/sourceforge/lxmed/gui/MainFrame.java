@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,7 +52,9 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         lstCategories.setSelectedIndex(0);
         setLocationRelativeTo(null);
-        btnHelp.setEnabled(false);
+        //btnHelp.setEnabled(false);
+        Image iconimage = new ImageIcon(getClass().getResource("/images/dialogs/lxmed_small.png")).getImage();
+        setIconImage(iconimage);
     }
 
     /** This method is called from within the constructor to
@@ -319,12 +323,16 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
-        ni();
+        try {
+            Runtime.getRuntime().exec("firefox http://wiki.lxde.org/en/Main_Menu");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error while launching firefox browser.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         String msg = "LXDE Main Menu Editor 20110414-beta\n\n";
-        msg += "Copyleft \u2184\u20DD 2011. HEEM-BA-SHOU\n";
+        msg += "Copyleft 2011. HEEM-BA-SHOU\n";
         JOptionPane.showMessageDialog(this, msg, "About", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAboutActionPerformed
 
@@ -446,8 +454,11 @@ public class MainFrame extends javax.swing.JFrame {
         if (!((MenuItem) lstItems.getSelectedValue()).isOnlyForAdmin()) {
             int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can just make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
-                // TODO: delete file code or method call, if successfull deletion, removing file from JList
-                ni();
+                MenuItem toDelete = (MenuItem) lstItems.getSelectedValue();
+                boolean done = toDelete.getPath().delete();
+                if (done) {
+                    dlmItems.removeElement(toDelete);
+                }
             }
         }
     }

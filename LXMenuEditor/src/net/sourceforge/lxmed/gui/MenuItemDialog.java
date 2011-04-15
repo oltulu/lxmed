@@ -62,6 +62,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         this.menuItem = item;
         if (item == null) {
             newItem = true;
+            menuItem = new MenuItem();
         }
         cbm = new DefaultComboBoxModel(Model.getModel().getCategories().toArray());
         initComponents();
@@ -338,10 +339,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        if (!menuItem.isOnlyForAdmin()) {
-            saveItem();
+        if (newItem) {
+            processNewItem();
+        } else {
+            processEditItem();
         }
-        setVisible(false);
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void txtNameKeyTyped(KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
@@ -559,5 +561,18 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     public void setMenuItem(MenuItem menuItem) {
         this.menuItem = menuItem;
+    }
+
+    private void processNewItem() {
+        menuItem.setPath(new File(txtPath.getText().trim()));
+        saveItem();
+        setVisible(false);
+    }
+
+    private void processEditItem() {
+        if (!menuItem.isOnlyForAdmin()) {
+            saveItem();
+        }
+        setVisible(false);
     }
 }
