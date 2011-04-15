@@ -67,13 +67,17 @@ public class ModelLoader {
         MenuItem mi = loadData(code);
         mi.setPath(file);
 
-        for (String string : Configuration.getAdminFolders()) {
-            if (mi.getPath().getParent().trim().equals(string.trim())) {
-                mi.setOnlyForAdmin(true);
-                break;
-            } else {
-                mi.setOnlyForAdmin(false);
+        if (!Configuration.IS_ROOT) {
+            for (String string : Configuration.getAdminFolders()) {
+                if (mi.getPath().getParent().trim().equals(string.trim())) {
+                    mi.setOnlyForAdmin(true);
+                    break;
+                } else {
+                    mi.setOnlyForAdmin(false);
+                }
             }
+        }else{
+            mi.setOnlyForAdmin(false);
         }
 
         extractCategorie(mi, mi.getOriginalCategories());

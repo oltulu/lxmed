@@ -1,11 +1,12 @@
 package net.sourceforge.lxmed.persistence;
 
 /**
- *
+ * Global variables needed for application.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class Configuration {
 
+    /**  */
     public static String USER_APPS = System.getProperty("user.home") + "/.local/share/applications";
     public static String USER_ICONS = System.getProperty("user.home") + "/.local/share/icons";
     public static String ROOT_APPS = "/usr/share/applications";

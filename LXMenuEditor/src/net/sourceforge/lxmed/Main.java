@@ -15,22 +15,20 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed;
 
-import javax.swing.UIManager;
 import net.sourceforge.lxmed.gui.MainFrame;
 import net.sourceforge.lxmed.persistence.ModelLoader;
+import net.sourceforge.lxmed.persistence.UserDeterminator;
 
 /**
- *
+ * Starts the application.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class Main {
 
     public static void main(String[] args) {
+        UserDeterminator.determineUser();
+
         ModelLoader.load();
-        try {
-            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-        }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
 
