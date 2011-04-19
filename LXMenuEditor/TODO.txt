@@ -7,3 +7,5 @@ Kad joj se promeni kategorija, ostane u istoj listi i bude u novoj? reload model
 Ne vidi se dobro font za copyleft, promeniti u copyright
 
 Make install.sh script for installation of application
+
+Check if some instance is running, generate lock file in /opt/lxmed ili mozda bolje u /tmp folder
