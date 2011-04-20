@@ -182,7 +182,7 @@ public class Categorie implements List<MenuItem> {
         ret.add(new Categorie("Programming", "Development", "development.png"));
         ret.add(new Categorie("Sound & Video", "AudioVideo", "multimedia.png"));
         ret.add(new Categorie("System Tools", "System", "system.png"));
-        ret.add(new Categorie("Preferences", "Settings", "utilities.png"));
+        ret.add(new Categorie("Preferences", "Settings", "preferences.png"));
 
         return ret;
     }
