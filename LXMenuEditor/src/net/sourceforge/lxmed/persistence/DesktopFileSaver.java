@@ -9,11 +9,17 @@ import java.io.UnsupportedEncodingException;
 import net.sourceforge.lxmed.model.MenuItem;
 
 /**
- *
+ * Class that provides operations for saving menu items.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class DesktopFileSaver {
 
+    /**
+     * Saves given menu item.
+     * @param item menu item to save
+     * @return true if successfully saved, otherwise false
+     * @throws FileNotFoundException if file was not found.
+     */
     public static boolean save(MenuItem item) throws FileNotFoundException {
         File path = item.getPath();
         try {

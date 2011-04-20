@@ -1,4 +1,4 @@
-package net.sourceforge.lxmed.persistence;
+package net.sourceforge.lxmed.utils;
 
 /**
  * Indetifies wheather a user launching an application is root or not.

@@ -7,7 +7,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import net.sourceforge.lxmed.model.MenuItem;
-import net.sourceforge.lxmed.persistence.Configuration;
+import net.sourceforge.lxmed.utils.Configuration;
 
 /**
  *

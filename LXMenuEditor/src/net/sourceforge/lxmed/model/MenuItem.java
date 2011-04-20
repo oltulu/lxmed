@@ -5,7 +5,7 @@ import javax.swing.Icon;
 import net.sourceforge.lxmed.LxmedException;
 
 /**
- *
+ * Menu item in LXDE's main menu.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class MenuItem {

@@ -17,7 +17,7 @@ package net.sourceforge.lxmed;
 
 import net.sourceforge.lxmed.gui.MainFrame;
 import net.sourceforge.lxmed.persistence.ModelLoader;
-import net.sourceforge.lxmed.persistence.UserDeterminator;
+import net.sourceforge.lxmed.utils.UserDeterminator;
 
 /**
  * Starts the application.

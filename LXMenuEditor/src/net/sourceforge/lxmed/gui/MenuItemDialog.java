@@ -42,7 +42,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import net.sourceforge.lxmed.model.Categorie;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
-import net.sourceforge.lxmed.persistence.Configuration;
+import net.sourceforge.lxmed.utils.Configuration;
 import net.sourceforge.lxmed.persistence.DesktopFileSaver;
 
 /**

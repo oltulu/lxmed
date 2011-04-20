@@ -7,16 +7,27 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- *
+ * Category in main menu. This class implements List interface so it can be
+ * seen as list of menu items belonging to category.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class Categorie implements List<MenuItem> {
 
+    /** Category display name. */
     protected String displayName;
+    /** Category code name. */
     protected String codeName;
+    /** Category icon name. */
     protected String icon;
+    /** Menu items belonging to category. */
     protected List<MenuItem> items = new ArrayList<MenuItem>();
 
+    /**
+     * Constructor.
+     * @param displayName categorie's display name
+     * @param codeName categorie's code name
+     * @param icon categorie's icon name
+     */
     public Categorie(String displayName, String codeName, String icon) {
         this.displayName = displayName;
         this.codeName = codeName;
@@ -141,34 +152,63 @@ public class Categorie implements List<MenuItem> {
         return ret;
     }
 
+    /**
+     * Categorie's code name.
+     */
     public String getCodeName() {
         return codeName;
     }
 
+    /**
+     * Sets categorie's code name.
+     * @param codeName new code name
+     */
     public void setCodeName(String codeName) {
         this.codeName = codeName;
     }
 
+    /**
+     * Categorie's display name.
+     */
     public String getDisplayName() {
         return displayName;
     }
 
+    /**
+     * Sets categorie's display name.
+     * @param displayName new display name
+     */
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
 
+    /**
+     * Sets categorie's menu items.
+     * @param items new list of menu items
+     */
     public void setItems(List<MenuItem> items) {
         this.items = items;
     }
 
+    /**
+     * Categorie's icon name.
+     */
     public String getIcon() {
         return icon;
     }
 
+    /**
+     * Sets categorie's icon name.
+     * @param icon new icon name
+     */
     public void setIcon(String icon) {
         this.icon = icon;
     }
 
+    /**
+     * Returns a list of initialized categories which are found in most LXDE
+     * systems.
+     */
     public static List<Categorie> init() {
         List<Categorie> ret = new ArrayList<Categorie>();
 

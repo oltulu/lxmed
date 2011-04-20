@@ -4,7 +4,7 @@ import java.util.Comparator;
 import net.sourceforge.lxmed.model.MenuItem;
 
 /**
- *
+ * Comparator which compares menu items by it's name.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class ItemNameComparator implements Comparator<MenuItem> {

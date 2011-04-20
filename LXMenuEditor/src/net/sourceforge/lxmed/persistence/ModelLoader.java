@@ -1,5 +1,6 @@
 package net.sourceforge.lxmed.persistence;
 
+import net.sourceforge.lxmed.utils.Configuration;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,11 +15,17 @@ import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 
 /**
- *
+ * Loads the entire model reading it's content from hard disk and then creates
+ * data structure (package <code>model</code>).
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class ModelLoader {
 
+    /**
+     * Method which loads the model.
+     * @return the Model.
+     * @see Model
+     */
     public static Model load() {
         Model model = Model.getModel();
 
@@ -45,6 +52,11 @@ public class ModelLoader {
         return model;
     }
 
+    /**
+     * Loads specific file and makes MenuItem of it.
+     * @param file file to load
+     * @return MenuItem derived from file
+     */
     public static MenuItem loadDesktopFile(File file) {
         String code = "";
 
@@ -85,6 +97,11 @@ public class ModelLoader {
         return null;
     }
 
+    /**
+     * Returns MenuItem by given string which contains data describing it as
+     * regular .desktop file.
+     * @param fileContent data string
+     */
     public static MenuItem loadData(String fileContent) {
         Map<String, String> values = new HashMap<String, String>();
 
@@ -119,6 +136,13 @@ public class ModelLoader {
         return mi;
     }
 
+    /**
+     * Extract menu item's category. This is tricky part, since .desktop file
+     * can have more than one category value. However, this method extracts
+     * only the first regular category and classifies item as that category.
+     * @param mi menu item
+     * @param cat categories read from .desktop file
+     */
     private static void extractCategorie(MenuItem mi, String cat) {
         if (cat == null || cat.trim().equals("")) {
             Model.getModel().getCategoryByCode("").add(mi);
@@ -137,6 +161,10 @@ public class ModelLoader {
         Model.getModel().getCategoryByCode("").add(mi);
     }
 
+    /**
+     * Sort all menu items in given category by menu item's name.
+     * @param c category to sort
+     */
     private static void sortItemsByName(Categorie c) {
         Collections.sort(c, new ItemNameComparator());
     }

@@ -1,4 +1,4 @@
-package net.sourceforge.lxmed.persistence;
+package net.sourceforge.lxmed.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -10,6 +10,11 @@ import java.io.InputStreamReader;
  */
 public class ProcessExecutor {
 
+    /**
+     * Executes any process and returns it's output.
+     * @param cmd command to execute
+     * @return command output
+     */
     public static String execute(String cmd) {
         String ret = "";
 
