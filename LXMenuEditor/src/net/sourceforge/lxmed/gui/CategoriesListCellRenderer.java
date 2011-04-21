@@ -9,7 +9,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import net.sourceforge.lxmed.model.Categorie;
+import net.sourceforge.lxmed.model.Category;
 
 /**
  *
@@ -17,10 +17,10 @@ import net.sourceforge.lxmed.model.Categorie;
  */
 public class CategoriesListCellRenderer extends DefaultListCellRenderer {
 
-    private Map<Categorie, Icon> icons = new HashMap<Categorie, Icon>();
+    private Map<Category, Icon> icons = new HashMap<Category, Icon>();
 
-    public CategoriesListCellRenderer(List<Categorie> categories) {
-        for (Categorie categorie : categories) {
+    public CategoriesListCellRenderer(List<Category> categories) {
+        for (Category categorie : categories) {
             Icon icon = new ImageIcon(getClass().getResource("/images/categories/" + categorie.getIcon()));
             this.icons.put(categorie, icon);
         }

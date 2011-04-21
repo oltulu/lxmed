@@ -21,16 +21,19 @@ public class DesktopFileSaver {
      * @throws FileNotFoundException if file was not found.
      */
     public static boolean save(MenuItem item) throws FileNotFoundException {
+        System.out.println(item.getDesktopCode());
+        /*
         File path = item.getPath();
         try {
             PrintWriter pout = new PrintWriter(
                     new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
 
             pout.print(item.getDesktopCode());
+
             pout.close();
         } catch (UnsupportedEncodingException ex) {
             return false;
-        }
+        }*/
         return true;
     }
 }

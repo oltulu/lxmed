@@ -1,6 +1,8 @@
 package net.sourceforge.lxmed.model;
 
 import java.io.File;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.swing.Icon;
 import net.sourceforge.lxmed.LxmedException;
 
@@ -10,166 +12,270 @@ import net.sourceforge.lxmed.LxmedException;
  */
 public class MenuItem {
 
-    protected String name;
-    protected String genericName;
-    protected String exec;
-    protected String comment;
+    /** File path of this menu item's .desktop file. */
     protected File path;
-    protected String iconStr;
+    /** Menu Item's icon. */
     protected Icon icon;
-    protected boolean noDisplay;
-    protected Categorie categorie;
+    /** Menu item's category */
+    protected Category category;
     protected String originalCategories;
     protected String originalCode;
     protected boolean onlyForAdmin = true;
+    protected Map<String, String> content = new LinkedHashMap<String, String>();
 
+    /**
+     * Empty constructor.
+     */
     public MenuItem() {
     }
 
+    /**
+     * Constructor which receives item's name as parameter.
+     * @param name menu item's name
+     */
     public MenuItem(String name) {
-        this.name = name;
+        content.put("Name", name);
     }
 
+    /**
+     * Menu item's comment.
+     */
     public String getComment() {
-        return comment;
+        return content.get("Comment");
     }
 
+    /**
+     * Sets menu item's comment.
+     * @param comment new comment
+     */
     public void setComment(String comment) {
-        this.comment = comment;
+        content.put("Comment", comment);
     }
 
+    /**
+     * Menu item's execution command.
+     */
     public String getExec() {
-        return exec;
+        return content.get("Exec");
     }
 
+    /**
+     * Sets menu item's execution command.
+     * @param exec new execution command
+     */
     public void setExec(String exec) {
-        this.exec = exec;
+        content.put("Exec", exec);
     }
 
+    /**
+     * Menu item's generic name.
+     */
     public String getGenericName() {
-        return genericName;
+        return content.get("GenericName");
     }
 
+    /**
+     * Sets menu item's generic name.
+     * @param genericName new generic name
+     */
     public void setGenericName(String genericName) {
-        this.genericName = genericName;
+        content.put("GenericName", genericName);
     }
 
+    /**
+     * Menu item's icon.
+     */
     public Icon getIcon() {
         return icon;
     }
 
+    /**
+     * Sets menu item's icon.
+     * @param icon new icon
+     */
     public void setIcon(Icon icon) {
         this.icon = icon;
     }
 
+    /**
+     * Menu item's .desktop file Icon string value.
+     */
     public String getIconStr() {
-        return iconStr;
+        return content.get("Icon");
     }
 
+    /**
+     * Sets new value for Icon in .desktop file.
+     * @param iconStr new icon string
+     */
     public void setIconStr(String iconStr) {
-        this.iconStr = iconStr;
+        content.put("Icon", iconStr);
     }
 
+    /**
+     * Menu item's name.
+     */
     public String getName() {
-        return name;
+        return content.get("Name");
     }
 
+    /**
+     * Sets menu item's name.
+     * @param name new name
+     */
     public void setName(String name) {
-        this.name = name;
+        content.put("Name", name);
     }
 
+    /**
+     * Menu item's no-display attribute. True if item is not visible in menu.
+     */
     public boolean isNoDisplay() {
-        return noDisplay;
+        String str = content.get("NoDisplay");
+        if (str != null && str.toLowerCase().trim().equals("true")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
+    /**
+     * Sets item's visibility in main menu.
+     * @param noDisplay true if item should be hidden, false if item should be
+     * visible
+     */
     public void setNoDisplay(boolean noDisplay) {
-        this.noDisplay = noDisplay;
+        content.put("NoDisplay", Boolean.toString(noDisplay));
     }
 
+    /**
+     * Menu item's .desktop file path.
+     */
     public File getPath() {
         return path;
     }
 
+    /**
+     * Sets menu item's .desktop file path.
+     * @param path new file
+     */
     public void setPath(File path) {
         this.path = path;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
+    /**
+     * Menu item's category.
+     */
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategorie(Categorie categorie) {
-        if (!categorie.contains(this)) {
-            if (this.categorie != null) {
-                this.categorie.remove(this);
+    /**
+     * Sets menu item's category.
+     * @param category new category
+     */
+    public void setCategory(Category category) {
+        if (!category.contains(this)) {
+            if (this.category != null) {
+                this.category.remove(this);
             }
-            categorie.add(this);
+            category.add(this);
         }
-        this.categorie = categorie;
+        this.category = category;
+        content.put("Categories", category.getCodeName());
     }
 
+    /**
+     * True if this menu item can be edited only by root user.
+     */
     public boolean isOnlyForAdmin() {
         return onlyForAdmin;
     }
 
+    /**
+     * Sets access permission for this menu item.
+     * @param onlyForAdmin true if only root user can edit this menu item
+     */
     public void setOnlyForAdmin(boolean onlyForAdmin) {
         this.onlyForAdmin = onlyForAdmin;
     }
 
+    /**
+     * Menu item's original categories (even multiple categories are shown if
+     * they were first loaded)
+     */
     public String getOriginalCategories() {
         return originalCategories;
     }
 
+    /**
+     * Sets menu item's original categories.
+     * @param originalCategories new original categories
+     */
     public void setOriginalCategories(String originalCategories) {
         this.originalCategories = originalCategories;
     }
 
+    /**
+     * Menu item's original code.
+     */
     public String getOriginalCode() {
         return originalCode;
     }
 
+    /**
+     * Sets menu item's original code.
+     * @param originalCode new original code
+     */
     public void setOriginalCode(String originalCode) {
         this.originalCode = originalCode;
     }
 
+    /**
+     * Menu item's content map. Contains all values from .desktop file in this
+     * map.
+     */
+    public Map<String, String> getContent() {
+        return content;
+    }
+
+    /**
+     * Sets menu item's content map.
+     * @param content new content map
+     */
+    public void setContent(Map<String, String> content) {
+        this.content = content;
+    }
+
+    /**
+     * Code which will be written to .desktop file upon save.
+     */
     public String getDesktopCode() {
         checkItem();
 
         String ret = "[Desktop Entry]\n";
-        ret += "Encoding=UTF-8\n";
-        ret += "Name=" + name + "\n";
-        if (stringOk(comment)) {
-            ret += "Comment=" + comment + "\n";
+
+        for (String key : content.keySet()) {
+            ret += key + "=" + content.get(key) + "\n";
         }
-        if (stringOk(exec)) {
-            ret += "Exec=" + exec + "\n";
-        }
-        if (stringOk(iconStr)) {
-            ret += "Icon=" + iconStr + "\n";
-        }
-        ret += "Type=Application\n";
-        ret += "Terminal=false\n";
-        ret += "StartNotify=false\n";
-        ret += "NoDisplay=" + noDisplay + "\n";
-        ret += "Categories=" + categorie.getCodeName();
 
         return ret;
     }
 
+    /**
+     * Returns menu item's name.
+     */
     @Override
     public String toString() {
-        return name;
+        return getName();
     }
 
-    private boolean stringOk(String str) {
-        if (str != null && !str.trim().equals("")) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * Checks wheather mandatory values are not null or empty strings.
+     * @throws LxmedException if there is an error in data
+     */
     private void checkItem() throws LxmedException {
-        Object[] mandatories = new Object[]{name, /*exec,*/ categorie};
+        Object[] mandatories = new Object[]{getName(), /*exec,*/ category};
 
         for (Object object : mandatories) {
             if (object == null) {
@@ -180,7 +286,7 @@ public class MenuItem {
                 if (((String) object).trim().equals("")) {
                     throw new LxmedException("Empty string.");
                 }
-            } else if (object instanceof Categorie) {
+            } else if (object instanceof Category) {
 //                if (((Categorie) object).getCodeName().trim().equals("")) {
 //                    throw new LxmedException("Empty string in categorie.");
 //                }
@@ -188,21 +294,24 @@ public class MenuItem {
         }
     }
 
+    /**
+     * Clones data from given menu item into this menu item.
+     * @param newMenuItem menu item from which data is cloned
+     */
     public void cloneData(MenuItem newMenuItem) {
-        if (newMenuItem.getCategorie() != null) {
-            setCategorie(newMenuItem.getCategorie());
+        if (newMenuItem.getCategory() != null) {
+            setCategory(newMenuItem.getCategory());
         }
-        setComment(newMenuItem.getComment());
-        setExec(newMenuItem.getExec());
-        setGenericName(newMenuItem.getGenericName());
+
+        for (String key : newMenuItem.getContent().keySet()) {
+            content.put(key, newMenuItem.getContent().get(key));
+        }
+
         setIcon(newMenuItem.getIcon());
-        setIconStr(newMenuItem.getIconStr());
-        setName(newMenuItem.getName());
-        setNoDisplay(newMenuItem.isNoDisplay());
         setOriginalCategories(newMenuItem.getOriginalCategories());
+
         if (newMenuItem.getPath() != null) {
             setPath(newMenuItem.getPath());
         }
-        setOriginalCode(newMenuItem.getOriginalCode());
     }
 }

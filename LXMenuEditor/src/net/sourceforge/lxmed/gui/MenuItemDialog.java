@@ -39,7 +39,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import net.sourceforge.lxmed.model.Categorie;
+import net.sourceforge.lxmed.model.Category;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 import net.sourceforge.lxmed.utils.Configuration;
@@ -54,7 +54,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     protected MenuItem menuItem;
     protected ComboBoxModel cbm;
     protected boolean newItem = false;
-    protected Categorie defaultCategory;
+    protected Category defaultCategory;
 
     /** Creates new form MenuItemDialog */
     public MenuItemDialog(java.awt.Frame parent, MenuItem item) {
@@ -456,11 +456,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
         }
     }
 
-    public Categorie getDefaultCategory() {
+    public Category getDefaultCategory() {
         return defaultCategory;
     }
 
-    public void setDefaultCategory(Categorie defaultCategory) {
+    public void setDefaultCategory(Category defaultCategory) {
         this.defaultCategory = defaultCategory;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -509,12 +509,12 @@ public class MenuItemDialog extends javax.swing.JDialog {
         txtCommand.setText(menuItem.getExec());
         txtComment.setText(menuItem.getComment());
         txtIcon.setText(menuItem.getIconStr());
-        cbCategories.setSelectedItem(menuItem.getCategorie());
+        cbCategories.setSelectedItem(menuItem.getCategory());
         cbVisible.setSelected(!menuItem.isNoDisplay());
     }
 
     private void saveItem() {
-        menuItem.setCategorie((Categorie) cbCategories.getSelectedItem());
+        menuItem.setCategory((Category) cbCategories.getSelectedItem());
         menuItem.setName(txtName.getText().trim());
         menuItem.setExec(txtCommand.getText().trim());
         menuItem.setComment(txtComment.getText().trim());

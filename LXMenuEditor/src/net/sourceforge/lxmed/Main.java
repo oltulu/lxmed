@@ -26,6 +26,8 @@ import net.sourceforge.lxmed.utils.UserDeterminator;
 public class Main {
 
     public static void main(String[] args) {
+        // TODO: check lock
+
         UserDeterminator.determineUser();
 
         ModelLoader.load();

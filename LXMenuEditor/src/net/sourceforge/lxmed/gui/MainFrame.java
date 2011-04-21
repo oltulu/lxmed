@@ -28,7 +28,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import net.sourceforge.lxmed.model.Categorie;
+import net.sourceforge.lxmed.model.Category;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 
@@ -46,7 +46,7 @@ public class MainFrame extends javax.swing.JFrame {
     /** Creates new form MainFrame */
     public MainFrame() {
         setPreferredSize(new Dimension(600, 400));
-        for (Categorie categorie : Model.getModel().getCategories()) {
+        for (Category categorie : Model.getModel().getCategories()) {
             dlmCategories.addElement(categorie);
         }
         initComponents();
@@ -338,7 +338,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnNewItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnNewItemActionPerformed
         MenuItemDialog mid = new MenuItemDialog(this, null);
-        mid.setDefaultCategory((Categorie) lstCategories.getSelectedValue());
+        mid.setDefaultCategory((Category) lstCategories.getSelectedValue());
         mid.setVisible(true);
     }//GEN-LAST:event_btnNewItemActionPerformed
 
@@ -356,7 +356,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         dlmItems.clear();
-        Categorie c = (Categorie) lstCategories.getSelectedValue();
+        Category c = (Category) lstCategories.getSelectedValue();
         for (MenuItem menuItem : c) {
             dlmItems.addElement(menuItem);
         }

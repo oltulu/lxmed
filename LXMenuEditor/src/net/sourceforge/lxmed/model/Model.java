@@ -9,7 +9,7 @@ import java.util.List;
 public class Model {
 
     /** Main menu categories. */
-    protected List<Categorie> categories;
+    protected List<Category> categories;
     /** Singleton instance. */
     private static Model model;
 
@@ -27,13 +27,13 @@ public class Model {
      * Private constructor. Initializes categories.
      */
     private Model() {
-        categories = Categorie.init();
+        categories = Category.init();
     }
 
     /**
      * Returns main menu's categories.
      */
-    public List<Categorie> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
@@ -41,7 +41,7 @@ public class Model {
      * Sets main menu's categories.
      * @param categories new categories
      */
-    public void setCategories(List<Categorie> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
@@ -51,7 +51,7 @@ public class Model {
      * @return true if exists, otherwise false
      */
     public boolean containsCategory(String categoryCode) {
-        for (Categorie categorie : categories) {
+        for (Category categorie : categories) {
             if (categorie.getCodeName().trim().equals(categoryCode.trim())) {
                 return true;
             }
@@ -64,8 +64,8 @@ public class Model {
      * Returns category by it's code name
      * @param categoryCode categorie's code name
      */
-    public Categorie getCategoryByCode(String categoryCode) {
-        for (Categorie categorie : categories) {
+    public Category getCategoryByCode(String categoryCode) {
+        for (Category categorie : categories) {
             if (categorie.getCodeName().trim().equals(categoryCode.trim())) {
                 return categorie;
             }

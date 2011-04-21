@@ -11,7 +11,7 @@ import java.util.ListIterator;
  * seen as list of menu items belonging to category.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
-public class Categorie implements List<MenuItem> {
+public class Category implements List<MenuItem> {
 
     /** Category display name. */
     protected String displayName;
@@ -28,7 +28,7 @@ public class Categorie implements List<MenuItem> {
      * @param codeName categorie's code name
      * @param icon categorie's icon name
      */
-    public Categorie(String displayName, String codeName, String icon) {
+    public Category(String displayName, String codeName, String icon) {
         this.displayName = displayName;
         this.codeName = codeName;
         this.icon = icon;
@@ -111,7 +111,7 @@ public class Categorie implements List<MenuItem> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Categorie other = (Categorie) obj;
+        final Category other = (Category) obj;
         if ((this.codeName == null) ? (other.codeName != null) : !this.codeName.equals(other.codeName)) {
             return false;
         }
@@ -143,12 +143,12 @@ public class Categorie implements List<MenuItem> {
 
     public void add(int index, MenuItem element) {
         items.add(index, element);
-        element.setCategorie(this);
+        element.setCategory(this);
     }
 
     public boolean add(MenuItem e) {
         boolean ret = items.add(e);
-        e.setCategorie(this);
+        e.setCategory(this);
         return ret;
     }
 
@@ -209,20 +209,20 @@ public class Categorie implements List<MenuItem> {
      * Returns a list of initialized categories which are found in most LXDE
      * systems.
      */
-    public static List<Categorie> init() {
-        List<Categorie> ret = new ArrayList<Categorie>();
+    public static List<Category> init() {
+        List<Category> ret = new ArrayList<Category>();
 
-        ret.add(new Categorie("Accessories", "Utility", "accessories.png"));
-        ret.add(new Categorie("Education", "Education", "science.png"));
-        ret.add(new Categorie("Games", "Game", "games.png"));
-        ret.add(new Categorie("Graphics", "Graphics", "graphics.png"));
-        ret.add(new Categorie("Internet", "Network", "internet.png"));
-        ret.add(new Categorie("Office", "Office", "office.png"));
-        ret.add(new Categorie("Other", "", "other.png"));
-        ret.add(new Categorie("Programming", "Development", "development.png"));
-        ret.add(new Categorie("Sound & Video", "AudioVideo", "multimedia.png"));
-        ret.add(new Categorie("System Tools", "System", "system.png"));
-        ret.add(new Categorie("Preferences", "Settings", "preferences.png"));
+        ret.add(new Category("Accessories", "Utility", "accessories.png"));
+        ret.add(new Category("Education", "Education", "science.png"));
+        ret.add(new Category("Games", "Game", "games.png"));
+        ret.add(new Category("Graphics", "Graphics", "graphics.png"));
+        ret.add(new Category("Internet", "Network", "internet.png"));
+        ret.add(new Category("Office", "Office", "office.png"));
+        ret.add(new Category("Other", "", "other.png"));
+        ret.add(new Category("Programming", "Development", "development.png"));
+        ret.add(new Category("Sound & Video", "AudioVideo", "multimedia.png"));
+        ret.add(new Category("System Tools", "System", "system.png"));
+        ret.add(new Category("Preferences", "Settings", "preferences.png"));
 
         return ret;
     }

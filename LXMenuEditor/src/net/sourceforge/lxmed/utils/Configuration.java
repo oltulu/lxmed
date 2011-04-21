@@ -45,18 +45,4 @@ public class Configuration {
         String[] ret = new String[]{ROOT_APPS, ROOT_LOCAL_APPS};
         return ret;
     }
-
-    /**
-     * Static block which check's user type and sets IS_ROOT variable.
-     */
-    static {
-        String strId = ProcessExecutor.execute("id -ru");
-        int id = Integer.parseInt(strId);
-
-        if (id == 0) {
-            IS_ROOT = true;
-        } else {
-            IS_ROOT = false;
-        }
-    }
 }

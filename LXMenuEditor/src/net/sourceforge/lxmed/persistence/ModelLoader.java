@@ -8,9 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import net.sourceforge.lxmed.model.Categorie;
+import net.sourceforge.lxmed.model.Category;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 
@@ -45,7 +45,7 @@ public class ModelLoader {
         }
 
         // sort all items by name
-        for (Categorie categorie : Model.getModel().getCategories()) {
+        for (Category categorie : Model.getModel().getCategories()) {
             sortItemsByName(categorie);
         }
 
@@ -88,7 +88,7 @@ public class ModelLoader {
                     mi.setOnlyForAdmin(false);
                 }
             }
-        }else{
+        } else {
             mi.setOnlyForAdmin(false);
         }
 
@@ -103,7 +103,7 @@ public class ModelLoader {
      * @param fileContent data string
      */
     public static MenuItem loadData(String fileContent) {
-        Map<String, String> values = new HashMap<String, String>();
+        Map<String, String> values = new LinkedHashMap<String, String>();
 
         String[] lines = fileContent.split("\n");
 
@@ -124,12 +124,13 @@ public class ModelLoader {
 
         // MenuItem creation based on extracted values
         MenuItem mi = new MenuItem();
-        mi.setName(values.get("Name"));
-        mi.setExec(values.get("Exec"));
-        mi.setComment(values.get("Comment"));
-        mi.setGenericName(values.get("GenericName"));
-        mi.setIconStr(values.get("Icon"));
-        mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
+        mi.setContent(values);
+//        mi.setName(values.get("Name"));
+//        mi.setExec(values.get("Exec"));
+//        mi.setComment(values.get("Comment"));
+//        mi.setGenericName(values.get("GenericName"));
+//        mi.setIconStr(values.get("Icon"));
+//        mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
         mi.setOriginalCategories(values.get("Categories"));
         mi.setOriginalCode(fileContent);
 
@@ -165,7 +166,7 @@ public class ModelLoader {
      * Sort all menu items in given category by menu item's name.
      * @param c category to sort
      */
-    private static void sortItemsByName(Categorie c) {
+    private static void sortItemsByName(Category c) {
         Collections.sort(c, new ItemNameComparator());
     }
 }
