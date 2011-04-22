@@ -17,12 +17,12 @@ import net.sourceforge.lxmed.model.Category;
  */
 public class CategoriesListCellRenderer extends DefaultListCellRenderer {
 
-    private Map<Category, Icon> icons = new HashMap<Category, Icon>();
+    private Map<String, Icon> icons = new HashMap<String, Icon>();
 
     public CategoriesListCellRenderer(List<Category> categories) {
         for (Category categorie : categories) {
             Icon icon = new ImageIcon(getClass().getResource("/images/categories/" + categorie.getIcon()));
-            this.icons.put(categorie, icon);
+            this.icons.put(categorie.getCodeName(), icon);
         }
     }
 
@@ -33,7 +33,9 @@ public class CategoriesListCellRenderer extends DefaultListCellRenderer {
                 (JLabel) super.getListCellRendererComponent(list,
                 value, index, isSelected, cellHasFocus);
 
-        Icon icon = icons.get(value);
+        Category c = (Category) value;
+
+        Icon icon = icons.get(c.getCodeName());
 
         label.setIcon(icon);
 

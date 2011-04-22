@@ -20,7 +20,7 @@ public class MenuItem {
     protected Category category;
     protected String originalCategories;
     protected String originalCode;
-    protected boolean onlyForAdmin = true;
+    protected boolean readonly = true;
     protected Map<String, String> content = new LinkedHashMap<String, String>();
 
     /**
@@ -175,6 +175,13 @@ public class MenuItem {
      * @param category new category
      */
     public void setCategory(Category category) {
+        if (category == null) {
+            this.category.remove(this);
+            this.category = null;
+            content.remove("Categories");
+            return;
+        }
+
         if (!category.contains(this)) {
             if (this.category != null) {
                 this.category.remove(this);
@@ -188,16 +195,16 @@ public class MenuItem {
     /**
      * True if this menu item can be edited only by root user.
      */
-    public boolean isOnlyForAdmin() {
-        return onlyForAdmin;
+    public boolean isReadOnly() {
+        return readonly;
     }
 
     /**
      * Sets access permission for this menu item.
      * @param onlyForAdmin true if only root user can edit this menu item
      */
-    public void setOnlyForAdmin(boolean onlyForAdmin) {
-        this.onlyForAdmin = onlyForAdmin;
+    public void setReadOnly(boolean readonly) {
+        this.readonly = readonly;
     }
 
     /**
@@ -252,6 +259,10 @@ public class MenuItem {
      */
     public String getDesktopCode() {
         checkItem();
+
+        if (!content.containsKey("Type")) {
+            content.put("Type", "Application");
+        }
 
         String ret = "[Desktop Entry]\n";
 

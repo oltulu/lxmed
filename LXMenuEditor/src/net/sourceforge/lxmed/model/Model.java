@@ -1,6 +1,7 @@
 package net.sourceforge.lxmed.model;
 
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  * Data structure representing main menu.

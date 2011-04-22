@@ -82,14 +82,14 @@ public class ModelLoader {
         if (!Configuration.IS_ROOT) {
             for (String string : Configuration.getAdminFolders()) {
                 if (mi.getPath().getParent().trim().equals(string.trim())) {
-                    mi.setOnlyForAdmin(true);
+                    mi.setReadOnly(true);
                     break;
                 } else {
-                    mi.setOnlyForAdmin(false);
+                    mi.setReadOnly(false);
                 }
             }
         } else {
-            mi.setOnlyForAdmin(false);
+            mi.setReadOnly(false);
         }
 
         extractCategorie(mi, mi.getOriginalCategories());

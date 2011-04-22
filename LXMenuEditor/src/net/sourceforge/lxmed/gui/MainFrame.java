@@ -355,14 +355,17 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
 
+        uradi();
+    }//GEN-LAST:event_lstCategoriesValueChanged
+
+    protected void uradi() {
         dlmItems.clear();
         Category c = (Category) lstCategories.getSelectedValue();
         for (MenuItem menuItem : c) {
             dlmItems.addElement(menuItem);
         }
         disableControls();
-    }//GEN-LAST:event_lstCategoriesValueChanged
-
+    }
     private void lstItemsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_lstItemsValueChanged
         if (evt.getValueIsAdjusting()) {
             return;
@@ -374,7 +377,7 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
 
-        if (mi.isOnlyForAdmin()) {
+        if (mi.isReadOnly()) {
             btnProperties.setEnabled(true);
             btnDelete.setEnabled(false);
             return;
@@ -451,13 +454,14 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
 
-        if (!((MenuItem) lstItems.getSelectedValue()).isOnlyForAdmin()) {
+        if (!((MenuItem) lstItems.getSelectedValue()).isReadOnly()) {
             int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can just make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 MenuItem toDelete = (MenuItem) lstItems.getSelectedValue();
                 boolean done = toDelete.getPath().delete();
                 if (done) {
                     dlmItems.removeElement(toDelete);
+                    toDelete.setCategory(null);
                 }
             }
         }

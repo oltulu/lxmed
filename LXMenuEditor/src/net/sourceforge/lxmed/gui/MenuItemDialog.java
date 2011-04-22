@@ -55,19 +55,23 @@ public class MenuItemDialog extends javax.swing.JDialog {
     protected ComboBoxModel cbm;
     protected boolean newItem = false;
     protected Category defaultCategory;
+    protected MainFrame parent;
 
     /** Creates new form MenuItemDialog */
     public MenuItemDialog(java.awt.Frame parent, MenuItem item) {
         super(parent, true);
+        this.parent = (MainFrame) parent;
         this.menuItem = item;
-        if (item == null) {
-            newItem = true;
-            menuItem = new MenuItem();
-        }
         cbm = new DefaultComboBoxModel(Model.getModel().getCategories().toArray());
         initComponents();
         getRootPane().setDefaultButton(btnOk);
         setLocationRelativeTo(null);
+
+        if (item == null) {
+            newItem = true;
+            cbVisible.setSelected(true);
+            menuItem = new MenuItem();
+        }
 
         // close on Esc
         this.getRootPane().getActionMap().put("close", new AbstractAction() {
@@ -361,7 +365,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private void formComponentShown(ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         if (!newItem) {
             setTitle("Editig menu " + menuItem.getName());
-            if (menuItem.isOnlyForAdmin()) {
+            if (menuItem.isReadOnly()) {
                 btnViewCode.setText("View original code");
             }
             updateGui();
@@ -439,7 +443,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCommandKeyTyped
 
     private void btnViewCodeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnViewCodeActionPerformed
-        new CodeEditDialog((Frame) getParent(), menuItem, !menuItem.isOnlyForAdmin(), this).setVisible(true);
+        new CodeEditDialog((Frame) getParent(), menuItem, !menuItem.isReadOnly(), this).setVisible(true);
     }//GEN-LAST:event_btnViewCodeActionPerformed
 
     private void setFileChooserFont(Component[] comp) {
@@ -489,7 +493,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     void updateGui() {
-        if (!Configuration.IS_ROOT && menuItem.isOnlyForAdmin()) {
+        if (!Configuration.IS_ROOT && menuItem.isReadOnly()) {
             txtName.setEditable(false);
             txtCommand.setEditable(false);
             txtComment.setEditable(false);
@@ -514,14 +518,23 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }
 
     private void saveItem() {
-        menuItem.setCategory((Category) cbCategories.getSelectedItem());
         menuItem.setName(txtName.getText().trim());
         menuItem.setExec(txtCommand.getText().trim());
         menuItem.setComment(txtComment.getText().trim());
         menuItem.setIconStr(txtIcon.getText().trim());
         menuItem.setNoDisplay(!cbVisible.isSelected());
+        menuItem.setCategory((Category) cbCategories.getSelectedItem());
+
         try {
-            DesktopFileSaver.save(menuItem);
+            if (DesktopFileSaver.save(menuItem)) {
+                if(newItem){
+                    parent.uradi();
+                }
+            } else {
+                Category c = menuItem.getCategory();
+                menuItem.setCategory(null);
+                c.remove(menuItem);
+            }
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error while saving item", JOptionPane.ERROR_MESSAGE);
         }
@@ -565,12 +578,13 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     private void processNewItem() {
         menuItem.setPath(new File(txtPath.getText().trim()));
+        menuItem.setReadOnly(false);
         saveItem();
         setVisible(false);
     }
 
     private void processEditItem() {
-        if (!menuItem.isOnlyForAdmin()) {
+        if (!menuItem.isReadOnly()) {
             saveItem();
         }
         setVisible(false);

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import net.sourceforge.lxmed.LxmedException;
 import net.sourceforge.lxmed.model.MenuItem;
 
 /**
@@ -21,9 +22,15 @@ public class DesktopFileSaver {
      * @throws FileNotFoundException if file was not found.
      */
     public static boolean save(MenuItem item) throws FileNotFoundException {
-        System.out.println(item.getDesktopCode());
-        /*
         File path = item.getPath();
+
+        if (!path.getParentFile().exists()) {
+            if (!path.getParentFile().mkdirs()) {
+                System.out.println(path.getParent());
+                throw new LxmedException("Directory not created.");
+            }
+        }
+
         try {
             PrintWriter pout = new PrintWriter(
                     new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
@@ -33,7 +40,8 @@ public class DesktopFileSaver {
             pout.close();
         } catch (UnsupportedEncodingException ex) {
             return false;
-        }*/
+        }
+
         return true;
     }
 }
