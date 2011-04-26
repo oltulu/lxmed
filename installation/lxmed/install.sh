@@ -21,6 +21,7 @@ cp -v content/lxmed /bin
 chmod -v +x /bin/lxmed
 cp -v content/LXMenuEditor.jar /opt/lxmed
 cp -v content/uninstall.sh /opt/lxmed
+chmod -v +x /opt/lxmed/uninstall.sh
 cp -v content/lxmed.png /opt/lxmed
 cp -v content/lxmed.desktop /usr/share/applications
 echo
