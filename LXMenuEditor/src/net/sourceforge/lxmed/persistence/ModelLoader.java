@@ -166,7 +166,7 @@ public class ModelLoader {
      * Sort all menu items in given category by menu item's name.
      * @param c category to sort
      */
-    private static void sortItemsByName(Category c) {
+    public static void sortItemsByName(Category c) {
         Collections.sort(c, new ItemNameComparator());
     }
 }

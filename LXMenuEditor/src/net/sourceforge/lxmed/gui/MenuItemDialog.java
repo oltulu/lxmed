@@ -518,17 +518,24 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }
 
     private void saveItem() {
+        boolean categoryChanged = false;
         menuItem.setName(txtName.getText().trim());
         menuItem.setExec(txtCommand.getText().trim());
         menuItem.setComment(txtComment.getText().trim());
         menuItem.setIconStr(txtIcon.getText().trim());
         menuItem.setNoDisplay(!cbVisible.isSelected());
+        Category old = menuItem.getCategory();
         menuItem.setCategory((Category) cbCategories.getSelectedItem());
+        if (!menuItem.getCategory().equals(old)) {
+            categoryChanged = true;
+        }
 
         try {
             if (DesktopFileSaver.save(menuItem)) {
-                if(newItem){
-                    parent.uradi();
+                if (newItem) {
+                    parent.updateCategory();
+                } else if (categoryChanged) {
+                    parent.updateCategory();
                 }
             } else {
                 Category c = menuItem.getCategory();

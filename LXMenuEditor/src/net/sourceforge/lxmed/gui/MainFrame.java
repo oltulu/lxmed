@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 import net.sourceforge.lxmed.model.Category;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
+import net.sourceforge.lxmed.persistence.ModelLoader;
 
 /**
  *
@@ -355,16 +356,28 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
 
-        uradi();
+        updateCategory();
     }//GEN-LAST:event_lstCategoriesValueChanged
 
-    protected void uradi() {
+    protected void updateCategory() {
         dlmItems.clear();
         Category c = (Category) lstCategories.getSelectedValue();
+        ModelLoader.sortItemsByName(c);
         for (MenuItem menuItem : c) {
             dlmItems.addElement(menuItem);
         }
         disableControls();
+    }
+
+    /**
+     * TODO: comment
+     * @param old
+     * @param menuItem
+     */
+    protected void updateCategory(Category old, MenuItem menuItem) {
+        dlmItems.clear();
+        Category c = (Category) lstCategories.getSelectedValue();
+        
     }
     private void lstItemsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_lstItemsValueChanged
         if (evt.getValueIsAdjusting()) {
