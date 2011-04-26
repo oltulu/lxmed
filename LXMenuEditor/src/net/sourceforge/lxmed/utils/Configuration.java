@@ -20,6 +20,8 @@ public class Configuration {
     public static String ROOT_LOCAL_ICONS = "/usr/local/share/icons";
     /** True if user using application is root, otherwise false. */
     public static boolean IS_ROOT = false;
+    /** Port that serves as insurance that only one instance of application is running. */
+    public static final int APP_PORT = 52011;
 
     /**
      * Returns appropriate application's shortcuts folder, depending on wheather

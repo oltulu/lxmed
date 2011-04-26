@@ -364,7 +364,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     private void formComponentShown(ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         if (!newItem) {
-            setTitle("Editig menu " + menuItem.getName());
+            setTitle("Editing menu " + menuItem.getName());
             if (menuItem.isReadOnly()) {
                 btnViewCode.setText("View original code");
             }

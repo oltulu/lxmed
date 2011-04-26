@@ -4,8 +4,4 @@ See how exactly does LXDE determine which Category is item in, since it has more
 
 Kad joj se promeni kategorija, ostane u istoj listi i bude u novoj? reload modela?
 
-Check if some instance is running, generate lock file in /opt/lxmed ili mozda bolje u /tmp folder
-http://jimlife.wordpress.com/2008/07/21/java-application-make-sure-only-singleone-instance-running-with-file-lock-ampampampampamp-shutdownhook/
-http://rosettacode.org/wiki/Determine_if_only_one_instance_is_running
-
-says Editig instead of Editing. Also change a picture with that title.
+change screenshot 2

@@ -15,8 +15,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed;
 
+import javax.swing.JOptionPane;
 import net.sourceforge.lxmed.gui.MainFrame;
 import net.sourceforge.lxmed.persistence.ModelLoader;
+import net.sourceforge.lxmed.utils.Configuration;
+import net.sourceforge.lxmed.utils.SingletonInsurance;
 import net.sourceforge.lxmed.utils.UserDeterminator;
 
 /**
@@ -26,12 +29,23 @@ import net.sourceforge.lxmed.utils.UserDeterminator;
 public class Main {
 
     public static void main(String[] args) {
-        // TODO: check lock
 
+        // check singleton instance
+        if (!SingletonInsurance.permissionGranted(Configuration.APP_PORT)) {
+            JOptionPane.showMessageDialog(null,
+                    "Another instance of application is still running.",
+                    "Another instance exists",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
+
+        // determine weather user is root or not
         UserDeterminator.determineUser();
 
+        // load model from file system
         ModelLoader.load();
 
+        // start GUI
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
