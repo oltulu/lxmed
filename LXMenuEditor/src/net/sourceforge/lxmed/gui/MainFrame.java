@@ -325,9 +325,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnHelpActionPerformed
         try {
-            Runtime.getRuntime().exec("firefox http://wiki.lxde.org/en/Main_Menu");
+            Runtime.getRuntime().exec("firefox http://lxmed.sourceforge.net/help.html");
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error while launching firefox browser.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error while launching firefox browser. Visit http://lxmed.sourceforge.net/help.html for help", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnHelpActionPerformed
 

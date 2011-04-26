@@ -1,7 +1,3 @@
 Add icons in JLists and Item Properties Dialog.
 
 See how exactly does LXDE determine which Category is item in, since it has more Categories defined.
-
-Kad joj se promeni kategorija, ostane u istoj listi i bude u novoj? reload modela?
-
-change screenshot 2
