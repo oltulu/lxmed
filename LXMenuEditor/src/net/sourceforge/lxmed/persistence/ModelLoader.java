@@ -152,6 +152,14 @@ public class ModelLoader {
 
         String[] cats = cat.split(";");
 
+        // check if contains Settings first
+        for (String string : cats) {
+            if (string.equals("Settings")) {
+                Model.getModel().getCategoryByCode(string).add(mi);
+                return;
+            }
+        }
+
         for (String string : cats) {
             if (Model.getModel().getCategoryByCode(string) != null) {
                 Model.getModel().getCategoryByCode(string).add(mi);

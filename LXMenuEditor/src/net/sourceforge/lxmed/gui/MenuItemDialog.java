@@ -70,6 +70,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         if (item == null) {
             newItem = true;
             cbVisible.setSelected(true);
+            btnViewCode.setVisible(false);
             menuItem = new MenuItem();
         }
 

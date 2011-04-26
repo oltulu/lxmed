@@ -310,6 +310,7 @@ public class MenuItem {
      * @param newMenuItem menu item from which data is cloned
      */
     public void cloneData(MenuItem newMenuItem) {
+        content.clear();
         if (newMenuItem.getCategory() != null) {
             setCategory(newMenuItem.getCategory());
         }

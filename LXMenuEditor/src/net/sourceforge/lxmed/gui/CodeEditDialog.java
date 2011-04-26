@@ -45,7 +45,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
 
         lblTitle.setText("Original code for " + mi.getName());
-        txtCode.setText(mi.getOriginalCode());
+        txtCode.setText(mi.getDesktopCode());
 
 
         if (!editable) {
