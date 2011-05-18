@@ -1,3 +1,5 @@
 Add icons in JLists and Item Properties Dialog.
 
 See how exactly does LXDE determine which Category is item in, since it has more Categories defined.
+
+Do not show items in bold that have OnlyShowIn field. Parse that field too!
