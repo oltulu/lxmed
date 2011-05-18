@@ -14,11 +14,12 @@ echo Removing any previous installed files and folders...
 rm -r -v -f /opt/lxmed
 rm -v /usr/share/applications/lxmed.desktop
 rm -v /bin/lxmed
+rm -v /usr/bin/lxmed
 
 # copy new files
 mkdir -v /opt/lxmed
-cp -v content/lxmed /bin
-chmod -v +x /bin/lxmed
+cp -v content/lxmed /usr/bin
+chmod -v +x /usr/bin/lxmed
 cp -v content/LXMenuEditor.jar /opt/lxmed
 cp -v content/uninstall.sh /opt/lxmed
 chmod -v +x /opt/lxmed/uninstall.sh

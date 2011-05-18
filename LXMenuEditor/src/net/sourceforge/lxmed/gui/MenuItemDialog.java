@@ -16,6 +16,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import javax.swing.AbstractAction;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -44,6 +47,7 @@ import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 import net.sourceforge.lxmed.utils.Configuration;
 import net.sourceforge.lxmed.persistence.DesktopFileSaver;
+import sun.misc.Resource;
 
 /**
  *
@@ -418,7 +422,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
         setFileChooserFont(fc.getComponents());
         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        fc.setFileFilter(new FileNameExtensionFilter("Image files [*.png, *.xpm]", "png", "xpm"));
+        fc.setFileFilter(new FileNameExtensionFilter("Image files [*.png, *.xpm, *.svg]", "png", "xpm", "svg"));
         fc.setAccessory(new ImagePreview(fc));
 
         fc.setAcceptAllFileFilterUsed(false);

@@ -11,6 +11,7 @@ echo Removing application...
 echo
 rm -r -v -f /opt/lxmed
 rm -v /usr/share/applications/lxmed.desktop
+rm -v /usr/bin/lxmed
 rm -v /bin/lxmed
 echo
 echo Application successfully removed.
