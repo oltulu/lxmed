@@ -332,7 +332,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-        String msg = "LXDE Main Menu Editor 20110426-beta\n\n";
+        String msg = "LXDE Main Menu Editor 20110523-beta\n\n";
         msg += "Copyleft 2011. HEEM-BA-SHOU\n";
         JOptionPane.showMessageDialog(this, msg, "About", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAboutActionPerformed
@@ -377,7 +377,7 @@ public class MainFrame extends javax.swing.JFrame {
     protected void updateCategory(Category old, MenuItem menuItem) {
         dlmItems.clear();
         Category c = (Category) lstCategories.getSelectedValue();
-        
+
     }
     private void lstItemsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_lstItemsValueChanged
         if (evt.getValueIsAdjusting()) {
