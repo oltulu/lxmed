@@ -3,3 +3,16 @@ Add icons in JLists and Item Properties Dialog.
 See how exactly does LXDE determine which Category is item in, since it has more Categories defined.
 
 Do not show items in bold that have OnlyShowIn field. Parse that field too!
+
+Wish list: under "edit code manually", a feature I love, would you add some mechanism to see what other missing options are available?
+I am always forgetting what they are and have to go look them up in other examples.
+"Terminal=true" is the main one I have to always look up.  By nice if there was some kind of pop up or a help file pop up listing them.
+I wonder if writing them in with their default would work.  Or writing them in as empty (Terminal=) would work.
+
+Wish list: when I choose an icon for a new item, would you give me a small picture
+of it to its side.  I usually find my icons with find and grep, then cut and
+paste them in.  So I can only see what the icon looks like after the fact.
+
+Wish list: would you have the installer add lxmed to the menus under
+Accessories?
+
