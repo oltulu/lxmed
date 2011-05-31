@@ -16,8 +16,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -62,11 +60,19 @@ import net.sourceforge.lxmed.persistence.DesktopFileSaver;
  */
 public class MenuItemDialog extends javax.swing.JDialog {
 
+    /**
+     * Temporary menu item which is ignored if Cancel is clicked. If Ok was
+     * clicked, then values from this menu item are written to actual menu item
+     * named menuItem field.
+     */
+    protected MenuItem temporary;
+    /** Actual menu item from main form. */
     protected MenuItem menuItem;
     protected ComboBoxModel cbm;
     protected boolean newItem = false;
     protected Category defaultCategory;
     protected MainFrame parent;
+    protected static String imageNotAvailable = "N/A";
 
     /** Creates new form MenuItemDialog */
     public MenuItemDialog(java.awt.Frame parent, MenuItem item) {
@@ -82,7 +88,10 @@ public class MenuItemDialog extends javax.swing.JDialog {
             newItem = true;
             cbVisible.setSelected(true);
             btnViewCode.setVisible(false);
+            temporary = new MenuItem();
             menuItem = new MenuItem();
+        } else {
+            this.temporary = new MenuItem(item);
         }
 
         // close on Esc
@@ -142,6 +151,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlIcon.setLayout(new GridBagLayout());
 
         lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+        lblImage.setText("N/A");
         lblImage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
         lblImage.setMaximumSize(new Dimension(64, 64));
         lblImage.setMinimumSize(new Dimension(64, 64));
@@ -396,8 +406,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     private void formComponentShown(ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         if (!newItem) {
-            setTitle("Editing menu " + menuItem.getName());
-            if (menuItem.isReadOnly()) {
+            setTitle("Editing menu " + temporary.getName());
+            if (temporary.isReadOnly()) {
                 btnViewCode.setText("View original code");
             }
             updateGui();
@@ -480,7 +490,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCommandKeyTyped
 
     private void btnViewCodeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnViewCodeActionPerformed
-        new CodeEditDialog((Frame) getParent(), menuItem, !menuItem.isReadOnly(), this).setVisible(true);
+        new CodeEditDialog((Frame) getParent(), temporary, !temporary.isReadOnly(), this).setVisible(true);
     }//GEN-LAST:event_btnViewCodeActionPerformed
 
     private void txtIconKeyTyped(KeyEvent evt) {//GEN-FIRST:event_txtIconKeyTyped
@@ -493,8 +503,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIconKeyTyped
 
     private void setFileChooserFont(Component[] comp) {
-        for (int x = 0; x
-                < comp.length; x++) {
+        for (int x = 0; x < comp.length; x++) {
             if (comp[x] instanceof Container) {
                 setFileChooserFont(((Container) comp[x]).getComponents());
             }
@@ -513,31 +522,6 @@ public class MenuItemDialog extends javax.swing.JDialog {
     public void setDefaultCategory(Category defaultCategory) {
         this.defaultCategory = defaultCategory;
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton btnBrowseCommand;
-    private JButton btnBrowseIcon;
-    private JButton btnCancel;
-    private JButton btnOk;
-    private JButton btnViewCode;
-    private JComboBox cbCategories;
-    private JCheckBox cbVisible;
-    private JLabel lblCategories;
-    private JLabel lblCommand;
-    private JLabel lblComment;
-    private JLabel lblIcon;
-    private JLabel lblImage;
-    private JLabel lblName;
-    private JLabel lblPath;
-    private JPanel pnlCenter;
-    private JPanel pnlControls;
-    private JPanel pnlIcon;
-    private JSeparator sepSouth;
-    private JTextField txtCommand;
-    private JTextField txtComment;
-    private JTextField txtIcon;
-    private JTextField txtName;
-    private JTextField txtPath;
-    // End of variables declaration//GEN-END:variables
 
     void updateGui() {
         if (!Configuration.IS_ROOT && menuItem.isReadOnly()) {
@@ -555,18 +539,22 @@ public class MenuItemDialog extends javax.swing.JDialog {
             btnBrowseCommand.setEnabled(false);
         }
 
-        txtPath.setText(menuItem.getPath().getAbsolutePath());
-        txtName.setText(menuItem.getName());
-        txtCommand.setText(menuItem.getExec());
-        txtComment.setText(menuItem.getComment());
-        txtIcon.setText(menuItem.getIconStr());
-        cbCategories.setSelectedItem(menuItem.getCategory());
-        cbVisible.setSelected(!menuItem.isNoDisplay());
+        txtPath.setText(temporary.getPath().getAbsolutePath());
+        txtName.setText(temporary.getName());
+        txtCommand.setText(temporary.getExec());
+        txtComment.setText(temporary.getComment());
+        txtIcon.setText(temporary.getIconStr());
+        cbCategories.setSelectedItem(temporary.getCategory());
+        cbVisible.setSelected(!temporary.isNoDisplay());
 
         updateImage();
     }
 
     private void saveItem() {
+        for (String key : temporary.getContent().keySet()) {
+            menuItem.putToContentMap(key, temporary.getContent().get(key));
+        }
+
         boolean categoryChanged = false;
         menuItem.setName(txtName.getText().trim());
         menuItem.setExec(txtCommand.getText().trim());
@@ -625,11 +613,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }
 
     public MenuItem getMenuItem() {
-        return menuItem;
+        return temporary;
     }
 
     public void setMenuItem(MenuItem menuItem) {
-        this.menuItem = menuItem;
+        this.temporary = menuItem;
     }
 
     private void processNewItem() {
@@ -651,7 +639,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         try {
             image = ImageIO.read(new File(txtIcon.getText().trim()));
         } catch (IOException ex) {
-            lblImage.setText("N/A");
+            lblImage.setText(imageNotAvailable);
             lblImage.setIcon(null);
             return;
         }
@@ -660,7 +648,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         try {
             icon = new ImageIcon(image.getScaledInstance(59, 59, Image.SCALE_AREA_AVERAGING));
         } catch (NullPointerException npe) {
-            lblImage.setText("N/A");
+            lblImage.setText(imageNotAvailable);
             lblImage.setIcon(null);
             return;
         }
@@ -670,4 +658,29 @@ public class MenuItemDialog extends javax.swing.JDialog {
             lblImage.setIcon(icon);
         }
     }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton btnBrowseCommand;
+    private JButton btnBrowseIcon;
+    private JButton btnCancel;
+    private JButton btnOk;
+    private JButton btnViewCode;
+    private JComboBox cbCategories;
+    private JCheckBox cbVisible;
+    private JLabel lblCategories;
+    private JLabel lblCommand;
+    private JLabel lblComment;
+    private JLabel lblIcon;
+    private JLabel lblImage;
+    private JLabel lblName;
+    private JLabel lblPath;
+    private JPanel pnlCenter;
+    private JPanel pnlControls;
+    private JPanel pnlIcon;
+    private JSeparator sepSouth;
+    private JTextField txtCommand;
+    private JTextField txtComment;
+    private JTextField txtIcon;
+    private JTextField txtName;
+    private JTextField txtPath;
+    // End of variables declaration//GEN-END:variables
 }

@@ -24,6 +24,22 @@ public class MenuItem {
     protected Map<String, String> content = new LinkedHashMap<String, String>();
 
     /**
+     * Copy constructor
+     * @param mi menu item to copy
+     */
+    public MenuItem(MenuItem mi) {
+        this.path = mi.path;
+        this.icon = mi.icon;
+        this.category = mi.category;
+        this.originalCategories = mi.originalCategories;
+        this.originalCode = mi.originalCode;
+        this.readonly = mi.readonly;
+        for (String string : mi.content.keySet()) {
+            this.content.put(string, mi.content.get(string));
+        }
+    }
+
+    /**
      * Empty constructor.
      */
     public MenuItem() {
@@ -325,5 +341,9 @@ public class MenuItem {
         if (newMenuItem.getPath() != null) {
             setPath(newMenuItem.getPath());
         }
+    }
+
+    public String putToContentMap(String key, String value) {
+        return content.put(key, value);
     }
 }
