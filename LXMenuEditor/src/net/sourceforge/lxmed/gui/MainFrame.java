@@ -54,7 +54,7 @@ public class MainFrame extends javax.swing.JFrame {
         lstCategories.setSelectedIndex(0);
         setLocationRelativeTo(null);
         //btnHelp.setEnabled(false);
-        Image iconimage = new ImageIcon(getClass().getResource("/images/dialogs/lxmed_small.png")).getImage();
+        Image iconimage = new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/lxmed_small.png")).getImage();
         setIconImage(iconimage);
     }
 
@@ -94,7 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlSouth.setLayout(new GridBagLayout());
 
         btnHelp.setFont(btnHelp.getFont().deriveFont(btnHelp.getFont().getStyle() & ~Font.BOLD, btnHelp.getFont().getSize()-1));
-        btnHelp.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/help.png"))); // NOI18N
+        btnHelp.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/help.png"))); // NOI18N
         btnHelp.setMnemonic('h');
         btnHelp.setText("Help");
         btnHelp.addActionListener(new ActionListener() {
@@ -110,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlSouth.add(btnHelp, gridBagConstraints);
 
         btnAbout.setFont(btnAbout.getFont().deriveFont(btnAbout.getFont().getStyle() & ~Font.BOLD, btnAbout.getFont().getSize()-1));
-        btnAbout.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/about.png"))); // NOI18N
+        btnAbout.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/about.png"))); // NOI18N
         btnAbout.setMnemonic('b');
         btnAbout.setText("About");
         btnAbout.addActionListener(new ActionListener() {
@@ -126,7 +126,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlSouth.add(btnAbout, gridBagConstraints);
 
         btnClose.setFont(btnClose.getFont().deriveFont(btnClose.getFont().getStyle() & ~Font.BOLD, btnClose.getFont().getSize()-1));
-        btnClose.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/exit.png"))); // NOI18N
+        btnClose.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/exit.png"))); // NOI18N
         btnClose.setMnemonic('c');
         btnClose.setText("Close");
         btnClose.addActionListener(new ActionListener() {
@@ -261,7 +261,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlControls.setLayout(new GridBagLayout());
 
         btnNewItem.setFont(btnNewItem.getFont().deriveFont(btnNewItem.getFont().getStyle() & ~Font.BOLD, btnNewItem.getFont().getSize()-1));
-        btnNewItem.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/new.png"))); // NOI18N
+        btnNewItem.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/new.png"))); // NOI18N
         btnNewItem.setMnemonic('n');
         btnNewItem.setText("New Item");
         btnNewItem.addActionListener(new ActionListener() {
@@ -278,7 +278,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlControls.add(btnNewItem, gridBagConstraints);
 
         btnProperties.setFont(btnProperties.getFont().deriveFont(btnProperties.getFont().getStyle() & ~Font.BOLD, btnProperties.getFont().getSize()-1));
-        btnProperties.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/properties.png"))); // NOI18N
+        btnProperties.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/properties.png"))); // NOI18N
         btnProperties.setMnemonic('r');
         btnProperties.setText("Properties");
         btnProperties.setEnabled(false);
@@ -296,7 +296,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlControls.add(btnProperties, gridBagConstraints);
 
         btnDelete.setFont(btnDelete.getFont().deriveFont(btnDelete.getFont().getStyle() & ~Font.BOLD, btnDelete.getFont().getSize()-1));
-        btnDelete.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/delete.png"))); // NOI18N
+        btnDelete.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/delete.png"))); // NOI18N
         btnDelete.setMnemonic('d');
         btnDelete.setText("Delete");
         btnDelete.setEnabled(false);
@@ -436,11 +436,6 @@ public class MainFrame extends javax.swing.JFrame {
     private JSeparator sprSouth;
     private JSeparator sprTitle;
     // End of variables declaration//GEN-END:variables
-
-    // TODO: remove at end
-    private void ni() {
-        JOptionPane.showMessageDialog(rootPane, "Not implemented!");
-    }
 
     private void enableControls() {
         btnDelete.setEnabled(true);

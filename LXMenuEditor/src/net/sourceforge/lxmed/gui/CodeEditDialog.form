@@ -43,7 +43,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="spCode" pref="268" max="32767" attributes="0"/>
+              <Component id="spCode" pref="266" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnOk" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -74,7 +74,7 @@
           </FontInfo>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/dialogs/ok.png"/>
+          <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/ok.png"/>
         </Property>
         <Property name="mnemonic" type="int" value="111"/>
         <Property name="text" type="java.lang.String" value="Ok"/>
@@ -91,7 +91,7 @@
           </FontInfo>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/images/dialogs/cancel.png"/>
+          <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/cancel.png"/>
         </Property>
         <Property name="mnemonic" type="int" value="99"/>
         <Property name="text" type="java.lang.String" value="Cancel"/>

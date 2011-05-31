@@ -40,7 +40,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/help.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/help.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="104"/>
             <Property name="text" type="java.lang.String" value="Help"/>
@@ -62,7 +62,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/about.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/about.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="About"/>
@@ -84,7 +84,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/exit.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/exit.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="99"/>
             <Property name="text" type="java.lang.String" value="Close"/>
@@ -284,7 +284,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/new.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/new.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="110"/>
             <Property name="text" type="java.lang.String" value="New Item"/>
@@ -306,7 +306,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/properties.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/properties.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Properties"/>
@@ -329,7 +329,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/delete.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/delete.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="100"/>
             <Property name="text" type="java.lang.String" value="Delete"/>

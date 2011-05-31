@@ -21,7 +21,7 @@ public class CategoriesListCellRenderer extends DefaultListCellRenderer {
 
     public CategoriesListCellRenderer(List<Category> categories) {
         for (Category categorie : categories) {
-            Icon icon = new ImageIcon(getClass().getResource("/images/categories/" + categorie.getIcon()));
+            Icon icon = new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/categories/" + categorie.getIcon()));
             this.icons.put(categorie.getCodeName(), icon);
         }
     }

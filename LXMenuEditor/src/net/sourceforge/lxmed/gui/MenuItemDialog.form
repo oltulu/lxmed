@@ -37,7 +37,33 @@
         </Constraint>
       </Constraints>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="lblImage">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder bevelType="0"/>
+              </Border>
+            </Property>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[64, 64]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[64, 64]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[64, 64]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="0" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="10" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="pnlControls">
       <Properties>
@@ -61,7 +87,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/cancel.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/cancel.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="99"/>
             <Property name="text" type="java.lang.String" value="Cancel"/>
@@ -83,7 +109,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/ok.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/ok.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="111"/>
             <Property name="text" type="java.lang.String" value="Ok"/>
@@ -112,7 +138,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/properties.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/properties.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="101"/>
             <Property name="text" type="java.lang.String" value="Edit code manually"/>
@@ -156,20 +182,20 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cbVisible" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtName" pref="452" max="32767" attributes="0"/>
+                      <Component id="txtName" pref="388" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtCommand" pref="337" max="32767" attributes="0"/>
+                          <Component id="txtCommand" pref="273" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBrowseCommand" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtComment" alignment="0" pref="452" max="32767" attributes="0"/>
+                      <Component id="txtComment" alignment="0" pref="388" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtIcon" pref="337" max="32767" attributes="0"/>
+                          <Component id="txtIcon" pref="273" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnBrowseIcon" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="cbCategories" alignment="0" pref="452" max="32767" attributes="0"/>
-                      <Component id="txtPath" alignment="0" pref="452" max="32767" attributes="0"/>
+                      <Component id="cbCategories" alignment="0" pref="388" max="32767" attributes="0"/>
+                      <Component id="txtPath" alignment="0" pref="388" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -325,7 +351,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/browse.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/browse.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="98"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>
@@ -379,6 +405,9 @@
               </FontInfo>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIconKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnBrowseIcon">
           <Properties>
@@ -388,7 +417,7 @@
               </FontInfo>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/dialogs/browse.png"/>
+              <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/browse.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="114"/>
             <Property name="text" type="java.lang.String" value="Browse..."/>

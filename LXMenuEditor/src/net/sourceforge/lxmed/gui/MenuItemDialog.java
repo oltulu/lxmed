@@ -3,10 +3,12 @@ package net.sourceforge.lxmed.gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,16 +16,20 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
@@ -38,8 +44,10 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
+import javax.swing.border.EtchedBorder;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import net.sourceforge.lxmed.model.Category;
@@ -47,7 +55,6 @@ import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
 import net.sourceforge.lxmed.utils.Configuration;
 import net.sourceforge.lxmed.persistence.DesktopFileSaver;
-import sun.misc.Resource;
 
 /**
  *
@@ -101,6 +108,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         GridBagConstraints gridBagConstraints;
 
         pnlIcon = new JPanel();
+        lblImage = new JLabel();
         pnlControls = new JPanel();
         btnCancel = new JButton();
         btnOk = new JButton();
@@ -131,13 +139,27 @@ public class MenuItemDialog extends javax.swing.JDialog {
         });
 
         pnlIcon.setFont(new Font("Dialog", 0, 11));
+        pnlIcon.setLayout(new GridBagLayout());
+
+        lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+        lblImage.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
+        lblImage.setMaximumSize(new Dimension(64, 64));
+        lblImage.setMinimumSize(new Dimension(64, 64));
+        lblImage.setPreferredSize(new Dimension(64, 64));
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new Insets(0, 10, 0, 0);
+        pnlIcon.add(lblImage, gridBagConstraints);
+
         getContentPane().add(pnlIcon, BorderLayout.WEST);
 
         pnlControls.setFont(new Font("Dialog", 0, 11));
         pnlControls.setLayout(new GridBagLayout());
 
         btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
-        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/cancel.png"))); // NOI18N
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/cancel.png"))); // NOI18N
         btnCancel.setMnemonic('c');
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new ActionListener() {
@@ -154,7 +176,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlControls.add(btnCancel, gridBagConstraints);
 
         btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
-        btnOk.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/ok.png"))); // NOI18N
+        btnOk.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/ok.png"))); // NOI18N
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         btnOk.addActionListener(new ActionListener() {
@@ -178,7 +200,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlControls.add(sepSouth, gridBagConstraints);
 
         btnViewCode.setFont(btnViewCode.getFont().deriveFont(btnViewCode.getFont().getStyle() & ~Font.BOLD, btnViewCode.getFont().getSize()-1));
-        btnViewCode.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/properties.png"))); // NOI18N
+        btnViewCode.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/properties.png"))); // NOI18N
         btnViewCode.setMnemonic('e');
         btnViewCode.setText("Edit code manually");
         btnViewCode.addActionListener(new ActionListener() {
@@ -237,7 +259,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         });
 
         btnBrowseCommand.setFont(btnBrowseCommand.getFont().deriveFont(btnBrowseCommand.getFont().getStyle() & ~Font.BOLD, btnBrowseCommand.getFont().getSize()-1));
-        btnBrowseCommand.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/browse.png"))); // NOI18N
+        btnBrowseCommand.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/browse.png"))); // NOI18N
         btnBrowseCommand.setMnemonic('b');
         btnBrowseCommand.setText("Browse...");
         btnBrowseCommand.addActionListener(new ActionListener() {
@@ -259,9 +281,14 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblIcon.setText("Icon:");
 
         txtIcon.setFont(txtIcon.getFont().deriveFont(txtIcon.getFont().getStyle() & ~Font.BOLD, txtIcon.getFont().getSize()-1));
+        txtIcon.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent evt) {
+                txtIconKeyTyped(evt);
+            }
+        });
 
         btnBrowseIcon.setFont(btnBrowseIcon.getFont().deriveFont(btnBrowseIcon.getFont().getStyle() & ~Font.BOLD, btnBrowseIcon.getFont().getSize()-1));
-        btnBrowseIcon.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/browse.png"))); // NOI18N
+        btnBrowseIcon.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/browse.png"))); // NOI18N
         btnBrowseIcon.setMnemonic('r');
         btnBrowseIcon.setText("Browse...");
         btnBrowseIcon.addActionListener(new ActionListener() {
@@ -290,18 +317,18 @@ public class MenuItemDialog extends javax.swing.JDialog {
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(pnlCenterLayout.createParallelGroup(Alignment.LEADING)
                     .addComponent(cbVisible)
-                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addComponent(txtName, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addComponent(txtCommand, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseCommand))
-                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addComponent(txtComment, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(Alignment.TRAILING, pnlCenterLayout.createSequentialGroup()
-                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addComponent(txtIcon, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(btnBrowseIcon))
-                    .addComponent(cbCategories, 0, 452, Short.MAX_VALUE)
-                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
+                    .addComponent(cbCategories, 0, 388, Short.MAX_VALUE)
+                    .addComponent(txtPath, GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCenterLayout.setVerticalGroup(
@@ -414,15 +441,19 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBrowseCommandActionPerformed
 
     private void btnBrowseIconActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnBrowseIconActionPerformed
-        File f = new File("/usr/local/share/icons");
-        if (!f.isDirectory()) {
-            f = new File("/usr/share/icons");
+        File f = new File(txtIcon.getText().trim()).getParentFile();
+
+        if (f == null) {
+            f = new File("/usr/local/share/icons");
+            if (!f.isDirectory()) {
+                f = new File("/usr/share/icons");
+            }
         }
         JFileChooser fc = new JFileChooser(f);
 
         setFileChooserFont(fc.getComponents());
         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        fc.setFileFilter(new FileNameExtensionFilter("Image files [*.png, *.xpm, *.svg]", "png", "xpm", "svg"));
+        fc.setFileFilter(new FileNameExtensionFilter("Image files [*.png, *.jpg, *.gif, *.xpm, *.svg]", "png", "xpm", "svg", "jpg", "gif"));
         fc.setAccessory(new ImagePreview(fc));
 
         fc.setAcceptAllFileFilterUsed(false);
@@ -436,6 +467,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         }
 
         fc.setSelectedFile(null);
+        updateImage();
     }//GEN-LAST:event_btnBrowseIconActionPerformed
 
     private void txtCommandKeyTyped(KeyEvent evt) {//GEN-FIRST:event_txtCommandKeyTyped
@@ -450,6 +482,15 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private void btnViewCodeActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnViewCodeActionPerformed
         new CodeEditDialog((Frame) getParent(), menuItem, !menuItem.isReadOnly(), this).setVisible(true);
     }//GEN-LAST:event_btnViewCodeActionPerformed
+
+    private void txtIconKeyTyped(KeyEvent evt) {//GEN-FIRST:event_txtIconKeyTyped
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                updateImage();
+            }
+        });
+    }//GEN-LAST:event_txtIconKeyTyped
 
     private void setFileChooserFont(Component[] comp) {
         for (int x = 0; x
@@ -484,6 +525,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
     private JLabel lblCommand;
     private JLabel lblComment;
     private JLabel lblIcon;
+    private JLabel lblImage;
     private JLabel lblName;
     private JLabel lblPath;
     private JPanel pnlCenter;
@@ -520,6 +562,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
         txtIcon.setText(menuItem.getIconStr());
         cbCategories.setSelectedItem(menuItem.getCategory());
         cbVisible.setSelected(!menuItem.isNoDisplay());
+
+        updateImage();
     }
 
     private void saveItem() {
@@ -600,5 +644,30 @@ public class MenuItemDialog extends javax.swing.JDialog {
             saveItem();
         }
         setVisible(false);
+    }
+
+    private void updateImage() {
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(new File(txtIcon.getText().trim()));
+        } catch (IOException ex) {
+            lblImage.setText("N/A");
+            lblImage.setIcon(null);
+            return;
+        }
+
+        Icon icon = null;
+        try {
+            icon = new ImageIcon(image.getScaledInstance(59, 59, Image.SCALE_AREA_AVERAGING));
+        } catch (NullPointerException npe) {
+            lblImage.setText("N/A");
+            lblImage.setIcon(null);
+            return;
+        }
+
+        if (icon != null) {
+            lblImage.setText("");
+            lblImage.setIcon(icon);
+        }
     }
 }

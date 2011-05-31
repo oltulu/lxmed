@@ -86,7 +86,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         lblTitle.setText("lblTitle");
 
         btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
-        btnOk.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/ok.png"))); // NOI18N
+        btnOk.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/ok.png"))); // NOI18N
         btnOk.setMnemonic('o');
         btnOk.setText("Ok");
         btnOk.addActionListener(new ActionListener() {
@@ -96,7 +96,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         });
 
         btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
-        btnCancel.setIcon(new ImageIcon(getClass().getResource("/images/dialogs/cancel.png"))); // NOI18N
+        btnCancel.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/cancel.png"))); // NOI18N
         btnCancel.setMnemonic('c');
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new ActionListener() {
@@ -106,7 +106,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         });
 
         txtCode.setColumns(20);
-        txtCode.setFont(new Font("Monospaced", 0, 13)); // NOI18N
+        txtCode.setFont(new Font("Monospaced", 0, 13));
         txtCode.setRows(5);
         spCode.setViewportView(txtCode);
 
@@ -134,7 +134,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
-                .addComponent(spCode, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                .addComponent(spCode, GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(btnOk)
@@ -150,6 +150,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // TODO: see BUG section in TODO.txt
         if (!editable) {
             setVisible(false);
             return;

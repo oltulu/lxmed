@@ -66,7 +66,7 @@ public class ModelLoader {
 
             while ((line = br.readLine()) != null) {
                 if (line.contains("=")) {
-                    code = code.concat(line).concat("\n");
+                    code = code.concat(line.trim()).concat("\n");
                 }
             }
             br.close();
