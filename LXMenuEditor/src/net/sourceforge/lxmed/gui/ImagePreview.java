@@ -5,7 +5,9 @@ import java.beans.*;
 import java.awt.*;
 import java.io.File;
 
-/* ImagePreview.java by FileChooserDemo2.java. */
+/**
+ * Image Preview component for FileChoose dialog.
+ */
 public class ImagePreview extends JComponent
         implements PropertyChangeListener {
 

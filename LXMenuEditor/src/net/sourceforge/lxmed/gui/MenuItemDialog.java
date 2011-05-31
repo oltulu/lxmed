@@ -55,7 +55,7 @@ import net.sourceforge.lxmed.utils.Configuration;
 import net.sourceforge.lxmed.persistence.DesktopFileSaver;
 
 /**
- *
+ * Dialog for editing specific menu item.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class MenuItemDialog extends javax.swing.JDialog {

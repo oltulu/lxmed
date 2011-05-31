@@ -12,7 +12,7 @@ import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.utils.Configuration;
 
 /**
- *
+ * Cell renderer for menu items list in main form.
  * @author Marko Čičak <cicakmarko@yahoo.com>
  */
 public class MenuItemsListCellRenderer extends DefaultListCellRenderer {

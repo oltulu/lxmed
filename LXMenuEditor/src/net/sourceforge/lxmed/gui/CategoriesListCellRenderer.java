@@ -12,7 +12,7 @@ import javax.swing.JList;
 import net.sourceforge.lxmed.model.Category;
 
 /**
- *
+ * Renderer for Categories items in main form.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class CategoriesListCellRenderer extends DefaultListCellRenderer {

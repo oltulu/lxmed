@@ -34,7 +34,7 @@ import net.sourceforge.lxmed.model.Model;
 import net.sourceforge.lxmed.persistence.ModelLoader;
 
 /**
- *
+ * Application's main window. It allows basic manipulating of main menu structure.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class MainFrame extends javax.swing.JFrame {

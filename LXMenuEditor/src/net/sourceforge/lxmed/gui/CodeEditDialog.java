@@ -23,7 +23,7 @@ import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.persistence.ModelLoader;
 
 /**
- *
+ * Dialog for manualy editing menu item's code.
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class CodeEditDialog extends javax.swing.JDialog {

@@ -18,10 +18,28 @@ public class MenuItem {
     protected Icon icon;
     /** Menu item's category */
     protected Category category;
+    /** Original string of Categories property. */
     protected String originalCategories;
+    /** Original content in .desktop file before loading it into MenuItem object. */
     protected String originalCode;
+    /** Weather user can edit this menu item. */
     protected boolean readonly = true;
+    /** Content map used to store values from .desktop file. */
     protected Map<String, String> content = new LinkedHashMap<String, String>();
+
+    /**
+     * Empty constructor.
+     */
+    public MenuItem() {
+    }
+
+    /**
+     * Constructor which receives item's name as parameter.
+     * @param name menu item's name
+     */
+    public MenuItem(String name) {
+        content.put("Name", name);
+    }
 
     /**
      * Copy constructor
@@ -37,20 +55,6 @@ public class MenuItem {
         for (String string : mi.content.keySet()) {
             this.content.put(string, mi.content.get(string));
         }
-    }
-
-    /**
-     * Empty constructor.
-     */
-    public MenuItem() {
-    }
-
-    /**
-     * Constructor which receives item's name as parameter.
-     * @param name menu item's name
-     */
-    public MenuItem(String name) {
-        content.put("Name", name);
     }
 
     /**
