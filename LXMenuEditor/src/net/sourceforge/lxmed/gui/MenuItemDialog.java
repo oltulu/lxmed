@@ -381,7 +381,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        setVisible(false);
+        parent = null;
+        dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
@@ -624,14 +625,16 @@ public class MenuItemDialog extends javax.swing.JDialog {
         menuItem.setPath(new File(txtPath.getText().trim()));
         menuItem.setReadOnly(false);
         saveItem();
-        setVisible(false);
+        parent = null;
+        dispose();
     }
 
     private void processEditItem() {
         if (!menuItem.isReadOnly()) {
             saveItem();
         }
-        setVisible(false);
+        parent = null;
+        dispose();
     }
 
     private void updateImage() {

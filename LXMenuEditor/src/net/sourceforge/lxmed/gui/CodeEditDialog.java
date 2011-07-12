@@ -146,20 +146,23 @@ public class CodeEditDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // TODO: see BUG section in TODO.txt
         if (!editable) {
-            setVisible(false);
+            mid = null;
+            dispose();
             return;
         }
         MenuItem newMenuItem = ModelLoader.loadData(txtCode.getText());
         mid.getMenuItem().cloneData(newMenuItem);
         mid.updateGui();
 
-        setVisible(false);
+        mid = null;
+
+        dispose();
     }//GEN-LAST:event_btnOkActionPerformed
 
     /**
