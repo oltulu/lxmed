@@ -12,4 +12,19 @@ The reason for this is that is gives an example of both the value and the case. 
 Stating the default removes the syntax doubt.
 I am only planting the seeds here.  You are far more creative at this than me, so I will defer your judgement.  (I am sure you will AMAZE!)
 
-BUG: when manualy edit menu item, then press ok, and press Cancel in MenuItem dialog, in main menu, menu item appiers to be changed, when it's acually not!
+http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#deprecated-items
+http://standards.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html#icon_lookup
+
+
+Hi Mark,
+
+Thank you for the Program. lxmed uses gksu to open with sudo-rights. But there is no gksu in OpenSuse (11.4).
+
+Working alternatives are:
+
+gnomesu --command "java -jar /opt/lxmed/LXMenuEditor.jar"
+or
+su -c 'java -jar /opt/lxmed/LXMenuEditor.jar'
+
+greetings
+Yasin Bozdag
