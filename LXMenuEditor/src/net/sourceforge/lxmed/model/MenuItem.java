@@ -347,6 +347,30 @@ public class MenuItem {
         }
     }
 
+    public boolean isVisible() {
+        if (content.containsKey("OnlyShowIn")) {
+            String[] values = content.get("OnlyShowIn").split(";");
+            for (String s : values) {
+                if (s.trim().equals("LXDE")) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        if (content.containsKey("NotShowIn")) {
+            String[] values = content.get("OnlyShowIn").split(";");
+            for (String s : values) {
+                if (s.trim().equals("LXDE")) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        return !isNoDisplay();
+    }
+
     public String putToContentMap(String key, String value) {
         return content.put(key, value);
     }

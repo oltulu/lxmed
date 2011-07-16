@@ -150,12 +150,12 @@ public class CodeEditDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO: see BUG section in TODO.txt
         if (!editable) {
             mid = null;
             dispose();
             return;
         }
+
         MenuItem newMenuItem = ModelLoader.loadData(txtCode.getText());
         mid.getMenuItem().cloneData(newMenuItem);
         mid.updateGui();

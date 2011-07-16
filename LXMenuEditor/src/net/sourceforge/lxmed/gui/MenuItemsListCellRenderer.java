@@ -40,8 +40,7 @@ public class MenuItemsListCellRenderer extends DefaultListCellRenderer {
                 label.setForeground(new Color(0, 170, 0)); // green
             }
 
-            // TODO: parse OnlyShowIn Field
-            if (mi != null && !mi.isNoDisplay()) {
+            if (mi != null && mi.isVisible()) {
                 label.setFont(label.getFont().deriveFont(Font.BOLD));
             }
 

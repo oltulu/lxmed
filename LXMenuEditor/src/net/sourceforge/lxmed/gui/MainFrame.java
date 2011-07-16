@@ -58,6 +58,65 @@ public class MainFrame extends javax.swing.JFrame {
         setIconImage(iconimage);
     }
 
+    private void enableControls() {
+        btnDelete.setEnabled(true);
+        btnProperties.setEnabled(true);
+    }
+
+    private void disableControls() {
+        btnDelete.setEnabled(false);
+        btnProperties.setEnabled(false);
+    }
+
+    private void editItem() {
+        MenuItem mi = (MenuItem) lstItems.getSelectedValue();
+        if (mi == null) {
+            return;
+        }
+
+        new MenuItemDialog(this, mi).setVisible(true);
+        lstItems.requestFocus();
+    }
+
+    private void deleteItem() {
+        if (lstItems.getSelectedValue() == null) {
+            return;
+        }
+
+        if (!((MenuItem) lstItems.getSelectedValue()).isReadOnly()) {
+            int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can just make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                MenuItem toDelete = (MenuItem) lstItems.getSelectedValue();
+                boolean done = toDelete.getPath().delete();
+                if (done) {
+                    dlmItems.removeElement(toDelete);
+                    toDelete.setCategory(null);
+                }
+            }
+        }
+    }
+
+    protected void updateCategory() {
+        dlmItems.clear();
+        Category c = (Category) lstCategories.getSelectedValue();
+        ModelLoader.sortItemsByName(c);
+        for (MenuItem menuItem : c) {
+            dlmItems.addElement(menuItem);
+        }
+        disableControls();
+    }
+
+    /**
+     * TODO: comment
+     * @param old
+     * @param menuItem
+     */
+    protected void updateCategory(Category old, MenuItem menuItem) {
+        dlmItems.clear();
+        Category c = (Category) lstCategories.getSelectedValue();
+
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -359,26 +418,6 @@ public class MainFrame extends javax.swing.JFrame {
         updateCategory();
     }//GEN-LAST:event_lstCategoriesValueChanged
 
-    protected void updateCategory() {
-        dlmItems.clear();
-        Category c = (Category) lstCategories.getSelectedValue();
-        ModelLoader.sortItemsByName(c);
-        for (MenuItem menuItem : c) {
-            dlmItems.addElement(menuItem);
-        }
-        disableControls();
-    }
-
-    /**
-     * TODO: comment
-     * @param old
-     * @param menuItem
-     */
-    protected void updateCategory(Category old, MenuItem menuItem) {
-        dlmItems.clear();
-        Category c = (Category) lstCategories.getSelectedValue();
-
-    }
     private void lstItemsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_lstItemsValueChanged
         if (evt.getValueIsAdjusting()) {
             return;
@@ -436,42 +475,4 @@ public class MainFrame extends javax.swing.JFrame {
     private JSeparator sprSouth;
     private JSeparator sprTitle;
     // End of variables declaration//GEN-END:variables
-
-    private void enableControls() {
-        btnDelete.setEnabled(true);
-        btnProperties.setEnabled(true);
-    }
-
-    private void disableControls() {
-        btnDelete.setEnabled(false);
-        btnProperties.setEnabled(false);
-    }
-
-    private void editItem() {
-        MenuItem mi = (MenuItem) lstItems.getSelectedValue();
-        if (mi == null) {
-            return;
-        }
-
-        new MenuItemDialog(this, mi).setVisible(true);
-        lstItems.requestFocus();
-    }
-
-    private void deleteItem() {
-        if (lstItems.getSelectedValue() == null) {
-            return;
-        }
-
-        if (!((MenuItem) lstItems.getSelectedValue()).isReadOnly()) {
-            int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can just make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
-                MenuItem toDelete = (MenuItem) lstItems.getSelectedValue();
-                boolean done = toDelete.getPath().delete();
-                if (done) {
-                    dlmItems.removeElement(toDelete);
-                    toDelete.setCategory(null);
-                }
-            }
-        }
-    }
 }

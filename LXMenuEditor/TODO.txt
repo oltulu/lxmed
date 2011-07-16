@@ -1,7 +1,5 @@
 See how exactly does LXDE determine which Category is item in, since it has more Categories defined.
 
-Do not show items in bold that have OnlyShowIn field. Parse that field too!
-
 Wish list: under "edit code manually", a feature I love, would you add some mechanism to see what other missing options are available?
 I am always forgetting what they are and have to go look them up in other examples.
 "Terminal=true" is the main one I have to always look up.  By nice if there was some kind of pop up or a help file pop up listing them.
@@ -14,17 +12,3 @@ I am only planting the seeds here.  You are far more creative at this than me, s
 
 http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#deprecated-items
 http://standards.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html#icon_lookup
-
-
-Hi Mark,
-
-Thank you for the Program. lxmed uses gksu to open with sudo-rights. But there is no gksu in OpenSuse (11.4).
-
-Working alternatives are:
-
-gnomesu --command "java -jar /opt/lxmed/LXMenuEditor.jar"
-or
-su -c 'java -jar /opt/lxmed/LXMenuEditor.jar'
-
-greetings
-Yasin Bozdag
