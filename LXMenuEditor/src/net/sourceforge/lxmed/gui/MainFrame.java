@@ -106,17 +106,6 @@ public class MainFrame extends javax.swing.JFrame {
         disableControls();
     }
 
-    /**
-     * TODO: comment
-     * @param old
-     * @param menuItem
-     */
-    protected void updateCategory(Category old, MenuItem menuItem) {
-        dlmItems.clear();
-        Category c = (Category) lstCategories.getSelectedValue();
-
-    }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -391,7 +380,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
-        String msg = "LXDE Main Menu Editor 20110523-beta\n\n";
+        String msg = "LXDE Main Menu Editor 20110717-beta\n\n";
         msg += "Copyleft 2011. HEEM-BA-SHOU\n";
         JOptionPane.showMessageDialog(this, msg, "About", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAboutActionPerformed

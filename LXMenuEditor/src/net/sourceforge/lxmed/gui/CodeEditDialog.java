@@ -164,32 +164,6 @@ public class CodeEditDialog extends javax.swing.JDialog {
 
         dispose();
     }//GEN-LAST:event_btnOkActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    private static void main(String args[]) {
-        final MenuItem lmi = new MenuItem("Test Item");
-        lmi.setOriginalCode("#!/usr/bin/env xdg-open\n[Desktop Entry]\n"
-                + "Encoding=UTF-8\nType=Application\nExec=/home/cicakmarko/FTN/fax/se"
-                + "mestar_09/neuronske_mreze/software/neurophstudio/bin/neurophstudio"
-                + "\nIcon=/home/cicakmarko/Desktop/neuroph.png\nIcon[en_US]=/home/c"
-                + "icakmarko/programi/icons/neuroph.png\nName=Neuroph\nName[en_US]"
-                + "=Neuroph\nTerminal=false");
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                CodeEditDialog dialog = new CodeEditDialog(new javax.swing.JFrame(), lmi, false, null);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnCancel;
     private JButton btnOk;
