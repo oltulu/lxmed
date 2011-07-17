@@ -359,7 +359,7 @@ public class MenuItem {
         }
 
         if (content.containsKey("NotShowIn")) {
-            String[] values = content.get("OnlyShowIn").split(";");
+            String[] values = content.get("NotShowIn").split(";");
             for (String s : values) {
                 if (s.trim().equals("LXDE")) {
                     return false;

@@ -29,5 +29,5 @@ if [ "${DISTRO}" = "${SUSE}" ];
 then
     gnomesu --command "java -jar /opt/lxmed/LXMenuEditor.jar"
 else
-    gksu 'java -jar /opt/lxmed/LXMenuEditor.jar'
+    gksu --message "Please enter password to run lxmed in fully operational mode:" 'java -jar /opt/lxmed/LXMenuEditor.jar'
 fi
