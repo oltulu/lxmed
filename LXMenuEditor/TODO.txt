@@ -12,3 +12,13 @@ I am only planting the seeds here.  You are far more creative at this than me, s
 
 http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#deprecated-items
 http://standards.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html#icon_lookup
+
+nova instalacija da ide u foldere:
+/usr/bin/xmed
+/usr/lib/lxmed/LXMenuEditor.jar
+/usr/share/doc/lxmed/lxmed.png
+/usr/share/doc/lxmed/copyright
+/usr/share/doc/lxmed/changelog.gz
+usr/share/applications/lxmed.desktop
+
+Cut-Copy-Paste functionality
