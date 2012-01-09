@@ -22,3 +22,12 @@ nova instalacija da ide u foldere:
 usr/share/applications/lxmed.desktop
 
 Cut-Copy-Paste functionality
+Drag/Drop
+
+Version checking. Put a file with only version number which will be compared with current version number and notify users about new version available.
+
+izmeniti ABOUT dijalog
+
+Settings dialog
+
+Internationalization
