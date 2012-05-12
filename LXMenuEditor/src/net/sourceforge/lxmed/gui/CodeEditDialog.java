@@ -156,6 +156,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
             return;
         }
 
+        // TODO: da li se ovde zaista sacuvaju sve opcije???
         MenuItem newMenuItem = ModelLoader.loadData(txtCode.getText());
         mid.getMenuItem().cloneData(newMenuItem);
         mid.updateGui();

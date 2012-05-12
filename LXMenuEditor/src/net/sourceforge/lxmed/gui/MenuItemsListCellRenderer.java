@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import javax.swing.DefaultListCellRenderer;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import net.sourceforge.lxmed.model.MenuItem;

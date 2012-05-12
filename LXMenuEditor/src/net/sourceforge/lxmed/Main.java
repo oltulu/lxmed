@@ -17,6 +17,7 @@ package net.sourceforge.lxmed;
 
 import javax.swing.JOptionPane;
 import net.sourceforge.lxmed.gui.MainFrame;
+import net.sourceforge.lxmed.model.Model;
 import net.sourceforge.lxmed.persistence.ModelLoader;
 import net.sourceforge.lxmed.utils.Configuration;
 import net.sourceforge.lxmed.utils.SingletonInsurance;
@@ -24,6 +25,7 @@ import net.sourceforge.lxmed.utils.UserDeterminator;
 
 /**
  * Starts the application.
+ *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class Main {
@@ -49,7 +51,8 @@ public class Main {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new MainFrame().setVisible(true);
+                Model.getModel().addObserver(MainFrame.getInstance());
+                MainFrame.getInstance().setVisible(true);
             }
         });
     }

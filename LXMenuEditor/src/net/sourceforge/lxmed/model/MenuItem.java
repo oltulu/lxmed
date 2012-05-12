@@ -3,28 +3,38 @@ package net.sourceforge.lxmed.model;
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.swing.Icon;
 import net.sourceforge.lxmed.LxmedException;
 
 /**
  * Menu item in LXDE's main menu.
+ *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
-public class MenuItem {
+public class MenuItem implements Cloneable {
 
-    /** File path of this menu item's .desktop file. */
+    /**
+     * File path of this menu item's .desktop file.
+     */
     protected File path;
-    /** Menu Item's icon. */
-    protected Icon icon;
-    /** Menu item's category */
+    /**
+     * Menu item's category
+     */
     protected Category category;
-    /** Original string of Categories property. */
+    /**
+     * Original string of Categories property.
+     */
     protected String originalCategories;
-    /** Original content in .desktop file before loading it into MenuItem object. */
+    /**
+     * Original content in .desktop file before loading it into MenuItem object.
+     */
     protected String originalCode;
-    /** Weather user can edit this menu item. */
+    /**
+     * Weather user can edit this menu item.
+     */
     protected boolean readonly = true;
-    /** Content map used to store values from .desktop file. */
+    /**
+     * Content map used to store values from .desktop file.
+     */
     protected Map<String, String> content = new LinkedHashMap<String, String>();
 
     /**
@@ -35,6 +45,7 @@ public class MenuItem {
 
     /**
      * Constructor which receives item's name as parameter.
+     *
      * @param name menu item's name
      */
     public MenuItem(String name) {
@@ -43,11 +54,11 @@ public class MenuItem {
 
     /**
      * Copy constructor
+     *
      * @param mi menu item to copy
      */
     public MenuItem(MenuItem mi) {
         this.path = mi.path;
-        this.icon = mi.icon;
         this.category = mi.category;
         this.originalCategories = mi.originalCategories;
         this.originalCode = mi.originalCode;
@@ -66,6 +77,7 @@ public class MenuItem {
 
     /**
      * Sets menu item's comment.
+     *
      * @param comment new comment
      */
     public void setComment(String comment) {
@@ -81,6 +93,7 @@ public class MenuItem {
 
     /**
      * Sets menu item's execution command.
+     *
      * @param exec new execution command
      */
     public void setExec(String exec) {
@@ -96,25 +109,11 @@ public class MenuItem {
 
     /**
      * Sets menu item's generic name.
+     *
      * @param genericName new generic name
      */
     public void setGenericName(String genericName) {
         content.put("GenericName", genericName);
-    }
-
-    /**
-     * Menu item's icon.
-     */
-    public Icon getIcon() {
-        return icon;
-    }
-
-    /**
-     * Sets menu item's icon.
-     * @param icon new icon
-     */
-    public void setIcon(Icon icon) {
-        this.icon = icon;
     }
 
     /**
@@ -126,6 +125,7 @@ public class MenuItem {
 
     /**
      * Sets new value for Icon in .desktop file.
+     *
      * @param iconStr new icon string
      */
     public void setIconStr(String iconStr) {
@@ -141,6 +141,7 @@ public class MenuItem {
 
     /**
      * Sets menu item's name.
+     *
      * @param name new name
      */
     public void setName(String name) {
@@ -161,6 +162,7 @@ public class MenuItem {
 
     /**
      * Sets item's visibility in main menu.
+     *
      * @param noDisplay true if item should be hidden, false if item should be
      * visible
      */
@@ -177,6 +179,7 @@ public class MenuItem {
 
     /**
      * Sets menu item's .desktop file path.
+     *
      * @param path new file
      */
     public void setPath(File path) {
@@ -192,24 +195,21 @@ public class MenuItem {
 
     /**
      * Sets menu item's category.
+     *
      * @param category new category
      */
-    public void setCategory(Category category) {
-        if (category == null) {
-            this.category.remove(this);
-            this.category = null;
-            content.remove("Categories");
-            return;
-        }
-
-        if (!category.contains(this)) {
+    public void setCategory(Category newCategory) {
+        if (this.category == null || !this.category.equals(newCategory)) {
             if (this.category != null) {
-                this.category.remove(this);
+                Category oldCategory = this.category;
+                this.category = null;
+                oldCategory.remove(this);
             }
-            category.add(this);
+            if (newCategory != null) {
+                this.category = newCategory;
+                this.category.add(this);
+            }
         }
-        this.category = category;
-        content.put("Categories", category.getCodeName());
     }
 
     /**
@@ -221,6 +221,7 @@ public class MenuItem {
 
     /**
      * Sets access permission for this menu item.
+     *
      * @param onlyForAdmin true if only root user can edit this menu item
      */
     public void setReadOnly(boolean readonly) {
@@ -237,6 +238,7 @@ public class MenuItem {
 
     /**
      * Sets menu item's original categories.
+     *
      * @param originalCategories new original categories
      */
     public void setOriginalCategories(String originalCategories) {
@@ -252,6 +254,7 @@ public class MenuItem {
 
     /**
      * Sets menu item's original code.
+     *
      * @param originalCode new original code
      */
     public void setOriginalCode(String originalCode) {
@@ -268,6 +271,7 @@ public class MenuItem {
 
     /**
      * Sets menu item's content map.
+     *
      * @param content new content map
      */
     public void setContent(Map<String, String> content) {
@@ -303,10 +307,11 @@ public class MenuItem {
 
     /**
      * Checks wheather mandatory values are not null or empty strings.
+     *
      * @throws LxmedException if there is an error in data
      */
     private void checkItem() throws LxmedException {
-        Object[] mandatories = new Object[]{getName(), /*exec,*/ category};
+        Object[] mandatories = new Object[]{getName(), category};
 
         for (Object object : mandatories) {
             if (object == null) {
@@ -327,6 +332,7 @@ public class MenuItem {
 
     /**
      * Clones data from given menu item into this menu item.
+     *
      * @param newMenuItem menu item from which data is cloned
      */
     public void cloneData(MenuItem newMenuItem) {
@@ -339,8 +345,8 @@ public class MenuItem {
             content.put(key, newMenuItem.getContent().get(key));
         }
 
-        setIcon(newMenuItem.getIcon());
         setOriginalCategories(newMenuItem.getOriginalCategories());
+        setReadOnly(newMenuItem.readonly);
 
         if (newMenuItem.getPath() != null) {
             setPath(newMenuItem.getPath());
@@ -373,5 +379,21 @@ public class MenuItem {
 
     public String putToContentMap(String key, String value) {
         return content.put(key, value);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        MenuItem ret = new MenuItem();
+        ret.setCategory(category);
+        ret.setOriginalCategories(originalCategories);
+        ret.setOriginalCode(originalCode);
+        ret.setReadOnly(readonly);
+        ret.setPath(new File(path.getAbsolutePath()));
+
+        for (String key : content.keySet()) {
+            ret.content.put(key, content.get(key));
+        }
+
+        return ret;
     }
 }

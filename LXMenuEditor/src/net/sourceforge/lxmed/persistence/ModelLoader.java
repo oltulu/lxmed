@@ -16,13 +16,16 @@ import net.sourceforge.lxmed.model.Model;
 
 /**
  * Loads the entire model reading it's content from hard disk and then creates
- * data structure (package <code>model</code>).
+ * data structure (package
+ * <code>model</code>).
+ *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class ModelLoader {
 
     /**
      * Method which loads the model.
+     *
      * @return the Model.
      * @see Model
      */
@@ -54,6 +57,7 @@ public class ModelLoader {
 
     /**
      * Loads specific file and makes MenuItem of it.
+     *
      * @param file file to load
      * @return MenuItem derived from file
      */
@@ -100,6 +104,7 @@ public class ModelLoader {
     /**
      * Returns MenuItem by given string which contains data describing it as
      * regular .desktop file.
+     *
      * @param fileContent data string
      */
     public static MenuItem loadData(String fileContent) {
@@ -138,9 +143,10 @@ public class ModelLoader {
     }
 
     /**
-     * Extract menu item's category. This is tricky part, since .desktop file
-     * can have more than one category value. However, this method extracts
-     * only the first regular category and classifies item as that category.
+     * Extract menu item's category. This is tricky part, since .desktop file can
+     * have more than one category value. However, this method extracts only the
+     * first regular category and classifies item as that category.
+     *
      * @param mi menu item
      * @param cat categories read from .desktop file
      */
@@ -172,9 +178,10 @@ public class ModelLoader {
 
     /**
      * Sort all menu items in given category by menu item's name.
+     *
      * @param c category to sort
      */
     public static void sortItemsByName(Category c) {
-        Collections.sort(c, new ItemNameComparator());
+        Collections.sort(c.getItems(), new ItemNameComparator());
     }
 }

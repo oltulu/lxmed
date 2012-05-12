@@ -1,29 +1,39 @@
 package net.sourceforge.lxmed.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
- * Category in main menu. This class implements List interface so it can be
- * seen as list of menu items belonging to category.
+ * Category in main menu. This class implements List interface so it can be seen
+ * as list of menu items belonging to category.
+ *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
-public class Category implements List<MenuItem> {
+public class Category implements Iterable<MenuItem>/*
+ * implements List<MenuItem>
+ */ {
 
-    /** Category display name. */
+    /**
+     * Category display name.
+     */
     protected String displayName;
-    /** Category code name. */
+    /**
+     * Category code name.
+     */
     protected String codeName;
-    /** Category icon name. */
+    /**
+     * Category icon name.
+     */
     protected String icon;
-    /** Menu items belonging to category. */
+    /**
+     * Menu items belonging to category.
+     */
     protected List<MenuItem> items = new ArrayList<MenuItem>();
 
     /**
      * Constructor.
+     *
      * @param displayName categorie's display name
      * @param codeName categorie's code name
      * @param icon categorie's icon name
@@ -34,122 +44,29 @@ public class Category implements List<MenuItem> {
         this.icon = icon;
     }
 
-    public <T> T[] toArray(T[] a) {
-        return items.toArray(a);
-    }
-
-    public Object[] toArray() {
-        return items.toArray();
-    }
-
-    public List<MenuItem> subList(int fromIndex, int toIndex) {
-        return items.subList(fromIndex, toIndex);
-    }
-
-    public int size() {
-        return items.size();
-    }
-
-    public MenuItem set(int index, MenuItem element) {
-        return items.set(index, element);
-    }
-
-    public boolean retainAll(Collection<?> c) {
-        return items.retainAll(c);
-    }
-
-    public boolean removeAll(Collection<?> c) {
-        return items.removeAll(c);
-    }
-
-    public MenuItem remove(int index) {
-        return items.remove(index);
-    }
-
-    public boolean remove(Object o) {
-        return items.remove(o);
-    }
-
-    public ListIterator<MenuItem> listIterator(int index) {
-        return items.listIterator(index);
-    }
-
-    public ListIterator<MenuItem> listIterator() {
-        return items.listIterator();
-    }
-
-    public int lastIndexOf(Object o) {
-        return items.lastIndexOf(o);
-    }
-
-    public Iterator<MenuItem> iterator() {
-        return items.iterator();
-    }
-
-    public boolean isEmpty() {
-        return items.isEmpty();
-    }
-
-    public int indexOf(Object o) {
-        return items.indexOf(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return items.hashCode();
-    }
-
-    public MenuItem get(int index) {
-        return items.get(index);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
+    public void add(MenuItem newMenuItem) {
+        if (newMenuItem == null) {
+            return;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
+        if (this.items == null) {
+            this.items = new java.util.ArrayList<MenuItem>();
         }
-        final Category other = (Category) obj;
-        if ((this.codeName == null) ? (other.codeName != null) : !this.codeName.equals(other.codeName)) {
-            return false;
+        if (!this.items.contains(newMenuItem)) {
+            this.items.add(newMenuItem);
+            newMenuItem.setCategory(this);
         }
-        if (this.items != other.items && (this.items == null || !this.items.equals(other.items))) {
-            return false;
+    }
+
+    public void remove(MenuItem oldMenuItem) {
+        if (oldMenuItem == null) {
+            return;
         }
-        return true;
-    }
-
-    public boolean containsAll(Collection<?> c) {
-        return items.containsAll(c);
-    }
-
-    public boolean contains(Object o) {
-        return items.contains(o);
-    }
-
-    public void clear() {
-        items.clear();
-    }
-
-    public boolean addAll(int index, Collection<? extends MenuItem> c) {
-        return items.addAll(index, c);
-    }
-
-    public boolean addAll(Collection<? extends MenuItem> c) {
-        return items.addAll(c);
-    }
-
-    public void add(int index, MenuItem element) {
-        items.add(index, element);
-        element.setCategory(this);
-    }
-
-    public boolean add(MenuItem e) {
-        boolean ret = items.add(e);
-        e.setCategory(this);
-        return ret;
+        if (this.items != null) {
+            if (this.items.contains(oldMenuItem)) {
+                this.items.remove(oldMenuItem);
+                oldMenuItem.setCategory((Category) null);
+            }
+        }
     }
 
     /**
@@ -161,6 +78,7 @@ public class Category implements List<MenuItem> {
 
     /**
      * Sets categorie's code name.
+     *
      * @param codeName new code name
      */
     public void setCodeName(String codeName) {
@@ -176,6 +94,7 @@ public class Category implements List<MenuItem> {
 
     /**
      * Sets categorie's display name.
+     *
      * @param displayName new display name
      */
     public void setDisplayName(String displayName) {
@@ -184,6 +103,7 @@ public class Category implements List<MenuItem> {
 
     /**
      * Sets categorie's menu items.
+     *
      * @param items new list of menu items
      */
     public void setItems(List<MenuItem> items) {
@@ -199,6 +119,7 @@ public class Category implements List<MenuItem> {
 
     /**
      * Sets categorie's icon name.
+     *
      * @param icon new icon name
      */
     public void setIcon(String icon) {
@@ -230,5 +151,13 @@ public class Category implements List<MenuItem> {
     @Override
     public String toString() {
         return displayName;
+    }
+
+    public Iterator<MenuItem> iterator() {
+        return items.iterator();
+    }
+
+    public List<MenuItem> getItems() {
+        return items;
     }
 }
