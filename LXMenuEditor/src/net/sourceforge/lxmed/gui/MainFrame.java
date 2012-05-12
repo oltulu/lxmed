@@ -128,8 +128,8 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can just make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 MenuItem toDelete = (MenuItem) lstItems.getSelectedValue();
-//                DeleteItemCommand dic = new DeleteItemCommand(toDelete);
-//                CommandManager.getInstance().addCommand(dic);
+                DeleteItemCommand dic = new DeleteItemCommand(toDelete);
+                CommandManager.getInstance().addCommand(dic);
             }
         }
     }
