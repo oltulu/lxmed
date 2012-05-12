@@ -86,7 +86,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/net/sourceforge/lxmed/images/dialogs/exit.png"/>
             </Property>
-            <Property name="mnemonic" type="int" value="99"/>
+            <Property name="mnemonic" type="int" value="115"/>
             <Property name="text" type="java.lang.String" value="Close"/>
           </Properties>
           <Events>

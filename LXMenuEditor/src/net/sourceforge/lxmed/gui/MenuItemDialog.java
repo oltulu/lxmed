@@ -69,11 +69,14 @@ public class MenuItemDialog extends javax.swing.JDialog {
      * named menuItem field.
      */
     protected MenuItem temporary;
-    protected MenuItem original;
     /**
-     * Actual menu item from main form.
+     * Editing menu item from main form that will be changed after pressing OK.
      */
-    protected MenuItem menuItem;
+    protected MenuItem menuItem = null;
+    /**
+     * Menu item before pressing OK. It is a clone of received menu item.
+     */
+    protected MenuItem originalItem = null;
     protected ComboBoxModel cbm;
     protected boolean newItem = false;
     protected Category defaultCategory;
@@ -87,6 +90,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         super(parent, true);
         this.parent = (MainFrame) parent;
         this.menuItem = item;
+
         cbm = new DefaultComboBoxModel(Model.getModel().getCategories().toArray());
         initComponents();
         getRootPane().setDefaultButton(btnOk);
@@ -100,7 +104,11 @@ public class MenuItemDialog extends javax.swing.JDialog {
             menuItem = new MenuItem();
         } else {
             this.temporary = new MenuItem(item);
-            original = new MenuItem(item);
+            try {
+                this.originalItem = (MenuItem) item.clone();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         // close on Esc
@@ -660,8 +668,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
             menuItem.setPath(new File(txtPath.getText().trim()));
             menuItem.setReadOnly(false);
 
-//            EditItemCommand eic = new EditItemCommand(original, menuItem);
-//            CommandManager.getInstance().addCommand(eic);
+            EditItemCommand eic = new EditItemCommand(originalItem, menuItem);
+            CommandManager.getInstance().addCommand(eic);
         }
         parent = null;
         dispose();

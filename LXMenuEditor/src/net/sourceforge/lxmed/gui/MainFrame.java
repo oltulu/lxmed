@@ -229,7 +229,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         pnlSouth.add(btnAbout, gridBagConstraints);
 
         btnClose.setFont(btnClose.getFont().deriveFont(btnClose.getFont().getStyle() & ~Font.BOLD, btnClose.getFont().getSize()-1));
-        btnClose.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/exit.png")));         btnClose.setMnemonic('c');
+        btnClose.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/exit.png")));         btnClose.setMnemonic('s');
         btnClose.setText("Close");
         btnClose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
