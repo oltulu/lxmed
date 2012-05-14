@@ -31,8 +31,8 @@ public class NewItemCommand extends LxmedAbstractCommand {
             menuItem.setCategory(category);
             Model.getModel().addMenuItem(menuItem);
         } catch (Exception e) {
-            // TODO: text
-            throw new LxmedException("error");
+            e.printStackTrace();
+            throw new LxmedException(e.getMessage());
         }
     }
 

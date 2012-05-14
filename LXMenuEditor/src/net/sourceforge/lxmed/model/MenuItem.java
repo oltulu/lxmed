@@ -12,6 +12,7 @@ import net.sourceforge.lxmed.LxmedException;
  */
 public class MenuItem implements Cloneable {
 
+    public static String CATEGORIES = "Categories";
     /**
      * File path of this menu item's .desktop file.
      */
@@ -203,10 +204,12 @@ public class MenuItem implements Cloneable {
             if (this.category != null) {
                 Category oldCategory = this.category;
                 this.category = null;
+                content.remove(CATEGORIES);
                 oldCategory.remove(this);
             }
             if (newCategory != null) {
                 this.category = newCategory;
+                content.put(CATEGORIES, newCategory.getCodeName());
                 this.category.add(this);
             }
         }
@@ -286,6 +289,10 @@ public class MenuItem implements Cloneable {
 
         if (!content.containsKey("Type")) {
             content.put("Type", "Application");
+        }
+
+        if (!content.containsKey(CATEGORIES) && category != null) {
+            content.put(CATEGORIES, category.getCodeName());
         }
 
         String ret = "[Desktop Entry]\n";
@@ -395,5 +402,33 @@ public class MenuItem implements Cloneable {
         }
 
         return ret;
+    }
+
+    public static void main(String[] args) {
+        String s1 = "Hello";
+        String s2 = "Hello";
+        String s3 = new String(s1);
+        String s4 = s1;
+
+        System.out.println(s1 == s2);
+        System.out.println(s1 == s3);
+        System.out.println(s2 == s3);
+        System.out.println(s1 == s4);
+
+        System.out.println("");
+
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+        System.out.println(s4);
+
+        System.out.println("");
+        s1 = "Test";
+        s2 = "Qwe";
+
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+        System.out.println(s4);
     }
 }

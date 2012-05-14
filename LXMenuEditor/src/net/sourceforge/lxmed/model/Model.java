@@ -1,7 +1,6 @@
 package net.sourceforge.lxmed.model;
 
 import java.io.FileNotFoundException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import net.sourceforge.lxmed.persistence.FileUtil;
@@ -107,15 +106,6 @@ public class Model extends Observable {
     public void deleteMenuItem(MenuItem menuItem) {
         if (FileUtil.delete(menuItem)) {
             menuItem.setCategory(null);
-            for (Category category : categories) {
-                Iterator<MenuItem> it = category.iterator();
-                while (it.hasNext()) {
-                    MenuItem item = it.next();
-                    if (item.equals(menuItem)) {
-                        it.remove();
-                    }
-                }
-            }
             setChanged();
             notifyObservers();
         }

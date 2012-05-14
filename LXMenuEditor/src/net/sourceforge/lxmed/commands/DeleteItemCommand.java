@@ -33,7 +33,7 @@ public class DeleteItemCommand extends LxmedAbstractCommand {
             menuItem.setCategory(category);
             Model.getModel().addMenuItem(menuItem);
         } catch (Exception e) {
-            // TODO: text
+            e.printStackTrace();
             throw new LxmedException("error");
         }
     }

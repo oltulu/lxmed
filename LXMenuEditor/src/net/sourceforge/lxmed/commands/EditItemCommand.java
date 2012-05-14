@@ -24,8 +24,10 @@ public class EditItemCommand extends LxmedAbstractCommand {
             previous = original;
             real = edited;
             next = (MenuItem) edited.clone();
+
             previousCategory = previous.getCategory();
             nextCategory = next.getCategory();
+
             original.setCategory(null);
             previous.setCategory(null);
             next.setCategory(null);
@@ -40,7 +42,10 @@ public class EditItemCommand extends LxmedAbstractCommand {
         real.setOriginalCode(next.getOriginalCode());
         real.setOriginalCategories(next.getOriginalCategories());
         real.setReadOnly(next.isReadOnly());
-        real.setContent(next.getContent());
+        real.getContent().clear();
+        for (String key : next.getContent().keySet()) {
+            real.getContent().put(key, next.getContent().get(key));
+        }
         try {
             Model.getModel().updateMenuItem(real);
         } catch (FileNotFoundException ex) {
@@ -54,7 +59,10 @@ public class EditItemCommand extends LxmedAbstractCommand {
         real.setOriginalCode(previous.getOriginalCode());
         real.setOriginalCategories(previous.getOriginalCategories());
         real.setReadOnly(previous.isReadOnly());
-        real.setContent(previous.getContent());
+        real.getContent().clear();
+        for (String key : previous.getContent().keySet()) {
+            real.getContent().put(key, previous.getContent().get(key));
+        }
         try {
             Model.getModel().updateMenuItem(real);
         } catch (FileNotFoundException ex) {
