@@ -65,10 +65,7 @@ public class CommandManager {
     public void doCommand() {
         if (currentCommand < commands.size()) {
             commands.get(currentCommand++).doCommand();
-            try {
-                refreshButtons();
-            } catch (Exception e) {
-            }
+            refreshButtons();
         }
     }
 
@@ -78,10 +75,7 @@ public class CommandManager {
     public void undoCommand() {
         if (currentCommand > 0) {
             commands.get(--currentCommand).undoCommand();
-            try {
-                refreshButtons();
-            } catch (Exception e) {
-            }
+            refreshButtons();
         }
     }
 
