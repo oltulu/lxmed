@@ -3,6 +3,11 @@ package net.sourceforge.lxmed.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
+import net.sourceforge.lxmed.clipboard.LxmedClipboard;
+import net.sourceforge.lxmed.commands.CommandManager;
+import net.sourceforge.lxmed.commands.DeleteItemCommand;
+import net.sourceforge.lxmed.gui.MainFrame;
+import net.sourceforge.lxmed.model.MenuItem;
 
 /**
  *
@@ -20,7 +25,13 @@ public class CutAction extends LxmedAbstractAction {
     }
 
     public void actionPerformed(ActionEvent e) {
-        ActionManager.getInstance().getPasteAction().setEnabled(true);
-        ActionManager.getInstance().getPasteAction().forCut = true;
+        LxmedClipboard lc = LxmedClipboard.getClipboard();
+
+        MenuItem selected = MainFrame.getInstance().getSelectedMenuItem();
+
+        lc.toClipboard(selected);
+        CommandManager.getInstance().addCommand(new DeleteItemCommand(selected));
+        lc.setForCut(true);
+
     }
 }

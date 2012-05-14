@@ -11,7 +11,7 @@ import net.sourceforge.lxmed.model.Model;
  *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
-public class EditItemCommand extends LxmedAbstractCommand {
+public class EditItemCommand implements LxmedCommand {
 
     private MenuItem previous;
     private MenuItem next;

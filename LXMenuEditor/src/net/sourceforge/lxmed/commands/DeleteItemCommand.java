@@ -9,7 +9,7 @@ import net.sourceforge.lxmed.model.Model;
  *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
-public class DeleteItemCommand extends LxmedAbstractCommand {
+public class DeleteItemCommand implements LxmedCommand {
 
     private MenuItem menuItem;
     private Category category;

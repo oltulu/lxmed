@@ -19,14 +19,10 @@ public class CommandsTest extends TestCase {
     public void testCommandManager() throws CloneNotSupportedException {
         MenuItem a = create("a");
 
-        assertEquals(0, CommandManager.getInstance().commands.size());
         addCommand(new NewItemCommand(a));
-        assertEquals(1, CommandManager.getInstance().commands.size());
 
         changeNameTo("a1", a);
-        assertEquals(2, CommandManager.getInstance().commands.size());
         changeNameTo("a2", a);
-        assertEquals(3, CommandManager.getInstance().commands.size());
 
         changeCategory(a);
 

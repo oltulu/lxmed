@@ -1,6 +1,9 @@
 package net.sourceforge.lxmed.clipboard;
 
+import java.io.File;
 import net.sourceforge.lxmed.model.MenuItem;
+import net.sourceforge.lxmed.persistence.FileUtil;
+import net.sourceforge.lxmed.utils.Configuration;
 
 /**
  * Lxmed Clipboard can persist up to one pasted menu item.
@@ -17,6 +20,10 @@ public class LxmedClipboard {
      * Singleton instance.
      */
     private static LxmedClipboard clipboard;
+    /**
+     * If a clipboard is filled with cut action, this is set to true.
+     */
+    private boolean forCut = false;
 
     /**
      * Private constructor.
@@ -40,7 +47,12 @@ public class LxmedClipboard {
      * @return null if clipboard is empty, otherwise returns menu item to paste
      */
     public MenuItem getToPaste() {
-        return toPaste;
+        try {
+            return (MenuItem) toPaste.clone();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -50,6 +62,29 @@ public class LxmedClipboard {
      * @param menuItem menu item to be set on clipboard.
      */
     public void toClipboard(MenuItem menuItem) {
-        toPaste = menuItem;
+        try {
+            toPaste = (MenuItem) menuItem.clone();
+            toPaste.setReadOnly(false);
+            toPaste.setCategory(null);
+        } catch (CloneNotSupportedException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void emptyClipboard() {
+        forCut = false;
+        toPaste = null;
+    }
+
+    public boolean isEmpty() {
+        return toPaste == null;
+    }
+
+    public boolean isForCut() {
+        return forCut;
+    }
+
+    public void setForCut(boolean forCut) {
+        this.forCut = forCut;
     }
 }

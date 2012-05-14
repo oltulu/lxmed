@@ -51,10 +51,37 @@ public class FileUtil {
 
     /**
      * Deletes a file which represents a menu item.
+     *
      * @param item item to be deleted
      * @return true if file is successfully deleted, otherwise false
      */
     public static boolean delete(MenuItem item) {
         return item.getPath().delete();
+    }
+
+    public static String getFileName(String name) {
+        String[] forbidden = new String[]{"/", "\\", "?", "%", "*", ":", "|",
+            "\"", "<", ">", ".", ",", ";", "'", "(", ")", " "};
+
+        String ret = name;
+
+        for (String string : forbidden) {
+            ret = ret.replace(string, "_");
+        }
+
+        return ret + ".desktop";
+    }
+
+    public static String getTimestampedFileName(String name) {
+        String[] forbidden = new String[]{"/", "\\", "?", "%", "*", ":", "|",
+            "\"", "<", ">", ".", ",", ";", "'", "(", ")", " "};
+
+        String ret = name;
+
+        for (String string : forbidden) {
+            ret = ret.replace(string, "_");
+        }
+
+        return ret + "-" + System.currentTimeMillis() + ".desktop";
     }
 }

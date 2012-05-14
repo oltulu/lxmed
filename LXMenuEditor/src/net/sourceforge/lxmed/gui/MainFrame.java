@@ -32,6 +32,7 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import net.sourceforge.lxmed.actions.ActionManager;
+import net.sourceforge.lxmed.clipboard.LxmedClipboard;
 import net.sourceforge.lxmed.commands.CommandManager;
 import net.sourceforge.lxmed.commands.DeleteItemCommand;
 import net.sourceforge.lxmed.model.Category;
@@ -132,6 +133,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
                 CommandManager.getInstance().addCommand(dic);
             }
         }
+    }
+
+    public MenuItem getSelectedMenuItem() {
+        return (MenuItem) lstItems.getSelectedValue();
+    }
+
+    public Category getSelectedCategory() {
+        return (Category) lstCategories.getSelectedValue();
     }
 
     public void updateCategory() {
@@ -603,6 +612,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
             lstCategories.setSelectedIndex(lstCategories.locationToIndex(evt.getPoint()));
 
             JPopupMenu popupMenu = new JPopupMenu();
+            actionManager.getPasteAction().setEnabled(!LxmedClipboard.getClipboard().isEmpty());
             popupMenu.add(actionManager.getPasteAction());
             popupMenu.show(lstCategories, evt.getX(), evt.getY());
         }

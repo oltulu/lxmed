@@ -54,6 +54,7 @@ import net.sourceforge.lxmed.commands.NewItemCommand;
 import net.sourceforge.lxmed.model.Category;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
+import net.sourceforge.lxmed.persistence.FileUtil;
 import net.sourceforge.lxmed.utils.Configuration;
 
 /**
@@ -415,7 +416,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
             public void run() {
                 if (newItem) {
-                    txtPath.setText(Configuration.getAppsFolder() + "/" + getFileName(txtName.getText().trim()));
+                    txtPath.setText(Configuration.getAppsFolder() + "/" + FileUtil.getFileName(txtName.getText().trim()));
                 }
                 checkBtnOk();
             }
@@ -597,18 +598,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         txtName.requestFocus();
     }
 
-    private String getFileName(String name) {
-        String[] forbidden = new String[]{"/", "\\", "?", "%", "*", ":", "|",
-            "\"", "<", ">", ".", ",", ";", "'", "(", ")", " "};
 
-        String ret = name;
-
-        for (String string : forbidden) {
-            ret = ret.replace(string, "_");
-        }
-
-        return ret + ".desktop";
-    }
 
     private void checkBtnOk() {
         if (txtName.getText().trim().equals("")

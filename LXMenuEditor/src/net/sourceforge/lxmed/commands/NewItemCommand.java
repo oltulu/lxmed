@@ -10,7 +10,7 @@ import net.sourceforge.lxmed.model.Model;
  *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
-public class NewItemCommand extends LxmedAbstractCommand {
+public class NewItemCommand implements LxmedCommand {
 
     private MenuItem menuItem;
     private Category category;

@@ -3,6 +3,9 @@ package net.sourceforge.lxmed.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
+import net.sourceforge.lxmed.clipboard.LxmedClipboard;
+import net.sourceforge.lxmed.gui.MainFrame;
+import net.sourceforge.lxmed.model.MenuItem;
 
 /**
  *
@@ -20,6 +23,12 @@ public class CopyAction extends LxmedAbstractAction {
     }
 
     public void actionPerformed(ActionEvent e) {
-        ActionManager.getInstance().getPasteAction().setEnabled(true);
+        MenuItem selected = MainFrame.getInstance().getSelectedMenuItem();
+
+        if (selected == null) {
+            return;
+        }
+
+        LxmedClipboard.getClipboard().toClipboard(selected);
     }
 }

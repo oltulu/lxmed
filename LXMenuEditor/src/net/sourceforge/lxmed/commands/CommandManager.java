@@ -15,7 +15,7 @@ public class CommandManager {
     /**
      * Commands list.
      */
-    public List<LxmedCommand> commands = new ArrayList<LxmedCommand>();
+    private List<LxmedCommand> commands = new ArrayList<LxmedCommand>();
     /**
      * Cursor which indicates current command.
      */
@@ -79,6 +79,9 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Updates enability of Undo/Redo buttons.c
+     */
     private void refreshButtons() {
         JButton undo = MainFrame.getInstance().getBtnUndo();
         JButton redo = MainFrame.getInstance().getBtnRedo();
