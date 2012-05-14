@@ -30,5 +30,6 @@ public class CopyAction extends LxmedAbstractAction {
         }
 
         LxmedClipboard.getClipboard().toClipboard(selected);
+        MainFrame.getInstance().updateCliboardButtons();
     }
 }

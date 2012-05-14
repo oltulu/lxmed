@@ -48,5 +48,7 @@ public class PasteAction extends LxmedAbstractAction {
             lc.emptyClipboard();
             lc.setForCut(false);
         }
+
+        MainFrame.getInstance().updateCliboardButtons();
     }
 }

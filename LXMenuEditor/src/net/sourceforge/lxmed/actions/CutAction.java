@@ -32,6 +32,6 @@ public class CutAction extends LxmedAbstractAction {
         lc.toClipboard(selected);
         CommandManager.getInstance().addCommand(new DeleteItemCommand(selected));
         lc.setForCut(true);
-
+        MainFrame.getInstance().updateCliboardButtons();
     }
 }

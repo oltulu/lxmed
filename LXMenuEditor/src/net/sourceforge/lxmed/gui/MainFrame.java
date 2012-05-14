@@ -165,6 +165,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         updateCategory();
     }
 
+    public void updateCliboardButtons() {
+        MenuItem selected = getSelectedMenuItem();
+
+        btnCut.setEnabled(selected != null && !selected.isReadOnly());
+        btnCopy.setEnabled(selected != null);
+        btnPaste.setEnabled(!LxmedClipboard.getClipboard().isEmpty());
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -480,6 +488,11 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnCut.setFont(new Font("Dialog", 0, 11));         btnCut.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-cut.png")));         btnCut.setMnemonic('c');
         btnCut.setText("Cut");
+        btnCut.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnCutActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -490,6 +503,11 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnCopy.setFont(new Font("Dialog", 0, 11));         btnCopy.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-copy.png")));         btnCopy.setMnemonic('y');
         btnCopy.setText("Copy");
+        btnCopy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnCopyActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
@@ -500,6 +518,11 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnPaste.setFont(new Font("Dialog", 0, 11));         btnPaste.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-paste.png")));         btnPaste.setMnemonic('p');
         btnPaste.setText("Paste");
+        btnPaste.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                btnPasteActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -553,6 +576,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         }
 
         updateCategory();
+        updateCliboardButtons();
     }//GEN-LAST:event_lstCategoriesValueChanged
 
     private void lstItemsValueChanged(ListSelectionEvent evt) {//GEN-FIRST:event_lstItemsValueChanged
@@ -573,6 +597,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         }
 
         enableControls();
+        updateCliboardButtons();
     }//GEN-LAST:event_lstItemsValueChanged
 
     private void lstItemsMouseClicked(MouseEvent evt) {//GEN-FIRST:event_lstItemsMouseClicked
@@ -608,7 +633,6 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
     private void lstCategoriesMouseClicked(MouseEvent evt) {//GEN-FIRST:event_lstCategoriesMouseClicked
         if (evt.getButton() == MouseEvent.BUTTON3) {
-
             lstCategories.setSelectedIndex(lstCategories.locationToIndex(evt.getPoint()));
 
             JPopupMenu popupMenu = new JPopupMenu();
@@ -646,6 +670,18 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     private void btnRedoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnRedoActionPerformed
         CommandManager.getInstance().doCommand();
     }//GEN-LAST:event_btnRedoActionPerformed
+
+    private void btnCutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCutActionPerformed
+        actionManager.getCutAction().actionPerformed(null);
+    }//GEN-LAST:event_btnCutActionPerformed
+
+    private void btnCopyActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnCopyActionPerformed
+        actionManager.getCopyAction().actionPerformed(null);
+    }//GEN-LAST:event_btnCopyActionPerformed
+
+    private void btnPasteActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnPasteActionPerformed
+        actionManager.getPasteAction().actionPerformed(null);
+    }//GEN-LAST:event_btnPasteActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnAbout;
     private JButton btnClose;
