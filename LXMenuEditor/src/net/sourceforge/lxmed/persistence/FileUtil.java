@@ -28,8 +28,7 @@ public class FileUtil {
 
         if (!path.getParentFile().exists()) {
             if (!path.getParentFile().mkdirs()) {
-                System.out.println(path.getParent());
-                throw new LxmedException("Directory not created.");
+                throw new LxmedException("Directory not created: " + path.getParent());
             }
         }
 
@@ -42,7 +41,6 @@ public class FileUtil {
             pout.flush();
             pout.close();
         } catch (UnsupportedEncodingException ex) {
-            System.out.println("OVDE SAAAAM");
             return false;
         }
 

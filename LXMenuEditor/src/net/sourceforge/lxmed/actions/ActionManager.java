@@ -10,8 +10,6 @@ public class ActionManager {
     private CutAction cutAction = new CutAction();
     private CopyAction copyAction = new CopyAction();
     private PasteAction pasteAction = new PasteAction();
-    private UndoAction undoAction = new UndoAction();
-    private RedoAction redoAction = new RedoAction();
 
     public static ActionManager getInstance() {
         if (instance == null) {
@@ -46,21 +44,5 @@ public class ActionManager {
 
     public void setPasteAction(PasteAction pasteAction) {
         this.pasteAction = pasteAction;
-    }
-
-    public RedoAction getRedoAction() {
-        return redoAction;
-    }
-
-    public void setRedoAction(RedoAction redoAction) {
-        this.redoAction = redoAction;
-    }
-
-    public UndoAction getUndoAction() {
-        return undoAction;
-    }
-
-    public void setUndoAction(UndoAction undoAction) {
-        this.undoAction = undoAction;
     }
 }

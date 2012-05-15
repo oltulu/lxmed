@@ -28,6 +28,9 @@ public class CutAction extends LxmedAbstractAction {
         LxmedClipboard lc = LxmedClipboard.getClipboard();
 
         MenuItem selected = MainFrame.getInstance().getSelectedMenuItem();
+        if (selected == null) {
+            return;
+        }
 
         lc.toClipboard(selected);
         CommandManager.getInstance().addCommand(new DeleteItemCommand(selected));

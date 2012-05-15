@@ -32,6 +32,11 @@ public class PasteAction extends LxmedAbstractAction {
         LxmedClipboard lc = LxmedClipboard.getClipboard();
 
         Category category = MainFrame.getInstance().getSelectedCategory();
+
+        if (lc.isEmpty() || category == null) {
+            return;
+        }
+
         MenuItem toPaste = lc.getToPaste();
         toPaste.setCategory(category);
 
