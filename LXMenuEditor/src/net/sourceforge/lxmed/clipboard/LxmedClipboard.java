@@ -1,9 +1,23 @@
+// lxmed - LXDE Main Menu Editor
+// Copyright (C) 2011  Marko Čičak
+//
+// This file is part of lxmed.
+//
+// lxmed is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// lxmed is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with lxmed.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed.clipboard;
 
-import java.io.File;
 import net.sourceforge.lxmed.model.MenuItem;
-import net.sourceforge.lxmed.persistence.FileUtil;
-import net.sourceforge.lxmed.utils.Configuration;
 
 /**
  * Lxmed Clipboard can persist up to one pasted menu item.
@@ -71,19 +85,39 @@ public class LxmedClipboard {
         }
     }
 
+    /**
+     * Empties the clipboard.
+     */
     public void emptyClipboard() {
         forCut = false;
         toPaste = null;
     }
 
+    /**
+     * Checks if clipboard is empty.
+     *
+     * @return true if it is empty, otherwise false
+     */
     public boolean isEmpty() {
         return toPaste == null;
     }
 
+    /**
+     * Checks if pasted item was created by Cut action.
+     *
+     * @return true if pasted item was created by Cut action, false otherwise
+     */
     public boolean isForCut() {
         return forCut;
     }
 
+    /**
+     * Sets a status whether the clipboard item was placed here by Cut or Copy
+     * action.
+     *
+     * @param forCut should be true, if Cut action placed the item to clipboard,
+     * otherwise, if Copy action did it, parameter should be false
+     */
     public void setForCut(boolean forCut) {
         this.forCut = forCut;
     }

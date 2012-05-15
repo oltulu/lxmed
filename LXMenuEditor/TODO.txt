@@ -1,15 +1,5 @@
 See how exactly does LXDE determine which Category is item in, since it has more Categories defined.
 
-Wish list: under "edit code manually", a feature I love, would you add some mechanism to see what other missing options are available?
-I am always forgetting what they are and have to go look them up in other examples.
-"Terminal=true" is the main one I have to always look up.  By nice if there was some kind of pop up or a help file pop up listing them.
-I wonder if writing them in with their default would work.  Or writing them in as empty (Terminal=) would work.
-
-I have been thinking about this.  I think it would be better to put in the option with the default (Terminal=false).
-The reason for this is that is gives an example of both the value and the case.   For instance, is it "Terminal=yes" or "TERMINAL=1" or "Terminal=FALSE".
-Stating the default removes the syntax doubt.
-I am only planting the seeds here.  You are far more creative at this than me, so I will defer your judgement.  (I am sure you will AMAZE!)
-
 http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#deprecated-items
 http://standards.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html#icon_lookup
 
@@ -21,13 +11,8 @@ nova instalacija da ide u foldere:
 /usr/share/doc/lxmed/changelog.gz
 usr/share/applications/lxmed.desktop
 
-Cut-Copy-Paste functionality
 Drag/Drop
 
 Version checking. Put a file with only version number which will be compared with current version number and notify users about new version available.
-
-izmeniti ABOUT dijalog
-
-Settings dialog
 
 Internationalization

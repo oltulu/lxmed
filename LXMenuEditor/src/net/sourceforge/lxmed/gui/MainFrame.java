@@ -1,3 +1,20 @@
+// lxmed - LXDE Main Menu Editor
+// Copyright (C) 2011  Marko Čičak
+//
+// This file is part of lxmed.
+//
+// lxmed is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// lxmed is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with lxmed.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed.gui;
 
 import java.awt.BorderLayout;
@@ -100,16 +117,26 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         setIconImage(iconimage);
     }
 
+    /**
+     * Enables controls for deleting and editing selected menu item.
+     */
     private void enableControls() {
         btnDelete.setEnabled(true);
         btnProperties.setEnabled(true);
     }
 
+    /**
+     * Disables controls for deleting and editing selected menu item.
+     */
     private void disableControls() {
         btnDelete.setEnabled(false);
         btnProperties.setEnabled(false);
     }
 
+    /**
+     * Edits an item. Retreives selected item and then creates new {@link MenuItemDialog}
+     * to edit selected menu item.
+     */
     private void editItem() {
         MenuItem mi = (MenuItem) lstItems.getSelectedValue();
         if (mi == null) {
@@ -120,6 +147,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         lstItems.requestFocus();
     }
 
+    /**
+     * Deletes selected menu item. Asks a user to delete file, and then creates a {@link DeleteItemCommand}
+     * which deletes an item.
+     */
     private void deleteItem() {
         if (lstItems.getSelectedValue() == null) {
             return;
@@ -135,14 +166,24 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         }
     }
 
+    /**
+     * Returns selected menu item.
+     */
     public MenuItem getSelectedMenuItem() {
         return (MenuItem) lstItems.getSelectedValue();
     }
 
+    /**
+     * Returns selected category.
+     */
     public Category getSelectedCategory() {
         return (Category) lstCategories.getSelectedValue();
     }
 
+    /**
+     * Updates selected category. All menu items of selected category are
+     * reloaded.
+     */
     public void updateCategory() {
         dlmItems.clear();
         Category c = (Category) lstCategories.getSelectedValue();
@@ -153,18 +194,34 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         disableControls();
     }
 
+    /**
+     * Returns Redo button.
+     */
     public JButton getBtnRedo() {
         return btnRedo;
     }
 
+    /**
+     * Returns Undo button.
+     */
     public JButton getBtnUndo() {
         return btnUndo;
     }
 
+    /**
+     * Paradigm from Observer design pattern. Updates category according to
+     * {@link Model}.
+     *
+     * @param o
+     * @param arg
+     */
     public void update(Observable o, Object arg) {
         updateCategory();
     }
 
+    /**
+     * Updates clipboard buttons depending on selected item and clipboard state.
+     */
     public void updateCliboardButtons() {
         MenuItem selected = getSelectedMenuItem();
 

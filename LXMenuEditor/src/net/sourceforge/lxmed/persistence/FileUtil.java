@@ -1,3 +1,20 @@
+// lxmed - LXDE Main Menu Editor
+// Copyright (C) 2011  Marko Čičak
+//
+// This file is part of lxmed.
+//
+// lxmed is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// lxmed is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with lxmed.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed.persistence;
 
 import java.io.File;
@@ -57,6 +74,13 @@ public class FileUtil {
         return item.getPath().delete();
     }
 
+    /**
+     * Returns a file name for given menu item's name. Filename contains no
+     * whitespaces or any <i>strange</i> characters.
+     *
+     * @param name menu item's name
+     * @return filename for given menu item
+     */
     public static String getFileName(String name) {
         String[] forbidden = new String[]{"/", "\\", "?", "%", "*", ":", "|",
             "\"", "<", ">", ".", ",", ";", "'", "(", ")", " "};
@@ -70,6 +94,13 @@ public class FileUtil {
         return ret + ".desktop";
     }
 
+    /**
+     * Returns same as {@link FileUtil#getFileName(java.lang.String) } but with
+     * timestamp (time in milliseconds) added to filename, ie:
+     * mylauncher-1337086537263.desktop
+     *
+     * @param name menu item's name
+     */
     public static String getTimestampedFileName(String name) {
         String[] forbidden = new String[]{"/", "\\", "?", "%", "*", ":", "|",
             "\"", "<", ">", ".", ",", ";", "'", "(", ")", " "};

@@ -1,3 +1,20 @@
+// lxmed - LXDE Main Menu Editor
+// Copyright (C) 2011  Marko Čičak
+//
+// This file is part of lxmed.
+//
+// lxmed is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// lxmed is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with lxmed.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed.gui;
 
 import javax.swing.*;
@@ -11,14 +28,28 @@ import java.io.File;
 public class ImagePreview extends JComponent
         implements PropertyChangeListener {
 
+    /**
+     * Image thumbnail.
+     */
     ImageIcon thumbnail = null;
+    /**
+     * Image file.
+     */
     File file = null;
 
+    /**
+     * Creates a new Image Preview.
+     *
+     * @param fc JFileChooser dialog
+     */
     public ImagePreview(JFileChooser fc) {
         setPreferredSize(new Dimension(100, 50));
         fc.addPropertyChangeListener(this);
     }
 
+    /**
+     * Loads an image from file path.
+     */
     public void loadImage() {
         if (file == null) {
             thumbnail = null;
@@ -40,6 +71,11 @@ public class ImagePreview extends JComponent
         }
     }
 
+    /**
+     * If image file selection is changed in dialog, refreshes a thumbnail icon.
+     *
+     * @param e change event
+     */
     public void propertyChange(PropertyChangeEvent e) {
         boolean update = false;
         String prop = e.getPropertyName();
@@ -49,7 +85,7 @@ public class ImagePreview extends JComponent
             file = null;
             update = true;
 
-        //If a file became selected, find out which one.
+            //If a file became selected, find out which one.
         } else if (JFileChooser.SELECTED_FILE_CHANGED_PROPERTY.equals(prop)) {
             file = (File) e.getNewValue();
             update = true;
@@ -65,6 +101,11 @@ public class ImagePreview extends JComponent
         }
     }
 
+    /**
+     * Renders component by paining an icon.
+     *
+     * @param g graphics
+     */
     @Override
     protected void paintComponent(Graphics g) {
         if (thumbnail == null) {

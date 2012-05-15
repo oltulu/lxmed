@@ -1,3 +1,20 @@
+// lxmed - LXDE Main Menu Editor
+// Copyright (C) 2011  Marko Čičak
+//
+// This file is part of lxmed.
+//
+// lxmed is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// lxmed is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with lxmed.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed.model;
 
 import java.io.FileNotFoundException;
@@ -85,10 +102,16 @@ public class Model extends Observable {
         return null;
     }
 
+    /**
+     * Adds new menu item to model. Addresses file system to save new file
+     * describing new menu item.
+     *
+     * @param toBeAdded menu item to be added
+     * @throws FileNotFoundException should never be thrown
+     */
     public void addMenuItem(MenuItem toBeAdded) throws FileNotFoundException {
         if (FileUtil.save(toBeAdded)) {
-            setChanged();
-            notifyObservers();
+            fireStructureChanged();
         } else {
             Category c = toBeAdded.getCategory();
             toBeAdded.setCategory(null);
@@ -96,22 +119,36 @@ public class Model extends Observable {
         }
     }
 
+    /**
+     * Model addresses file system to save menu item's file with new content.
+     *
+     * @param menuItem menu item to be updated in file system
+     * @throws FileNotFoundException if file is not found
+     */
     public void updateMenuItem(MenuItem menuItem) throws FileNotFoundException {
         if (FileUtil.save(menuItem)) {
-            setChanged();
-            notifyObservers();
+            fireStructureChanged();
         }
     }
 
+    /**
+     * Deletes menu item from model. Model addresses file system to delete
+     * appropriate file.
+     *
+     * @param menuItem menu item to be deleted
+     */
     public void deleteMenuItem(MenuItem menuItem) {
         if (FileUtil.delete(menuItem)) {
             menuItem.setCategory(null);
-            setChanged();
-            notifyObservers();
+            fireStructureChanged();
         }
     }
 
-    public void fireStructureChanged() {
+    /**
+     * Sets model status to changed and notifies all listeners to update it's
+     * state corresponding to Model.
+     */
+    private void fireStructureChanged() {
         setChanged();
         notifyObservers();
     }

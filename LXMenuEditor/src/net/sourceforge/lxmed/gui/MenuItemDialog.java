@@ -1,3 +1,20 @@
+// lxmed - LXDE Main Menu Editor
+// Copyright (C) 2011  Marko Čičak
+//
+// This file is part of lxmed.
+//
+// lxmed is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// lxmed is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with lxmed.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed.gui;
 
 import java.awt.BorderLayout;
@@ -19,6 +36,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -78,14 +97,33 @@ public class MenuItemDialog extends javax.swing.JDialog {
      * Menu item before pressing OK. It is a clone of received menu item.
      */
     protected MenuItem originalItem = null;
+    /**
+     * Category combo box model.
+     */
     protected ComboBoxModel cbm;
+    /**
+     * Form regime - true if new item is being entered, false if existing item is
+     * edited.
+     */
     protected boolean newItem = false;
+    /**
+     * Default category.
+     */
     protected Category defaultCategory;
+    /**
+     * {@link MainFrame}
+     */
     protected MainFrame parent;
+    /**
+     * String for image-not-available status.
+     */
     protected static String imageNotAvailable = "N/A";
 
     /**
-     * Creates new form MenuItemDialog
+     * Creates new form MenuItemDialog.
+     *
+     * @param parent parent frame
+     * @param item menu item to edit
      */
     public MenuItemDialog(java.awt.Frame parent, MenuItem item) {
         super(parent, true);
@@ -122,6 +160,192 @@ public class MenuItemDialog extends javax.swing.JDialog {
         InputMap map = this.getRootPane().getInputMap(
                 JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         map.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "close");
+    }
+
+    /**
+     * Sets a font for file chooser so that it corresponds to the application's
+     * font.
+     *
+     * @param comp list of components to whom a font is being set
+     */
+    private void setFileChooserFont(Component[] comp) {
+        for (int x = 0; x < comp.length; x++) {
+            if (comp[x] instanceof Container) {
+                setFileChooserFont(((Container) comp[x]).getComponents());
+            }
+
+            try {
+                comp[x].setFont(txtName.getFont());
+            } catch (Exception e) {
+            }//do nothing
+        }
+    }
+
+    /**
+     * Returns default category.
+     */
+    public Category getDefaultCategory() {
+        return defaultCategory;
+    }
+
+    /**
+     * Sets a default category.
+     *
+     * @param defaultCategory new default category
+     */
+    public void setDefaultCategory(Category defaultCategory) {
+        this.defaultCategory = defaultCategory;
+    }
+
+    /**
+     * Updates a form's GUI component to correspond to edited menu item.
+     */
+    void updateGui() {
+        if (!Configuration.IS_ROOT && menuItem.isReadOnly()) {
+            txtName.setEditable(false);
+            txtCommand.setEditable(false);
+            txtComment.setEditable(false);
+            txtIcon.setEditable(false);
+            cbCategories.setEnabled(false);
+            cbVisible.setEnabled(false);
+            btnOk.setEnabled(false);
+            btnOk.setText("Close");
+            btnOk.setMnemonic('c');
+            btnCancel.setEnabled(false);
+            btnBrowseIcon.setEnabled(false);
+            btnBrowseCommand.setEnabled(false);
+        }
+
+        txtPath.setText(temporary.getPath().getAbsolutePath());
+        txtName.setText(temporary.getName());
+        txtCommand.setText(temporary.getExec());
+        txtComment.setText(temporary.getComment());
+        txtIcon.setText(temporary.getIconStr());
+        cbCategories.setSelectedItem(temporary.getCategory());
+        cbVisible.setSelected(!temporary.isNoDisplay());
+
+        updateImage();
+    }
+
+    /**
+     * Sets a form ready for entering new menu item.
+     */
+    private void readyForNew() {
+        cbCategories.setSelectedItem(defaultCategory);
+        txtPath.setText(Configuration.getAppsFolder());
+        txtName.requestFocus();
+    }
+
+    /**
+     * Checks and sets button Ok's enability status depending on whether
+     * mandatory fields are filled.
+     */
+    private void checkBtnOk() {
+        if (txtName.getText().trim().equals("")
+                || txtCommand.getText().trim().equals("")) {
+            btnOk.setEnabled(false);
+        } else {
+            btnOk.setEnabled(true);
+        }
+    }
+
+    /**
+     * Returns a menu item.
+     */
+    public MenuItem getMenuItem() {
+        return temporary;
+    }
+
+    /**
+     * Sets menu item.
+     *
+     * @param menuItem new menu item
+     */
+    public void setMenuItem(MenuItem menuItem) {
+        this.temporary = menuItem;
+    }
+
+    /**
+     * Creates new menu item. Sets properties for new menu item and then creates
+     * {@link NewItemCommand} which creates new menu item.
+     */
+    private void processNewItem() {
+        for (String key : temporary.getContent().keySet()) {
+            menuItem.putToContentMap(key, temporary.getContent().get(key));
+        }
+
+        menuItem.setName(txtName.getText().trim());
+        menuItem.setExec(txtCommand.getText().trim());
+        menuItem.setComment(txtComment.getText().trim());
+        menuItem.setIconStr(txtIcon.getText().trim());
+        menuItem.setNoDisplay(!cbVisible.isSelected());
+        menuItem.setCategory((Category) cbCategories.getSelectedItem());
+        menuItem.setPath(new File(txtPath.getText().trim()));
+        menuItem.setReadOnly(false);
+
+        NewItemCommand newMenuItem = new NewItemCommand(menuItem);
+        try {
+            CommandManager.getInstance().addCommand(newMenuItem);
+        } catch (LxmedException e) {
+            Logger.getLogger(MenuItemDialog.class.getName()).log(Level.SEVERE, "New menu item error", e);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error while saving item", JOptionPane.ERROR_MESSAGE);
+        }
+        parent = null;
+        dispose();
+    }
+
+    /**
+     * Saves edited menu item. Sets properties to edited menu item and then
+     * creates {@link EditItemCommand} which edits given menu item.
+     */
+    private void processEditItem() {
+        if (!menuItem.isReadOnly()) {
+            for (String key : temporary.getContent().keySet()) {
+                menuItem.putToContentMap(key, temporary.getContent().get(key));
+            }
+
+            menuItem.setName(txtName.getText().trim());
+            menuItem.setExec(txtCommand.getText().trim());
+            menuItem.setComment(txtComment.getText().trim());
+            menuItem.setIconStr(txtIcon.getText().trim());
+            menuItem.setNoDisplay(!cbVisible.isSelected());
+            menuItem.setCategory((Category) cbCategories.getSelectedItem());
+            menuItem.setPath(new File(txtPath.getText().trim()));
+            menuItem.setReadOnly(false);
+
+            EditItemCommand eic = new EditItemCommand(originalItem, menuItem);
+            CommandManager.getInstance().addCommand(eic);
+        }
+        parent = null;
+        dispose();
+    }
+
+    /**
+     * Updates an image of menu item.
+     */
+    private void updateImage() {
+        BufferedImage image;
+        try {
+            image = ImageIO.read(new File(txtIcon.getText().trim()));
+        } catch (IOException ex) {
+            lblImage.setText(imageNotAvailable);
+            lblImage.setIcon(null);
+            return;
+        }
+
+        Icon icon;
+        try {
+            icon = new ImageIcon(image.getScaledInstance(59, 59, Image.SCALE_AREA_AVERAGING));
+        } catch (NullPointerException npe) {
+            lblImage.setText(imageNotAvailable);
+            lblImage.setIcon(null);
+            return;
+        }
+
+        if (icon != null) {
+            lblImage.setText("");
+            lblImage.setIcon(icon);
+        }
     }
 
     /**
@@ -520,175 +744,6 @@ public class MenuItemDialog extends javax.swing.JDialog {
             }
         });
     }//GEN-LAST:event_txtIconKeyTyped
-
-    private void setFileChooserFont(Component[] comp) {
-        for (int x = 0; x < comp.length; x++) {
-            if (comp[x] instanceof Container) {
-                setFileChooserFont(((Container) comp[x]).getComponents());
-            }
-
-            try {
-                comp[x].setFont(txtName.getFont());
-            } catch (Exception e) {
-            }//do nothing
-        }
-    }
-
-    public Category getDefaultCategory() {
-        return defaultCategory;
-    }
-
-    public void setDefaultCategory(Category defaultCategory) {
-        this.defaultCategory = defaultCategory;
-    }
-
-    void updateGui() {
-        if (!Configuration.IS_ROOT && menuItem.isReadOnly()) {
-            txtName.setEditable(false);
-            txtCommand.setEditable(false);
-            txtComment.setEditable(false);
-            txtIcon.setEditable(false);
-            cbCategories.setEnabled(false);
-            cbVisible.setEnabled(false);
-            btnOk.setEnabled(false);
-            btnOk.setText("Close");
-            btnOk.setMnemonic('c');
-            btnCancel.setEnabled(false);
-            btnBrowseIcon.setEnabled(false);
-            btnBrowseCommand.setEnabled(false);
-        }
-
-        txtPath.setText(temporary.getPath().getAbsolutePath());
-        txtName.setText(temporary.getName());
-        txtCommand.setText(temporary.getExec());
-        txtComment.setText(temporary.getComment());
-        txtIcon.setText(temporary.getIconStr());
-        cbCategories.setSelectedItem(temporary.getCategory());
-        cbVisible.setSelected(!temporary.isNoDisplay());
-
-        updateImage();
-    }
-
-    /*
-     * private void saveItem() { for (String key :
-     * temporary.getContent().keySet()) { menuItem.putToContentMap(key,
-     * temporary.getContent().get(key)); }
-     *
-     * boolean categoryChanged = false;
-     * menuItem.setName(txtName.getText().trim());
-     * menuItem.setExec(txtCommand.getText().trim());
-     * menuItem.setComment(txtComment.getText().trim());
-     * menuItem.setIconStr(txtIcon.getText().trim());
-     * menuItem.setNoDisplay(!cbVisible.isSelected()); Category old =
-     * menuItem.getCategory(); menuItem.setCategory((Category)
-     * cbCategories.getSelectedItem()); if (!menuItem.getCategory().equals(old))
-     * { categoryChanged = true; }
-     *
-     * try { // if (DesktopFileSaver.save(menuItem)) { // if (newItem) { //
-     * parent.updateCategory(); // } else if (categoryChanged) { //
-     * parent.updateCategory(); // } // } else { // Category c =
-     * menuItem.getCategory(); // menuItem.setCategory(null); //
-     * c.remove(menuItem); // } } catch (LxmedException ex) {
-     * JOptionPane.showMessageDialog(this, ex.getMessage(), "Error while saving
-     * item", JOptionPane.ERROR_MESSAGE); } }
-     */
-    private void readyForNew() {
-        cbCategories.setSelectedItem(defaultCategory);
-        txtPath.setText(Configuration.getAppsFolder());
-        txtName.requestFocus();
-    }
-
-
-
-    private void checkBtnOk() {
-        if (txtName.getText().trim().equals("")
-                || txtCommand.getText().trim().equals("")) {
-            btnOk.setEnabled(false);
-        } else {
-            btnOk.setEnabled(true);
-        }
-    }
-
-    public MenuItem getMenuItem() {
-        return temporary;
-    }
-
-    public void setMenuItem(MenuItem menuItem) {
-        this.temporary = menuItem;
-    }
-
-    private void processNewItem() {
-        for (String key : temporary.getContent().keySet()) {
-            menuItem.putToContentMap(key, temporary.getContent().get(key));
-        }
-
-        menuItem.setName(txtName.getText().trim());
-        menuItem.setExec(txtCommand.getText().trim());
-        menuItem.setComment(txtComment.getText().trim());
-        menuItem.setIconStr(txtIcon.getText().trim());
-        menuItem.setNoDisplay(!cbVisible.isSelected());
-        menuItem.setCategory((Category) cbCategories.getSelectedItem());
-        menuItem.setPath(new File(txtPath.getText().trim()));
-        menuItem.setReadOnly(false);
-
-        //saveItem();
-        NewItemCommand newMenuItem = new NewItemCommand(menuItem);
-        try {
-            CommandManager.getInstance().addCommand(newMenuItem);
-        } catch (LxmedException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error while saving item", JOptionPane.ERROR_MESSAGE);
-        }
-        parent = null;
-        dispose();
-    }
-
-    private void processEditItem() {
-        if (!menuItem.isReadOnly()) {
-            for (String key : temporary.getContent().keySet()) {
-                menuItem.putToContentMap(key, temporary.getContent().get(key));
-            }
-
-            menuItem.setName(txtName.getText().trim());
-            menuItem.setExec(txtCommand.getText().trim());
-            menuItem.setComment(txtComment.getText().trim());
-            menuItem.setIconStr(txtIcon.getText().trim());
-            menuItem.setNoDisplay(!cbVisible.isSelected());
-            menuItem.setCategory((Category) cbCategories.getSelectedItem());
-            menuItem.setPath(new File(txtPath.getText().trim()));
-            menuItem.setReadOnly(false);
-
-            EditItemCommand eic = new EditItemCommand(originalItem, menuItem);
-            CommandManager.getInstance().addCommand(eic);
-        }
-        parent = null;
-        dispose();
-    }
-
-    private void updateImage() {
-        BufferedImage image;
-        try {
-            image = ImageIO.read(new File(txtIcon.getText().trim()));
-        } catch (IOException ex) {
-            lblImage.setText(imageNotAvailable);
-            lblImage.setIcon(null);
-            return;
-        }
-
-        Icon icon;
-        try {
-            icon = new ImageIcon(image.getScaledInstance(59, 59, Image.SCALE_AREA_AVERAGING));
-        } catch (NullPointerException npe) {
-            lblImage.setText(imageNotAvailable);
-            lblImage.setIcon(null);
-            return;
-        }
-
-        if (icon != null) {
-            lblImage.setText("");
-            lblImage.setIcon(icon);
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnBrowseCommand;
     private JButton btnBrowseIcon;

@@ -1,3 +1,20 @@
+// lxmed - LXDE Main Menu Editor
+// Copyright (C) 2011  Marko Čičak
+//
+// This file is part of lxmed.
+//
+// lxmed is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// lxmed is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with lxmed.  If not, see <http://www.gnu.org/licenses/>.
 package net.sourceforge.lxmed.persistence;
 
 import net.sourceforge.lxmed.utils.Configuration;
@@ -10,6 +27,8 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sourceforge.lxmed.model.Category;
 import net.sourceforge.lxmed.model.MenuItem;
 import net.sourceforge.lxmed.model.Model;
@@ -66,7 +85,7 @@ public class ModelLoader {
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String line = null;
+            String line;
 
             while ((line = br.readLine()) != null) {
                 if (line.contains("=")) {
@@ -75,9 +94,9 @@ public class ModelLoader {
             }
             br.close();
         } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(ModelLoader.class.getName()).log(Level.SEVERE, "Error on loading desktop file", ex);
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            Logger.getLogger(ModelLoader.class.getName()).log(Level.SEVERE, "Error no. 2 on loading desktop file", ioe);
         }
 
         MenuItem mi = loadData(code);
@@ -130,12 +149,6 @@ public class ModelLoader {
         // MenuItem creation based on extracted values
         MenuItem mi = new MenuItem();
         mi.setContent(values);
-//        mi.setName(values.get("Name"));
-//        mi.setExec(values.get("Exec"));
-//        mi.setComment(values.get("Comment"));
-//        mi.setGenericName(values.get("GenericName"));
-//        mi.setIconStr(values.get("Icon"));
-//        mi.setNoDisplay(Boolean.parseBoolean(values.get("NoDisplay")));
         mi.setOriginalCategories(values.get("Categories"));
         mi.setOriginalCode(fileContent);
 
