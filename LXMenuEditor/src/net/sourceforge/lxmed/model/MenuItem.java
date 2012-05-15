@@ -315,7 +315,14 @@ public class MenuItem implements Cloneable {
         String ret = "[Desktop Entry]\n";
 
         for (String key : content.keySet()) {
-            ret += key + "=" + content.get(key) + "\n";
+            if (key.equals(CATEGORIES)) {
+                String categories = content.get(key);
+                if (!categories.endsWith(";")) {
+                    ret += key + "=" + content.get(key) + ";\n";
+                }
+            } else {
+                ret += key + "=" + content.get(key) + "\n";
+            }
         }
 
         return ret;
