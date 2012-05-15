@@ -11,7 +11,7 @@
     <description>Builds, tests, and runs the project LXMenuEditor.</description>
     <import file="nbproject/build-impl.xml"/>
     <property name="installdir"     value="../installation" />
-    <property name="version"        value="20110717" />
+    <property name="version"        value="20120515" />
 
     <!-- Creates an installation file -->
     <target name="-post-jar">

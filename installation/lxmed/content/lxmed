@@ -13,7 +13,7 @@ MANDRAKE='Mandrake'
 # DISTRIBUTION DETECTION
 ########################################################################
 if [ -f /etc/redhat-release ] ; then
-    $DISTRO=$REDHAT
+    DISTRO=$REDHAT
 elif [ -f /etc/SuSE-release ] ; then
     DISTRO=$SUSE
 elif [ -f /etc/mandrake-release ] ; then
@@ -28,6 +28,9 @@ fi
 if [ "${DISTRO}" = "${SUSE}" ];
 then
     gnomesu --command "java -jar /opt/lxmed/LXMenuEditor.jar"
+elif [ "${DISTRO}" = "${REDHAT}" ];
+then
+    beesu -c "java -jar /opt/lxmed/LXMenuEditor.jar"
 else
     gksu --message "Please enter password to run lxmed in fully operational mode:" 'java -jar /opt/lxmed/LXMenuEditor.jar'
 fi
