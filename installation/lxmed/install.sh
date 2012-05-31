@@ -19,6 +19,11 @@ fi
 echo Installing application...
 echo
 
+# if /opt doesn't exist, create it
+if [ ! -d "/opt" ]; then
+    mkdir -v /opt
+fi
+
 # remove any existing files and folders
 echo Removing any previous installed files and folders...
 rm -r -v -f /opt/lxmed
@@ -38,3 +43,4 @@ cp -v content/lxmed.desktop /usr/share/applications
 echo
 echo "Installation sucessfully completed. Enter lxmed to run application or check Preferences -> Main Menu Editor in your main menu"
 echo
+
