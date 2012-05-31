@@ -30,7 +30,14 @@ then
     gnomesu --command "java -jar /opt/lxmed/LXMenuEditor.jar"
 elif [ "${DISTRO}" = "${REDHAT}" ];
 then
-    beesu -c "java -jar /opt/lxmed/LXMenuEditor.jar"
+    if ! type "beesu" > /dev/null; then
+        echo	
+        echo "'beesu' command is not found. Install by typing: $ sudo yum install beesu"
+        echo
+        zenity --error --text="'beesu' command is not found. Install it with:\n$ sudo yum install beesu"
+    else
+        beesu -c "java -jar /opt/lxmed/LXMenuEditor.jar"
+    fi
 else
     gksu --message "Please enter password to run lxmed in fully operational mode:" 'java -jar /opt/lxmed/LXMenuEditor.jar'
 fi
