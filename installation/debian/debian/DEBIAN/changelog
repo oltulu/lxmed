@@ -1,0 +1,595 @@
+2012-01-09 01:59  cile87
+
+	* trunk/lxmed-20120109.tar.gz: dodata nova verzija
+
+2012-01-09 01:58  cile87
+
+	* trunk/lxmed-20120109.zip: obrisan zip fajl
+
+2012-01-09 01:51  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/lxmed-20110717.tar.gz, trunk/lxmed-20120109.zip: Ispravljen
+	  bug sa portom
+
+2011-11-05 18:21  cile87
+
+	* tags/lxmed-20110717.info, tags/lxmed-20110717.tar.gz: archive of
+	  latest stable version, before creating changes to new version
+	  which will have many changes
+
+2011-09-17 00:47  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: Cut-copy-paste
+
+2011-07-17 12:12  cile87
+
+	* trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/lxmed-20110717.tar.gz: new files
+
+2011-07-17 11:57  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/package-info.java:
+	  misserable changes
+
+2011-07-17 02:01  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/installation/lxmed/content/lxmed,
+	  trunk/lxmed-20110717.tar.gz: small bug fixes
+
+2011-07-16 23:44  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemsListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/installation/lxmed/content/lxmed,
+	  trunk/installation/lxmed/install.sh, trunk/lxmed-20110523.tar.gz,
+	  trunk/lxmed-20110717.tar.gz: OpenSuSe running enabled.
+	  OnlyShowIn and NotShowIn fields parsed.
+
+2011-07-12 23:52  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: TODO stuff added
+
+2011-07-12 05:02  cile87
+
+	* trunk/LXMenuEditor,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java:
+	  memory leaks problems resolved: all setVisible(false) replaced
+	  with dispose() and some closing null-ing added
+
+2011-05-31 18:41  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CategoriesListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/ImagePreview.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemsListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Model.java:
+	  Some javadoc.
+
+2011-05-31 18:31  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemsListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java:
+	  Manually editing item bug fixed.
+
+2011-05-31 13:51  cile87
+
+	* trunk/LXMenuEditor/TODO.txt, trunk/LXMenuEditor/resources/net,
+	  trunk/LXMenuEditor/resources/net/sourceforge,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/accessories.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/development.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/games.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/graphics.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/internet.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/multimedia.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/office.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/other.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/preferences.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/science.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/system.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/categories/utilities.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/about.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/browse.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/cancel.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/delete.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/exit.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/help.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/lxmed.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/lxmed_small.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/new.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/ok.png,
+	  trunk/LXMenuEditor/resources/net/sourceforge/lxmed/images/dialogs/properties.png,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CategoriesListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemsListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  icon preview added; JPG, GIF supported
+
+2011-05-31 13:49  cile87
+
+	* trunk/LXMenuEditor/resources/images: icon preview added; JPG, GIF
+	  supported
+
+2011-05-28 05:10  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: update requirements
+
+2011-05-27 05:30  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: todd's whish list
+
+2011-05-22 23:28  cile87
+
+	* tags/lxmed-20110426.info, tags/lxmed-20110426.tar.gz,
+	  tags/lxmed-20110523.info, tags/lxmed-20110523.tar.gz: new version
+	  lxmed 2011-05-23
+
+2011-05-22 23:20  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/lxmed-20110518.tar.gz, trunk/lxmed-20110523.tar.gz: new
+	  version
+
+2011-05-18 16:58  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: todo file changed
+
+2011-05-18 16:53  cile87
+
+	* tags/lxmed-20110426.info, tags/lxmed-20110426.tar.gz,
+	  trunk/lxmed-20110426.tar.gz: new version
+
+2011-05-18 16:49  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/installation/lxmed/content/uninstall.sh,
+	  trunk/installation/lxmed/install.sh, trunk/lxmed-20110518.tar.gz:
+	  .svn file reading
+	  install.sh copies lxmed into /usr/bin, not /bin
+
+2011-04-26 15:54  cile87
+
+	* trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/lxmed-20110426.tar.gz: new version
+
+2011-04-26 15:41  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  manual code edit bug fixed
+
+2011-04-26 14:07  cile87
+
+	* trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/installation/lxmed/install.sh, trunk/lxmed-20110423.tar.gz,
+	  trunk/lxmed-20110426.tar.gz: new version
+
+2011-04-26 14:04  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java:
+	  version
+
+2011-04-26 12:50  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java:
+	  help
+
+2011-04-26 02:06  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  changing category bug fixed
+
+2011-04-26 01:48  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils/SingletonInsurance.java,
+	  trunk/LXMenuEditor/test/SingletonApp.java: SingletonApp
+
+2011-04-24 00:19  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: editig
+
+2011-04-23 00:41  cile87
+
+	* trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/lxmed-20110423.tar.gz: news
+
+2011-04-23 00:28  cile87
+
+	* trunk/installation/lxmed/content/LXMenuEditor.jar,
+	  trunk/installation/lxmed/content/lxmed,
+	  trunk/installation/lxmed/content/lxmed.desktop,
+	  trunk/installation/lxmed/content/lxmed.png,
+	  trunk/installation/lxmed/content/uninstall.sh: content
+
+2011-04-23 00:28  cile87
+
+	* trunk/installation/lxmed/content: c
+
+2011-04-23 00:19  cile87
+
+	* trunk/installation/LICENCE.txt, trunk/installation/content,
+	  trunk/installation/install.sh: deleted old files
+
+2011-04-23 00:18  cile87
+
+	* trunk/installation/lxmed/LICENCE.txt,
+	  trunk/installation/lxmed/install.sh: copying data into new folder
+
+2011-04-23 00:18  cile87
+
+	* trunk/installation/lxmed: new folder in installation
+
+2011-04-22 23:39  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CategoriesListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Model.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/DesktopFileSaver.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java,
+	  trunk/installation/LICENCE.txt,
+	  trunk/installation/content/LXMenuEditor.jar,
+	  trunk/lxmed-20110423.tar.gz: new menu item and deleting works
+
+2011-04-21 01:34  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CategoriesListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Categorie.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Category.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Model.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/DesktopFileSaver.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/package-info.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils/Configuration.java:
+	  Menu item's values are preserved in LinkedHashMap instead of
+	  bunch of attributes like before.
+
+2011-04-20 23:32  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: Small changes.
+
+2011-04-20 23:28  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemsListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/package-info.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Categorie.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Model.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/package-info.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/package-info.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/DesktopFileSaver.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ItemNameComparator.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ProcessExecutor.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/UserDeterminator.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils/ProcessExecutor.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils/UserDeterminator.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/utils/package-info.java:
+	  Javadoc written. New package utils created and 3 classes moved to
+	  it.
+
+2011-04-20 20:02  cile87
+
+	* trunk/installation/content/lxmed.png: changed
+
+2011-04-20 20:01  cile87
+
+	* tags/lxmed-20100420.info, tags/lxmed-20110420.tar.gz: First
+	  working version.
+
+2011-04-20 19:57  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/resources/images/categories/accessories.png,
+	  trunk/LXMenuEditor/resources/images/categories/development.png,
+	  trunk/LXMenuEditor/resources/images/categories/engineering.png,
+	  trunk/LXMenuEditor/resources/images/categories/games.png,
+	  trunk/LXMenuEditor/resources/images/categories/graphics.png,
+	  trunk/LXMenuEditor/resources/images/categories/internet.png,
+	  trunk/LXMenuEditor/resources/images/categories/multimedia.png,
+	  trunk/LXMenuEditor/resources/images/categories/office.png,
+	  trunk/LXMenuEditor/resources/images/categories/other.png,
+	  trunk/LXMenuEditor/resources/images/categories/preferences.png,
+	  trunk/LXMenuEditor/resources/images/categories/science.png,
+	  trunk/LXMenuEditor/resources/images/categories/system.png,
+	  trunk/LXMenuEditor/resources/images/categories/utilities.png,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Categorie.java:
+	  Mint-X icon theme applied.
+
+2011-04-19 02:01  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: another one lock
+
+2011-04-19 01:58  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: lock
+
+2011-04-19 01:43  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: TODO filled
+
+2011-04-16 13:04  cile87
+
+	* trunk/installation/content,
+	  trunk/installation/content/LXMenuEditor.jar,
+	  trunk/installation/content/lxmed,
+	  trunk/installation/content/lxmed.desktop,
+	  trunk/installation/content/lxmed.png,
+	  trunk/installation/content/uninstall.sh,
+	  trunk/installation/install.sh: installation files
+
+2011-04-16 13:04  cile87
+
+	* trunk/installation: installation
+
+2011-04-15 23:38  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/resources/images/dialogs/lxmed.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/lxmed_small.png,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java:
+	  help, application icon
+
+2011-04-15 17:47  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/LxmedException.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/UserDeterminator.java:
+	  User determination.
+
+2011-04-14 11:42  cile87
+
+	* trunk/LXMenuEditor/resources,
+	  trunk/LXMenuEditor/resources/images,
+	  trunk/LXMenuEditor/resources/images/categories,
+	  trunk/LXMenuEditor/resources/images/categories/accessories.png,
+	  trunk/LXMenuEditor/resources/images/categories/development.png,
+	  trunk/LXMenuEditor/resources/images/categories/engineering.png,
+	  trunk/LXMenuEditor/resources/images/categories/games.png,
+	  trunk/LXMenuEditor/resources/images/categories/graphics.png,
+	  trunk/LXMenuEditor/resources/images/categories/internet.png,
+	  trunk/LXMenuEditor/resources/images/categories/multimedia.png,
+	  trunk/LXMenuEditor/resources/images/categories/office.png,
+	  trunk/LXMenuEditor/resources/images/categories/other.png,
+	  trunk/LXMenuEditor/resources/images/categories/science.png,
+	  trunk/LXMenuEditor/resources/images/categories/system.png,
+	  trunk/LXMenuEditor/resources/images/categories/utilities.png,
+	  trunk/LXMenuEditor/resources/images/dialogs,
+	  trunk/LXMenuEditor/resources/images/dialogs/about.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/browse.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/cancel.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/delete.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/exit.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/help.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/new.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/ok.png,
+	  trunk/LXMenuEditor/resources/images/dialogs/properties.png,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CategoriesListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/ListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemsListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Categorie.java:
+	  Icons for dialogs and categories.
+
+2011-04-14 09:12  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java:
+	  Font set.
+
+2011-04-14 08:41  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java:
+	  close button added
+
+2011-04-14 02:36  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java:
+	  obrisan system.out
+
+2011-04-14 02:31  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  Code parsing.
+
+2011-04-09 01:02  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/CodeEditDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/ListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ItemNameComparator.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  Manual code editing. Tighteting rest of funcionality.
+
+2011-04-07 13:46  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java:
+	  Ok button enabling/disabling
+
+2011-04-06 23:49  cile87
+
+	* trunk/LXMenuEditor/LICENCE.txt, trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/ImagePreview.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/ListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  GPLv3 licence. Icon preview. Menu item saving. Browse buttons in
+	  MenuItemDialog.
+
+2011-04-06 13:51  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ItemNameComparator.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  Sorting by item name.
+
+2011-04-05 23:49  cile87
+
+	* trunk/LXMenuEditor/TODO.txt: TODO updated.
+
+2011-04-05 23:23  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/ListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  Yellow color for wine apps.
+
+2011-04-05 22:43  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/ListCellRenderer.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/test/IconListRenderer.java: Colorful lists.
+	  Red for noneditable, green for editables. Bold for visible ones,
+	  other are plain.
+
+2011-04-05 16:02  cile87
+
+	* trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Categorie.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/DesktopFileSaver.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  Continuing work...
+
+2011-04-05 01:04  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ProcessExecutor.java:
+	  Admin rights resolved.
+
+2011-04-05 00:02  cile87
+
+	* trunk/LXMenuEditor/TODO.txt,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/LxmedException.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Categorie.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Model.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java:
+	  Loading menu tree.
+
+2011-04-04 18:58  cile87
+
+	* trunk/LXMenuEditor,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MainFrame.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.form,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/gui/MenuItemDialog.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Categorie.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/MenuItem.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/model/Model.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/Configuration.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/DesktopFileSaver.java,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/persistence/ModelLoader.java,
+	  trunk/LXMenuEditor/test/IconListRenderer.java: Scratch
+
+2011-04-04 00:45  cile87
+
+	* trunk/LXMenuEditor/src/net,
+	  trunk/LXMenuEditor/src/net/sourceforge,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed,
+	  trunk/LXMenuEditor/src/net/sourceforge/lxmed/Main.java: Intro
+	  commit
+
+2011-04-04 00:44  cile87
+
+	* branches, tags, trunk, trunk/LXMenuEditor,
+	  trunk/LXMenuEditor/src, trunk/LXMenuEditor/test: Intro commit.
+

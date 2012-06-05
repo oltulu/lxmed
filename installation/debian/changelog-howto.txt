@@ -1,0 +1,1 @@
+svn log --xml --verbose | xsltproc /opt/svn2cl-0.13/svn2cl.xsl - > ChangeLog
