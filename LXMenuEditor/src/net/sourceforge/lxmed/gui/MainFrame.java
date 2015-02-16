@@ -32,6 +32,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.DefaultListModel;
@@ -187,10 +188,10 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
     public void updateCategory() {
         dlmItems.clear();
         Category c = (Category) lstCategories.getSelectedValue();
-        ModelLoader.sortItemsByName(c);
-        for (MenuItem menuItem : c) {
+        List<MenuItem> sorted = ModelLoader.sortItemsByName(c);
+        sorted.stream().forEach((menuItem) -> {
             dlmItems.addElement(menuItem);
-        }
+        });
         disableControls();
     }
 

@@ -24,8 +24,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,12 +41,14 @@ import net.sourceforge.lxmed.model.Model;
 
 /**
  * Loads the entire model reading it's content from hard disk and then creates
- * data structure (package
- * <code>model</code>).
+ * data structure (package <code>model</code>).
  *
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class ModelLoader {
+    
+    public static Map<String, String> keys = new HashMap<>();
+    public static List<String> md5s = new ArrayList<>();
 
     /**
      * Method which loads the model.
@@ -120,12 +128,12 @@ public class ModelLoader {
         return null;
     }
 
-    /**
-     * Returns MenuItem by given string which contains data describing it as
-     * regular .desktop file.
-     *
-     * @param fileContent data string
-     */
+        /**
+         * Returns MenuItem by given string which contains data describing it as
+         * regular .desktop file.
+         *
+         * @param fileContent data string
+         */
     public static MenuItem loadData(String fileContent) {
         Map<String, String> values = new LinkedHashMap<String, String>();
 
@@ -193,8 +201,11 @@ public class ModelLoader {
      * Sort all menu items in given category by menu item's name.
      *
      * @param c category to sort
+     * @return 
      */
-    public static void sortItemsByName(Category c) {
-        Collections.sort(c.getItems(), new ItemNameComparator());
+    public static List<MenuItem> sortItemsByName(Category c) {
+        List<MenuItem> sortedList = new ArrayList(c.getItems());
+        Collections.sort(sortedList, new ItemNameComparator());
+        return sortedList;
     }
 }

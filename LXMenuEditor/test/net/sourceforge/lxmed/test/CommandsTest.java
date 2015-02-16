@@ -86,9 +86,9 @@ public class CommandsTest extends TestCase {
         assertEquals(2, items);
 
         // after these undo commands, b should be named 'b1' and placed in first category (Accessories)
-        assertEquals("b1", Model.getModel().getCategories().get(0).getItems().get(0).getName());
+        assertEquals("b1", Model.getModel().getCategories().get(0).getItemsAsList().get(0).getName());
         // after these undo commands, a should be named 'a2' and placed in second category (Education)
-        assertEquals("a2", Model.getModel().getCategories().get(1).getItems().get(0).getName());
+        assertEquals("a2", Model.getModel().getCategories().get(1).getItemsAsList().get(0).getName());
     }
 
     private void addCommand(LxmedCommand command) {

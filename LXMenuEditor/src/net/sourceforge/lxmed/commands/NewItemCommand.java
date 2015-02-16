@@ -41,7 +41,7 @@ public class NewItemCommand implements LxmedCommand {
     /**
      * Creates new menu item command.
      *
-     * @param mi menu item to be added
+     * @param newMenuItem menu item to be added
      */
     public NewItemCommand(MenuItem newMenuItem) {
         menuItem = newMenuItem;

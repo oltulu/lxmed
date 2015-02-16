@@ -28,7 +28,7 @@ import net.sourceforge.lxmed.utils.UserDeterminator;
  * @author <a href="mailto:cicakmarko@yahoo.com">Marko Čičak</a>
  */
 public class Main {
-
+    
     /**
      * Loads main frame. Checks if another instance is running. Determines user
      * (regular or sudo). Loads a model by reading a file system structure which
@@ -52,7 +52,7 @@ public class Main {
 
         // load model from file system
         ModelLoader.load();
-
+        
         // start GUI
         java.awt.EventQueue.invokeLater(new Runnable() {
 

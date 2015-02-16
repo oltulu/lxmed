@@ -18,6 +18,7 @@
 package net.sourceforge.lxmed.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class Category implements Iterable<MenuItem>/*
     /**
      * Menu items belonging to category.
      */
-    protected List<MenuItem> items = new ArrayList<MenuItem>();
+    protected HashSet<MenuItem> items = new HashSet<MenuItem>();
 
     /**
      * Constructor.
@@ -66,7 +67,7 @@ public class Category implements Iterable<MenuItem>/*
             return;
         }
         if (this.items == null) {
-            this.items = new java.util.ArrayList<MenuItem>();
+            this.items = new HashSet<>();
         }
         if (!this.items.contains(newMenuItem)) {
             this.items.add(newMenuItem);
@@ -123,7 +124,7 @@ public class Category implements Iterable<MenuItem>/*
      *
      * @param items new list of menu items
      */
-    public void setItems(List<MenuItem> items) {
+    public void setItems(HashSet<MenuItem> items) {
         this.items = items;
     }
 
@@ -174,7 +175,11 @@ public class Category implements Iterable<MenuItem>/*
         return items.iterator();
     }
 
-    public List<MenuItem> getItems() {
+    public HashSet<MenuItem> getItems() {
         return items;
     }
+    
+    public List<MenuItem> getItemsAsList() {
+        return new ArrayList<>(items);
+    }    
 }

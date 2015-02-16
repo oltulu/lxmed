@@ -29,17 +29,17 @@ import net.sourceforge.lxmed.utils.Configuration;
 /**
  * Cell renderer for menu items list in main form. If a user doesn't have access
  * to item, item is painted red. If item is a <i>wine</i> launcher, item is
- * painted yellow, otherwise item is painted green.<br/> If item is visible, it
+ * painted yellow, otherwise item is painted green.<br> If item is visible, it
  * is in bold style, otherwise it is in regular style.
  *
- * @author Marko Čičak <cicakmarko@yahoo.com>
+ * @author Marko Čičak <a href="mailto:cicakmarko@yahoo.com"></a>
  */
 public class MenuItemsListCellRenderer extends DefaultListCellRenderer {
 
     /**
      * Returns a rendered label for menu item list. If a user doesn't have access
      * to item, item is painted red. If item is a <i>wine</i> launcher, item is
-     * painted yellow, otherwise item is painted green.<br/> If item is visible,
+     * painted yellow, otherwise item is painted green.<br> If item is visible,
      * it is in bold style, otherwise it is in regular style.
      */
     @Override

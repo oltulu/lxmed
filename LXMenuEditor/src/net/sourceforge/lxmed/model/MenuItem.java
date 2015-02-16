@@ -168,6 +168,7 @@ public class MenuItem implements Cloneable {
 
     /**
      * Menu item's no-display attribute. True if item is not visible in menu.
+     * @return 
      */
     public boolean isNoDisplay() {
         String str = content.get("NoDisplay");
@@ -214,7 +215,7 @@ public class MenuItem implements Cloneable {
     /**
      * Sets menu item's category.
      *
-     * @param category new category
+     * @param newCategory new category
      */
     public void setCategory(Category newCategory) {
         if (this.category == null || !this.category.equals(newCategory)) {
@@ -242,7 +243,7 @@ public class MenuItem implements Cloneable {
     /**
      * Sets access permission for this menu item.
      *
-     * @param onlyForAdmin true if only root user can edit this menu item
+     * @param readonly true if only root user can edit this menu item
      */
     public void setReadOnly(boolean readonly) {
         this.readonly = readonly;
@@ -251,6 +252,7 @@ public class MenuItem implements Cloneable {
     /**
      * Menu item's original categories (even multiple categories are shown if
      * they were first loaded)
+     * @return 
      */
     public String getOriginalCategories() {
         return originalCategories;

@@ -46,7 +46,7 @@ public class CutAction extends LxmedAbstractAction {
     }
 
     /**
-     * Clones & deletes selected menu item to clipboard. Creates a new
+     * Clones &amp; deletes selected menu item to clipboard. Creates a new
      * {@link DeleteItemCommand} which deletes selected menu item. Lastly, it
      * updates clipboard buttons on {@link MainFrame}.
      *
