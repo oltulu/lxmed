@@ -53,7 +53,7 @@ public class ProcessExecutor {
 
         } catch (Exception e) { // exception thrown
 
-            System.out.println("Command failed!");
+            System.out.println("Komut Hatalı!");
 
         }
 
