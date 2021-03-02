@@ -105,7 +105,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
     private void setReadOnly() {
         txtCode.setEditable(false);
         btnCancel.setVisible(false);
-        btnOk.setText("Close");
+        btnOk.setText("Kapat");
         btnOk.setMnemonic('c');
     }
 
@@ -133,7 +133,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
         btnOk.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/ok.png"))); // NOI18N
         btnOk.setMnemonic('o');
-        btnOk.setText("Ok");
+        btnOk.setText("Tamam");
         btnOk.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnOkActionPerformed(evt);
@@ -143,7 +143,7 @@ public class CodeEditDialog extends javax.swing.JDialog {
         btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
         btnCancel.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/cancel.png"))); // NOI18N
         btnCancel.setMnemonic('c');
-        btnCancel.setText("Cancel");
+        btnCancel.setText("İptal");
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnCancelActionPerformed(evt);
