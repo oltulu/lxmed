@@ -158,7 +158,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         }
 
         if (!((MenuItem) lstItems.getSelectedValue()).isReadOnly()) {
-            int confirm = JOptionPane.showConfirmDialog(this, "Really delete file? You can just make it invisible in properties dialog.", "Delete file?", JOptionPane.YES_NO_OPTION);
+            int confirm = JOptionPane.showConfirmDialog(this, "Dosya gerçekten silinsin mi? Bunu özellikler iletişim kutusunda görünmez yapabilirsiniz.", "Dosya silinsin mi?", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 MenuItem toDelete = (MenuItem) lstItems.getSelectedValue();
                 DeleteItemCommand dic = new DeleteItemCommand(toDelete);
@@ -297,13 +297,13 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         btnPaste = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("LXDE Main Menu Editor");
+        setTitle("Aylinux LXDE Menü Düzenleyici");
 
         pnlSouth.setLayout(new GridBagLayout());
 
         btnHelp.setFont(btnHelp.getFont().deriveFont(btnHelp.getFont().getStyle() & ~Font.BOLD, btnHelp.getFont().getSize()-1));
         btnHelp.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/help.png")));         btnHelp.setMnemonic('h');
-        btnHelp.setText("Help");
+        btnHelp.setText("Yardım");
         btnHelp.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnHelpActionPerformed(evt);
@@ -318,7 +318,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnAbout.setFont(btnAbout.getFont().deriveFont(btnAbout.getFont().getStyle() & ~Font.BOLD, btnAbout.getFont().getSize()-1));
         btnAbout.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/about.png")));         btnAbout.setMnemonic('b');
-        btnAbout.setText("About");
+        btnAbout.setText("Hakkında");
         btnAbout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnAboutActionPerformed(evt);
@@ -333,7 +333,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnClose.setFont(btnClose.getFont().deriveFont(btnClose.getFont().getStyle() & ~Font.BOLD, btnClose.getFont().getSize()-1));
         btnClose.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/exit.png")));         btnClose.setMnemonic('s');
-        btnClose.setText("Close");
+        btnClose.setText("Kapat");
         btnClose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -360,7 +360,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         pnlNorth.setLayout(new GridBagLayout());
 
         lblTitle.setFont(lblTitle.getFont().deriveFont(lblTitle.getFont().getStyle() | Font.BOLD, lblTitle.getFont().getSize()-1));
-        lblTitle.setText("Configure main menu:");
+        lblTitle.setText("Ana menü ayarları:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -384,7 +384,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         lblCategories.setDisplayedMnemonic('a');
         lblCategories.setFont(lblCategories.getFont().deriveFont(lblCategories.getFont().getStyle() & ~Font.BOLD, lblCategories.getFont().getSize()-1));
         lblCategories.setLabelFor(lstCategories);
-        lblCategories.setText("Categories:");
+        lblCategories.setText("Kategoriler:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -466,7 +466,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         lblItems.setDisplayedMnemonic('t');
         lblItems.setFont(lblItems.getFont().deriveFont(lblItems.getFont().getStyle() & ~Font.BOLD, lblItems.getFont().getSize()-1));
         lblItems.setLabelFor(lstItems);
-        lblItems.setText("Menu Items:");
+        lblItems.setText("Menü öğeleri:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -480,7 +480,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnNewItem.setFont(btnNewItem.getFont().deriveFont(btnNewItem.getFont().getStyle() & ~Font.BOLD, btnNewItem.getFont().getSize()-1));
         btnNewItem.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/new.png")));         btnNewItem.setMnemonic('n');
-        btnNewItem.setText("New Item");
+        btnNewItem.setText("Yeni öğe");
         btnNewItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnNewItemActionPerformed(evt);
@@ -496,7 +496,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnProperties.setFont(btnProperties.getFont().deriveFont(btnProperties.getFont().getStyle() & ~Font.BOLD, btnProperties.getFont().getSize()-1));
         btnProperties.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/properties.png")));         btnProperties.setMnemonic('r');
-        btnProperties.setText("Properties");
+        btnProperties.setText("Özellikler");
         btnProperties.setEnabled(false);
         btnProperties.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -513,7 +513,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
 
         btnDelete.setFont(btnDelete.getFont().deriveFont(btnDelete.getFont().getStyle() & ~Font.BOLD, btnDelete.getFont().getSize()-1));
         btnDelete.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/delete.png")));         btnDelete.setMnemonic('d');
-        btnDelete.setText("Delete");
+        btnDelete.setText("Sil");
         btnDelete.setEnabled(false);
         btnDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -535,7 +535,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         pnlControls.add(jSeparator1, gridBagConstraints);
 
         btnUndo.setFont(new Font("Dialog", 0, 11));         btnUndo.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-undo.png")));         btnUndo.setMnemonic('u');
-        btnUndo.setText("Undo");
+        btnUndo.setText("İleri");
         btnUndo.setEnabled(false);
         btnUndo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -551,7 +551,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         pnlControls.add(btnUndo, gridBagConstraints);
 
         btnRedo.setFont(new Font("Dialog", 0, 11));         btnRedo.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-redo.png")));         btnRedo.setMnemonic('e');
-        btnRedo.setText("Redo");
+        btnRedo.setText("İleri");
         btnRedo.setEnabled(false);
         btnRedo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -573,7 +573,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         pnlControls.add(jSeparator2, gridBagConstraints);
 
         btnCut.setFont(new Font("Dialog", 0, 11));         btnCut.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-cut.png")));         btnCut.setMnemonic('c');
-        btnCut.setText("Cut");
+        btnCut.setText("Kes");
         btnCut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnCutActionPerformed(evt);
@@ -588,7 +588,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         pnlControls.add(btnCut, gridBagConstraints);
 
         btnCopy.setFont(new Font("Dialog", 0, 11));         btnCopy.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-copy.png")));         btnCopy.setMnemonic('y');
-        btnCopy.setText("Copy");
+        btnCopy.setText("Kopyala");
         btnCopy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnCopyActionPerformed(evt);
@@ -603,7 +603,7 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         pnlControls.add(btnCopy, gridBagConstraints);
 
         btnPaste.setFont(new Font("Dialog", 0, 11));         btnPaste.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/edit-paste.png")));         btnPaste.setMnemonic('p');
-        btnPaste.setText("Paste");
+        btnPaste.setText("Yapıştır");
         btnPaste.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnPasteActionPerformed(evt);
@@ -632,14 +632,14 @@ public class MainFrame extends javax.swing.JFrame implements Observer {
         try {
             Runtime.getRuntime().exec("firefox http://lxmed.sourceforge.net/help.html");
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error while launching firefox browser. Visit http://lxmed.sourceforge.net/help.html for help", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Firefox tarayıcısı başlatılırken hata oluştu. Ziyaret http://lxmed.sourceforge.net/help.html for help", "Hata", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnHelpActionPerformed
 
     private void btnAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         String msg = "LXDE Main Menu Editor 20120515-beta\n\n";
         msg += "Copyleft 2011. HEEM-BA-SHOU\n";
-        JOptionPane.showMessageDialog(this, msg, "About", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, msg, "Hakkında", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnAboutActionPerformed
 
     private void btnNewItemActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnNewItemActionPerformed
