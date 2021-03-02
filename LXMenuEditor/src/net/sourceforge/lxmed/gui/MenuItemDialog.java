@@ -287,8 +287,8 @@ public class MenuItemDialog extends javax.swing.JDialog {
         try {
             CommandManager.getInstance().addCommand(newMenuItem);
         } catch (LxmedException e) {
-            Logger.getLogger(MenuItemDialog.class.getName()).log(Level.SEVERE, "New menu item error", e);
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error while saving item", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(MenuItemDialog.class.getName()).log(Level.SEVERE, "Yeni menü öğesi hatası", e);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Öğe kaydedilirken hata", JOptionPane.ERROR_MESSAGE);
         }
         parent = null;
         dispose();
@@ -413,7 +413,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnCancel.setFont(btnCancel.getFont().deriveFont(btnCancel.getFont().getStyle() & ~Font.BOLD, btnCancel.getFont().getSize()-1));
         btnCancel.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/cancel.png"))); // NOI18N
         btnCancel.setMnemonic('c');
-        btnCancel.setText("Cancel");
+        btnCancel.setText("İptal");
         btnCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -430,7 +430,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnOk.setFont(btnOk.getFont().deriveFont(btnOk.getFont().getStyle() & ~Font.BOLD, btnOk.getFont().getSize()-1));
         btnOk.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/ok.png"))); // NOI18N
         btnOk.setMnemonic('o');
-        btnOk.setText("Ok");
+        btnOk.setText("Tamam");
         btnOk.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnOkActionPerformed(evt);
@@ -454,7 +454,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnViewCode.setFont(btnViewCode.getFont().deriveFont(btnViewCode.getFont().getStyle() & ~Font.BOLD, btnViewCode.getFont().getSize()-1));
         btnViewCode.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/properties.png"))); // NOI18N
         btnViewCode.setMnemonic('e');
-        btnViewCode.setText("Edit code manually");
+        btnViewCode.setText("Kodu manuel olarak düzenleyin");
         btnViewCode.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnViewCodeActionPerformed(evt);
@@ -472,7 +472,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         pnlCenter.setFont(new Font("Dialog", 0, 11));
 
         lblPath.setFont(lblPath.getFont().deriveFont(lblPath.getFont().getStyle() & ~Font.BOLD, lblPath.getFont().getSize()-1));
-        lblPath.setText("Path:");
+        lblPath.setText("Yol:");
 
         txtPath.setEditable(false);
         txtPath.setFont(txtPath.getFont().deriveFont(txtPath.getFont().getStyle() & ~Font.BOLD, txtPath.getFont().getSize()-1));
@@ -480,7 +480,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblCategories.setDisplayedMnemonic('a');
         lblCategories.setFont(lblCategories.getFont().deriveFont(lblCategories.getFont().getStyle() & ~Font.BOLD, lblCategories.getFont().getSize()-1));
         lblCategories.setLabelFor(cbCategories);
-        lblCategories.setText("Category:");
+        lblCategories.setText("Kategori:");
 
         cbCategories.setFont(cbCategories.getFont().deriveFont(cbCategories.getFont().getStyle() & ~Font.BOLD, cbCategories.getFont().getSize()-1));
         cbCategories.setMaximumRowCount(15);
@@ -489,7 +489,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblName.setDisplayedMnemonic('n');
         lblName.setFont(lblName.getFont().deriveFont(lblName.getFont().getStyle() & ~Font.BOLD, lblName.getFont().getSize()-1));
         lblName.setLabelFor(txtName);
-        lblName.setText("Name:");
+        lblName.setText("İsim:");
 
         txtName.setFont(txtName.getFont().deriveFont(txtName.getFont().getStyle() & ~Font.BOLD, txtName.getFont().getSize()-1));
         txtName.addKeyListener(new KeyAdapter() {
@@ -501,7 +501,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblCommand.setDisplayedMnemonic('d');
         lblCommand.setFont(lblCommand.getFont().deriveFont(lblCommand.getFont().getStyle() & ~Font.BOLD, lblCommand.getFont().getSize()-1));
         lblCommand.setLabelFor(txtCommand);
-        lblCommand.setText("Command:");
+        lblCommand.setText("Komut:");
 
         txtCommand.setFont(txtCommand.getFont().deriveFont(txtCommand.getFont().getStyle() & ~Font.BOLD, txtCommand.getFont().getSize()-1));
         txtCommand.addKeyListener(new KeyAdapter() {
@@ -513,7 +513,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnBrowseCommand.setFont(btnBrowseCommand.getFont().deriveFont(btnBrowseCommand.getFont().getStyle() & ~Font.BOLD, btnBrowseCommand.getFont().getSize()-1));
         btnBrowseCommand.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/browse.png"))); // NOI18N
         btnBrowseCommand.setMnemonic('b');
-        btnBrowseCommand.setText("Browse...");
+        btnBrowseCommand.setText("Araştır...");
         btnBrowseCommand.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnBrowseCommandActionPerformed(evt);
@@ -523,14 +523,14 @@ public class MenuItemDialog extends javax.swing.JDialog {
         lblComment.setDisplayedMnemonic('m');
         lblComment.setFont(lblComment.getFont().deriveFont(lblComment.getFont().getStyle() & ~Font.BOLD, lblComment.getFont().getSize()-1));
         lblComment.setLabelFor(txtComment);
-        lblComment.setText("Comment:");
+        lblComment.setText("Yorum Yap:");
 
         txtComment.setFont(txtComment.getFont().deriveFont(txtComment.getFont().getStyle() & ~Font.BOLD, txtComment.getFont().getSize()-1));
 
         lblIcon.setDisplayedMnemonic('i');
         lblIcon.setFont(lblIcon.getFont().deriveFont(lblIcon.getFont().getStyle() & ~Font.BOLD, lblIcon.getFont().getSize()-1));
         lblIcon.setLabelFor(txtIcon);
-        lblIcon.setText("Icon:");
+        lblIcon.setText("Simge:");
 
         txtIcon.setFont(txtIcon.getFont().deriveFont(txtIcon.getFont().getStyle() & ~Font.BOLD, txtIcon.getFont().getSize()-1));
         txtIcon.addKeyListener(new KeyAdapter() {
@@ -542,7 +542,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
         btnBrowseIcon.setFont(btnBrowseIcon.getFont().deriveFont(btnBrowseIcon.getFont().getStyle() & ~Font.BOLD, btnBrowseIcon.getFont().getSize()-1));
         btnBrowseIcon.setIcon(new ImageIcon(getClass().getResource("/net/sourceforge/lxmed/images/dialogs/browse.png"))); // NOI18N
         btnBrowseIcon.setMnemonic('r');
-        btnBrowseIcon.setText("Browse...");
+        btnBrowseIcon.setText("Araştır...");
         btnBrowseIcon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 btnBrowseIconActionPerformed(evt);
@@ -551,7 +551,7 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
         cbVisible.setFont(cbVisible.getFont().deriveFont(cbVisible.getFont().getStyle() & ~Font.BOLD, cbVisible.getFont().getSize()-1));
         cbVisible.setMnemonic('v');
-        cbVisible.setText("Visible");
+        cbVisible.setText("Görünür");
 
         GroupLayout pnlCenterLayout = new GroupLayout(pnlCenter);
         pnlCenter.setLayout(pnlCenterLayout);
@@ -649,13 +649,13 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
     private void formComponentShown(ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         if (!newItem) {
-            setTitle("Editing menu " + temporary.getName());
+            setTitle( temporary.getName() + "menüsü düzenleniyor " );
             if (temporary.isReadOnly()) {
-                btnViewCode.setText("View original code");
+                btnViewCode.setText("Orijinal kodu görüntüleyin");
             }
             updateGui();
         } else {
-            setTitle("New menu item");
+            setTitle("Yeni menü öğesi");
             readyForNew();
         }
         checkBtnOk();
@@ -675,14 +675,14 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
             @Override
             public String getDescription() {
-                return "All files [*.*]";
+                return "Tüm Dosyalar [*.*]";
             }
         });
 
         fc.setAcceptAllFileFilterUsed(false);
-        fc.setDialogTitle("Choose executive file for this item");
+        fc.setDialogTitle("Bu öğe için çalışma dosyası seçin");
 
-        int returnVal = fc.showDialog(this, "Ok");
+        int returnVal = fc.showDialog(this, "Tamam");
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             txtCommand.setText(fc.getSelectedFile().getAbsolutePath());
@@ -706,13 +706,13 @@ public class MenuItemDialog extends javax.swing.JDialog {
 
         setFileChooserFont(fc.getComponents());
         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        fc.setFileFilter(new FileNameExtensionFilter("Image files [*.png, *.jpg, *.gif, *.xpm, *.svg]", "png", "xpm", "svg", "jpg", "gif"));
+        fc.setFileFilter(new FileNameExtensionFilter("Resim Dosyası [*.png, *.jpg, *.gif, *.xpm, *.svg]", "png", "xpm", "svg", "jpg", "gif"));
         fc.setAccessory(new ImagePreview(fc));
 
         fc.setAcceptAllFileFilterUsed(false);
-        fc.setDialogTitle("Choose icon file for this item");
+        fc.setDialogTitle("Bu öğe için simge dosyası seçin");
 
-        int returnVal = fc.showDialog(this, "Ok");
+        int returnVal = fc.showDialog(this, "Tamam");
 
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             txtIcon.setText(fc.getSelectedFile().getAbsolutePath());
